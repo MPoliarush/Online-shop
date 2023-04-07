@@ -149,15 +149,20 @@ background-color: #F5F5F5;
 
 .content-container.row{
   display: flex;
+ flex-wrap: wrap;
   padding: 45px 50px;
-  gap:10px;
   text-align: left;
+  justify-content: space-between;
+  gap:5px;
 }
 
 .first-page-row-block{
+  min-width: 120px;
+  width:19%;
   display: flex;
   align-items: center;
   line-height: 0;
+
 }
 
 .first-page-row-block p{
@@ -191,12 +196,16 @@ color: #000000;
 
 .second-page-header{
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto 15px;
   text-align: center;
 }
 
+.second-page-header span{
+  color:#76c302;
+}
+
 .slider-visible-wrapper{
-  border: solid;
+  /* border: solid; */
   max-width: 1110px;
   margin: 0 auto;
   padding: 0 10px;
@@ -206,24 +215,24 @@ color: #000000;
 
 .arrow-left{
   position: absolute;
-  top:39%;
+  top:43%;
   right:50px;
   transition: 0.3s;
   background: #FFFFFF;
 box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
-padding: 7px 7px 7px 10px;
+padding: 10px 7px 10px 12px;
 z-index: 10;
 }
 
 .arrow-right{
   position: absolute;
-  top:39%;
+  top:43%;
   left:50px;
   transition: 0.3s;
   
   background: #FFFFFF;
 box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
-padding: 7px 10px 7px 7px;
+padding: 10px 12px 10px 7px;
 z-index: 10;
 
 }
@@ -241,10 +250,12 @@ z-index: 10;
 }
 
 .card-frame{
-  width: 358px;
+  min-width: 250px;
+  width: 33.5%;
   border: solid;
   border: #EFEFEF solid 0.5px;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .product-info{
@@ -320,6 +331,8 @@ color: #75758A;
 width:100%;
 border: #EFEFEF solid 0.5px;
 padding: 17px 0 14px;
+box-sizing: border-box;
+
 }
 
 .product-pricing-box-price{
@@ -354,13 +367,14 @@ display: block;
 }
 
 .view-details:hover,.add-to-basket:hover{
-  background-color: #76c302;
+  background-color: #8fec03;
   transition: 0.5s all;
   cursor: pointer;
 }
 
 .add-to-basket{
   padding: 8px 10px;
+  background-color: #76c302;
 }
 
 .add-to-basket img{

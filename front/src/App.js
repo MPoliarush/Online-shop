@@ -213,6 +213,12 @@ function App() {
               </div>
           </div>
         </div>
+
+        <div className='third-page content-container'>
+          <div>
+            <h3>ВИ ШУКАЄТЕ ЩОСЬ КОНКРЕТНЕ?</h3>
+          </div>
+        </div>
       </main>
     </div>
   );
