@@ -2,6 +2,7 @@
   font-family: 'Ubuntu', sans-serif;
   padding: 0;
   margin: 0;
+  /* border: solid; */
 }
 
 ul{
@@ -15,18 +16,16 @@ border-radius: 100px;
 }
 
 
-
-
 body{
   max-width: 100%;
   border: 1px solid;
 }
 
-.most-main-container{
+.content-container{
   max-width: 1110px;
   margin: 0 auto;
-  padding: 0 30px;
-  border: dashed;
+  padding: 0 50px;
+ 
 }
 
 header{
@@ -44,7 +43,7 @@ header{
 
 .nav-list, .options-list{
   display: flex;
-  gap:10px;
+  gap:15px;
 }
 
 .nav-list{
@@ -76,3 +75,105 @@ justify-content: center;
   transition: all 0.3s ;
 }
 
+.first-page{
+  width:100%;
+  position:relative;
+  margin-bottom: 0;
+}
+
+.first-page-img{
+  width:100%;
+  height: 650px;
+  object-fit: cover;
+}
+
+.first-page-text-container{
+  width:320px;
+  position: absolute;
+  bottom: 80px;
+  font-family: 'Ubuntu';
+font-style: normal;
+font-weight: 700;
+font-size: 30px;
+
+/* or 203% */
+
+text-transform: uppercase;
+color: #000000;
+z-index: 10;
+}
+
+.first-page-text-container p{
+background-color: white;
+box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+width:80%;
+}
+
+.first-page-text-container span{
+  display: inline-block;
+  background-color: white;
+  padding: 5px 15px;
+  margin: 0;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+  
+}
+
+.first-page-text-container p span{
+  display: inline-block;
+  background-color: white;
+  padding: 5px 15px;
+  margin: 0;
+  box-shadow:none;
+  padding-right: 0;
+}
+
+.first-page-text-green {
+  background: linear-gradient(270deg, #8EE901 0%, #4F9C2C 99.06%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-fill-color: transparent;
+}
+
+.first-page-text-container>img {
+  position: absolute;
+ top: 100px;
+ left:-20px;
+ z-index: -1;
+}
+
+.first-page-row{
+margin-top: -4px;
+background-color: #F5F5F5;
+}
+
+.content-container.row{
+  display: flex;
+  padding: 45px 50px;
+  gap:10px;
+  text-align: left;
+ 
+}
+
+.first-page-row-block{
+  display: flex;
+  align-items: center;
+}
+
+.first-page-row-block p{
+  font-family: 'Ubuntu';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 20px;
+/* or 143% */
+
+color: #000000;
+}
+
+.first-page-row-block img{
+  width:32px;
+  height: 32px;
+  float: left;
+  margin-right: 7px;
+}
