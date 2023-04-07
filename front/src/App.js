@@ -215,8 +215,59 @@ function App() {
         </div>
 
         <div className='third-page content-container'>
-          <div>
-            <h3>ВИ ШУКАЄТЕ ЩОСЬ КОНКРЕТНЕ?</h3>
+          <div className='third-page-box'>
+            <h3>ВИ <span>ШУКАЄТЕ</span> ЩОСЬ КОНКРЕТНЕ?</h3>
+            <p>Проект Fotoprokat24 є агрегатором пропозицій всіх фотопрокатів міста та служить для Вашої зручності. Виберіть потрібну категорію, або почніть пошук за назвою. Оформивши замовлення, Ви зможете забрати його з Пункту Видачі або замовити доставку в будь-яку точку міста.</p>
+            <div className='third-page-btns'>
+              <button className='thirt-page-button'>ПЕРЕЙТИ В КАТАЛОГ</button>
+              <button className='thirt-page-button'>ПОШУК</button>
+            </div>
+          </div>
+        </div>
+
+        <div className='images-page content-container'>
+          <div className='image-box'>
+            <img src={process.env.PUBLIC_URL + '/imagesHTML/1.jpg'} alt='user'/>
+            <p>Фотокамери Canon від 200 UAH</p>
+          </div>
+          <div className='image-box'>
+            <img src={process.env.PUBLIC_URL + '/imagesHTML/2.jpg'} alt='user'/>
+            <p>Об'єктиви від 200 UAH</p>
+          </div>
+          <div className='image-box'>
+            <img src={process.env.PUBLIC_URL + '/imagesHTML/3.jpg'} alt='user'/>
+            <p>Товар тижня від 200 UAH</p>
+          </div>
+          <div className='image-box'>
+            <img src={process.env.PUBLIC_URL + '/imagesHTML/4.jpg'} alt='user'/>
+            <p>Товар тижня від 200 UAH</p>
+          </div>
+          <div className='image-box'>
+            <img src={process.env.PUBLIC_URL + '/imagesHTML/5.jpg'} alt='user'/>
+            <p>Фотокамери тижня від 200 UAH</p>
+          </div>
+        </div>
+
+        <div className='last-page'>
+          <img src={process.env.PUBLIC_URL + '/imagesHTML/map.png'}/>
+          <div className='content-container'>
+            <div className='last-page-content'>
+              <div className='stote-data'>
+                <p>Фотопрокат Зум</p>
+                <span>вул.О.Теліги,6</span>
+                <a href=''>www.google.com</a>
+              </div>
+              <div className='stote-data'>
+                <p>Фотопрокат Зум</p>
+                <span>вул.О.Теліги,6</span>
+                <a href=''>www.google.com</a>
+              </div>
+              <div className='stote-data'>
+                <p>Фотопрокат Зум</p>
+                <span>вул.О.Теліги,6</span>
+                <a href=''>www.google.com</a>
+              </div>
+            </div>
           </div>
         </div>
       </main>

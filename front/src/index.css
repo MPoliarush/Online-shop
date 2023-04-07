@@ -25,7 +25,7 @@ body{
   max-width: 1110px;
   margin: 0 auto;
   padding: 0 50px;
- 
+ position: relative;
 }
 
 header{
@@ -185,6 +185,7 @@ color: #000000;
 
 .second-page{
   margin-top: 96px;
+  margin-bottom: 93px;
 }
 
 .content-container-second-page{
@@ -383,3 +384,117 @@ display: block;
   height: 16px;
 }
 
+.third-page-box{
+  width: 45%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.third-page-box span{
+  color: #76c302;
+}
+
+.third-page-box p{
+  margin-top: 15px;
+  font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 26px;
+/* or 186% */
+
+text-align: center;
+
+color: #75758A;
+}
+
+.third-page-btns{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+}
+
+.thirt-page-button{
+  width:45%;
+  padding: 12px 20px;
+  background: #FFFFFF;
+box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+border-radius: 100px;
+border: none;
+transition: 1s all;
+}
+
+.thirt-page-button:hover{
+  background-color: #8EE901;
+  transition: 1s all;
+}
+
+.images-page{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.image-box{
+  position: relative;
+  margin-top: 20px;
+}
+
+.image-box:nth-of-type(4){
+  width: 720px;
+}
+
+.image-box:nth-of-type(4) img{
+  width:100%;
+}
+
+.image-box img{
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+}
+
+.image-box p{
+  width:40%;
+  line-height: 25px;
+  position: absolute;
+  bottom: 50px;
+  left: 20px;
+  background-color: white;
+  padding: 10px;
+}
+
+.last-page{
+  margin-top: 150px;
+ position: relative;
+ 
+}
+
+.last-page img{
+  width: 100%;
+  object-fit: cover;
+  height: 350px;
+}
+
+.last-page-content{
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+position: absolute;
+top:-280px;
+left:150px;
+z-index: 10;
+
+}
+
+.stote-data{
+  background-color: white;
+  padding: 15px 30px;
+  line-height: 20px;
+  margin-top: 20px;
+}
+
+.stote-data a {
+  display: block;
+}
