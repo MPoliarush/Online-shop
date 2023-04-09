@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './components/FirstPage.css'
+import './components/Header.css'
+import './components/CatalogCamera.css'
 import App from './App';
 
 

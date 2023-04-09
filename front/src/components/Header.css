@@ -1,0 +1,123 @@
+*{
+    font-family: 'Ubuntu', sans-serif;
+    padding: 0;
+    margin: 0;
+    /* border: solid; */
+  }
+
+
+  
+  ul{
+    list-style-type: none;
+  }
+  
+  .green{
+  background: linear-gradient(180deg, #8EE902 0%, #4F9C2C 100%);
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 100px;
+  }
+  
+  
+  body{
+    max-width: 100%;
+    border: 1px solid;
+  }
+  
+  .content-container{
+    max-width: 1210px;
+    margin: 0 auto;
+    padding: 0 50px;
+   position: relative;
+  }
+  
+  header{
+    display: flex;
+    padding: 23px 0;
+    align-items:baseline;
+    justify-content: space-between;
+    text-align: center;
+    height: 40px;
+  }
+  
+  .logo{
+    display: flex;
+    align-items: cenlter;
+  }
+  
+  .nav-list{
+    font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+    display: flex;
+    gap:70px;
+    text-align: left;
+    position: relative;
+    z-index: 10;
+  }
+
+  .options-list{
+    display: flex;
+    gap:15px;
+  }
+
+
+  .nested-list{
+    visibility: hidden;
+    height: max-content;
+    /* position: absolute; */
+    margin-top: 10px;
+    background-color: white;
+    margin-left: -15px;
+    
+    padding: 5px 0;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+   
+    z-index: 0;
+  }
+
+  .visible{
+    visibility: visible;
+    height: max-content;
+  }
+
+  .invisible{
+    visibility: hidden;
+    height: 0;
+  }
+
+  .hovered{
+    color: #71bb02;
+  }
+
+  .nested-list li{
+    font-weight: 400;
+    font-size: 15px;
+    margin: 5px 15px 10px 15px;
+    
+  }
+
+  
+  .nested-list li:hover{
+    cursor: pointer;
+    color: #71bb02;
+  }
+
+  
+  .nav-list a{
+    text-decoration: none;
+    color: black;
+  }
+  
+  
+  
+  .nav-li a:hover{
+    color: #71bb02;
+    /* background: linear-gradient(270deg, #8EE901 0%, #4F9C2C 99.06%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text; */
+    /*  */
+    
+  }
