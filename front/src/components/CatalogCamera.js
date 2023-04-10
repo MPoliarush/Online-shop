@@ -1,8 +1,17 @@
+import { useState } from 'react'
 import ProductIntro from './ProductIntro'
 import Header from './Header'
 
 
 function CatalogCamera(){
+    const [rangeVal, setRangeValue]=useState('100')
+
+    function rangeValue(event){
+        console.log(event.target.value)
+        setRangeValue(event.target.value)
+    }
+
+
     return (
         <>
        
@@ -28,7 +37,7 @@ function CatalogCamera(){
                                 <p>Бренд</p>
                                 <div><input type='checkbox' id='canon' name='brand'/><label htmlFor='canon'>Canon</label></div>
                                 <div><input type='checkbox' id='nikon' name='brand'/><label htmlFor='nikon'>Nikon</label></div>
-                                <div><input type='checkbox' id='sony' name='brand'/><label htmlFor='sony'>Nikon</label></div>
+                                <div><input type='checkbox' id='sony' name='brand'/><label htmlFor='sony'>Sony</label></div>
                             </div>
                             <div className='select-block'>
                                 <p>Тип</p>
@@ -43,7 +52,7 @@ function CatalogCamera(){
                             </div>
                             <div className='select-block'>
                                 <p>Ціна за день, грн</p>
-                                <div><input type="range" min="1" max="300" id="myRange"/><label htmlFor='FullHD'>300</label></div>
+                                <div className='range'><input type="range" min="1" max="300" id="myRange" value='100' onChange={rangeValue}/><label htmlFor='FullHD'>{rangeVal}</label></div>
                                 
                                 
                             </div>

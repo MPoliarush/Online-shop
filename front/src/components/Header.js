@@ -6,12 +6,12 @@ function Header(){
 const [mouseOvered, setMouseOvered]=useState(false)
 
 function catalogHover(event){
-  console.log('overedHeader')
+  
   setMouseOvered(true)
 }
 
 function catalogUnhover(event){
-  console.log('overed')
+  
   setMouseOvered(false)
 }
 
