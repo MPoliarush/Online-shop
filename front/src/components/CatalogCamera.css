@@ -71,7 +71,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-   gap:15px;
+    gap:15px;
    
   }
 
@@ -84,10 +84,12 @@
   .side-bar{
     margin-left: 30px;
     width:fit-content;
-   
     width: 170px;
   }
 
+  .select-block{
+    margin-bottom: 20px;
+  }
 
   .select-block p{
     font-weight: 700;

@@ -5,7 +5,7 @@ import Header from './components/Header'
 import FirstPage from './components/FirstPage';
 import CatalogCamera from './components/CatalogCamera';
 import Root from './Root'
-
+import Admin from './components/Admin'
 
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
     element: <Root />, 
     children:[
       {path:'', element:<FirstPage />},
+      {path:'/admin', element:<Admin />},
       {path:'/product-camera', element:<CatalogCamera />},
     ]},
   ])

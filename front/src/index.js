@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './components/FirstPage.css'
 import './components/Header.css'
 import './components/CatalogCamera.css'
+import './components/Admin.css'
 import App from './App';
 
 
