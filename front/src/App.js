@@ -1,19 +1,22 @@
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 
-import Main from './Main'
+
 import Header from './components/Header'
 import FirstPage from './components/FirstPage';
 import CatalogCamera from './components/CatalogCamera';
-
+import Root from './Root'
 
 
 
 function App() {
 
   const router = createBrowserRouter([
-    {path:'/', element:<Main></Main>},
-    {path:'/productCamera', element:<CatalogCamera />},
-   
+    {path:'/', 
+    element: <Root />, 
+    children:[
+      {path:'', element:<FirstPage />},
+      {path:'/product-camera', element:<CatalogCamera />},
+    ]},
   ])
 
   return (

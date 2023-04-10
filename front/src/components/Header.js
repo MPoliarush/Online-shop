@@ -23,7 +23,7 @@ function catalogUnhover(event){
               <li className='nav-li' onMouseOver={catalogHover} onMouseOut={catalogUnhover}>
                 <a href='#'>КАТАЛОГ</a>
                 <ul className={!mouseOvered ? 'nested-list': 'nested-list visible'} >
-                  <li> <Link to={'/productCamera'}>Фотокамери</Link></li>
+                  <li> <Link to={'/product-camera'}>Фотокамери</Link></li>
                   <li>Об'єктиви</li>
                 </ul>
               </li>

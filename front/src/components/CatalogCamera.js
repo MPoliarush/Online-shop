@@ -5,9 +5,7 @@ import Header from './Header'
 function CatalogCamera(){
     return (
         <>
-       <div className='content-container'>
-                    <Header></Header>
-        </div>
+       
         <main>
         <div className="catalog-content-container">
             <h1 className="catalog-h1">ВСІ ФОТОКАМЕРИ</h1>
