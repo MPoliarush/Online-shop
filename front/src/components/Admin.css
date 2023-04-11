@@ -38,3 +38,7 @@
 .admin-block-option input[type=number]{
     width:50px;
 }
+
+button{
+    padding: 7px 20px;
+}
