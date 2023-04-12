@@ -29,9 +29,10 @@ router.get('/', (req,res)=>{
    res.send('<h1>Server is running</h1>')
 })
 
-router.post('/admin',upload.single("img1"), async (req,res)=>{
+router.post('/admin',upload.array("imgS"), async (req,res)=>{
 
-console.log(req.file)
+   const imgS = req.files
+   console.log(req.files)
  
 const rawData = req.body.input
 const data = JSON.parse(rawData)
@@ -57,7 +58,7 @@ try{
       week_price:data.week_price,
       month_price:data.month_price,
       availability:data.availability,
-      img1:req.file
+      img1:imgS
    }
   
     const result = await db.getDb().collection('cameras').insertOne(newItem)

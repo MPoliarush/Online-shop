@@ -152,7 +152,11 @@ async function submitHandler(event){
 
     
     let formData = new FormData()
-    formData.append('img1',uploadedIMG)
+    
+    for (let i=0; i<uploadedIMG.length;i++){
+        formData.append('imgS', uploadedIMG[i])
+    }
+    
     formData.append('input', JSON.stringify(input))
     const config = {
         headers:{
@@ -180,7 +184,7 @@ async function submitHandler(event){
 }
     
 function handleChange(e){
-    setUploadedIMG(e.target.files[0])
+    setUploadedIMG(e.target.files)
 }
 
 
@@ -269,8 +273,8 @@ function handleChange(e){
                     <div className='admin-block-option photo'>
                         <p>Фото</p>
                         <div className='photo-cont'>
-                            <div className='input-div'><input type='file' name='img1' onChange={handleChange} /></div>
-                            <div className='input-div'><input type='file' name='img1' onChange={handleChange} /></div>
+                            <div className='input-div'><input type='file' name='imgS' onChange={handleChange} multiple/></div>
+                            
                         </div>
                         
                     </div>
