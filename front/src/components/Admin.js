@@ -274,7 +274,7 @@ function handleChange(e){
                         </div>
                         
                     </div>
-                    <button onClick={submitHandler}>Додати</button>
+                    <button className='button-admin' onClick={submitHandler}>Додати</button>
                 </form>
             </div>
         </div>
