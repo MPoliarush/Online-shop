@@ -25,7 +25,8 @@ function Admin(){
     })
 
     const [isSubmitted, setSubmitted] = useState(false)
-
+    const [uploadedIMG, setUploadedIMG] = useState(null)
+ 
 function inputHandler(event){
     // console.log(event.target.name)
     // console.log(event.target.value)
@@ -144,10 +145,22 @@ function inputHandler(event){
 
 
 
-function submitHandler(event){
+async function submitHandler(event){
     event.preventDefault()
     console.log('submitted')
     setSubmitted(true)
+
+    
+    let formData = new FormData()
+    formData.append('img1',uploadedIMG)
+    formData.append('input', JSON.stringify(input))
+    const config = {
+        headers:{
+            "Content-Type": "multipart/form-data"
+        }
+    }
+    const response = await axios.post('http://localhost:5000/admin', formData, config )
+    console.log(response)
 
    
     let inputData = input
@@ -162,10 +175,13 @@ function submitHandler(event){
     ).then(res=>res.json()).then(data=>{
         console.log(data)
     })
+
     
 }
     
-
+function handleChange(e){
+    setUploadedIMG(e.target.files[0])
+}
 
 
 
@@ -250,12 +266,11 @@ function submitHandler(event){
                         <div><input type='radio' id='available1' name='availability' value='1'/><label htmlFor='available1'>Так</label></div>
                         <div><input type='radio' id='available2' name='availability' value='0'/><label htmlFor='available2'>Ні</label></div>
                     </div>
-                    {/* <div className='admin-block-option'>
+                    <div className='admin-block-option'>
                         <p>Фото</p>
-                        <div><input type='file' name='img1'/></div>
-                        <div><input type='file' name='img2'/></div>
-                        <div><input type='file' name='img3'/></div>
-                    </div> */}
+                        <div><input type='file' name='img1' onChange={handleChange} /></div>
+                        
+                    </div>
                     <button onClick={submitHandler}>Додати</button>
                 </form>
             </div>
