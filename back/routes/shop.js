@@ -1,11 +1,26 @@
 const express = require('express')
 const router = express.Router()
-
+const path = require('path')
+const multer= require('multer')
 const db = require('../data')
 const mongodb = require('mongodb')
 
-
 const ObjectId = mongodb.ObjectId
+
+
+const storageConfig = multer.diskStorage({
+   destination:(req,file,cb)=>{
+     cb(null,path.join(__dirname, '../uploadedIMG'))
+   },
+   filename:(req,file,cb)=>{
+     cb(null, file.originalname)
+   }
+ })
+
+const upload = multer({
+   storage:storageConfig
+})
+
 
 
 
@@ -14,29 +29,35 @@ router.get('/', (req,res)=>{
    res.send('<h1>Server is running</h1>')
 })
 
-router.post('/admin', async (req,res)=>{
-console.log(req.body)
+router.post('/admin',upload.single("img1"), async (req,res)=>{
+
+console.log(req.file)
+ 
+const rawData = req.body.input
+const data = JSON.parse(rawData)
+
+
 try{
    const newItem = {
-      typeGoods:req.body.typeGoods,
-      brand: req.body.brand,
-      model: req.body.model,
-      imgdepth:req.body.imgdepth,
-      type:req.body.type,
-      matrix:req.body.matrix,
-      mpx:req.body.mpx,
-      video:req.body.video,
-      exposition:req.body.exposition,
-      width:req.body.width,
-      height:req.body.height,
-      depth:req.body.depth,
-      weight:req.body.weight,
-      work_price:req.body.work_price,
-      weekend_price:req.body.weekend_price,
-      week_price:req.body.week_price,
-      month_price:req.body.month_price,
-      availability:req.body.availability,
-     
+      typeGoods:data.typeGoods,
+      brand: data.brand,
+      model: data.model,
+      imgdepth:data.imgdepth,
+      type:data.type,
+      matrix:data.matrix,
+      mpx:data.mpx,
+      video:data.video,
+      exposition:data.exposition,
+      width:data.width,
+      height:data.height,
+      depth:data.depth,
+      weight:data.weight,
+      work_price:data.work_price,
+      weekend_price:data.weekend_price,
+      week_price:data.week_price,
+      month_price:data.month_price,
+      availability:data.availability,
+      img1:req.file
    }
   
     const result = await db.getDb().collection('cameras').insertOne(newItem)

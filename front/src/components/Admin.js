@@ -193,82 +193,85 @@ function handleChange(e){
                 <form className='admin-block' onSubmit={(e)=>e.preventDefault()}>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Вид товару</p>
-                        <div><input type='radio' id='3К' name='typeGoods' value='Фотокамера' /><label htmlFor='3К'>Фотокамера</label></div>
-                        <div><input type='radio' id='4К' name='typeGoods' value='Лінза'/><label htmlFor='4К'>Лінза</label></div>
+                        <div className='input-div'><input type='radio' id='3К' name='typeGoods' value='Фотокамера' /><label htmlFor='3К'>Фотокамера</label></div>
+                        <div className='input-div'><input type='radio' id='4К' name='typeGoods' value='Лінза'/><label htmlFor='4К'>Лінза</label></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Марка</p>
-                        <div><input type='text' size='20' name='brand' /></div>
+                        <div className='input-div'><input type='text' size='20' name='brand' /></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Модель</p>
-                        <div><input type='text' size='40' name='model'/></div>
+                        <div className='input-div'><input type='text'  name='model'/></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Глибина зображення</p>
-                        <div><input type='text' size='40' name='imgdepth'/></div>
+                        <div className='input-div'><input type='text'  name='imgdepth'/></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Тип зображення</p>
-                        <div><input type='radio' id='type1' name='type' value='Дзеркальна'/><label htmlFor='type1'>Дзеркальна</label></div>
-                        <div><input type='radio' id='type2' name='type' value='Компактна'/><label htmlFor='type2'>Компактна</label></div>
+                        <div className='input-div'><input type='radio' id='type1' name='type' value='Дзеркальна'/><label htmlFor='type1'>Дзеркальна</label></div>
+                        <div className='input-div'><input type='radio' id='type2' name='type' value='Компактна'/><label htmlFor='type2'>Компактна</label></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Матриця</p>
-                        <div><input type='text'  name='matrix'/></div>
+                        <div className='input-div'><input type='text'  name='matrix'/></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Роздільна здатність, Mpx</p>
-                        <div><input type='text'  name='mpx'/></div>
+                        <div className='input-div'><input type='text'  name='mpx'/></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Якість відео</p>
-                        <div><input type='text'  name='video'/></div>
+                        <div className='input-div'><input type='text'  name='video'/></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Експокорекція</p>
-                        <div><input type='text'  size='40' name='exposition'/></div>
+                        <div className='input-div'><input type='text'  name='exposition'/></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Ширина, мм</p>
-                        <div><input type='number'  min='1' name='width'/></div>
+                        <div className='input-div'><input type='number'  min='1' name='width'/></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Висота, мм</p>
-                        <div><input type='number' min='1' name='height'/></div>
+                        <div className='input-div'><input type='number' min='1' name='height'/></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Глибина, мм</p>
-                        <div><input type='number' min='1' name='depth'/></div>
+                        <div className='input-div'><input type='number' min='1' name='depth'/></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Вага, г</p>
-                        <div><input type='number'  min='1' name='weight'/></div>
+                        <div className='input-div'> <input type='number'  min='1' name='weight'/></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Ціна будній день, грн</p>
-                        <div><input type='number'  min='1' name='work_price'/></div>
+                        <div className='input-div'><input type='number'  min='1' name='work_price'/></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Ціна вихідний день, грн</p>
-                        <div><input type='number'  min='1' name='weekend_price'/></div>
+                        <div className='input-div'><input type='number'  min='1' name='weekend_price'/></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Ціна за тиждень день, грн</p>
-                        <div><input type='number' i min='1' name='week_price'/></div>
+                        <div className='input-div'><input type='number' i min='1' name='week_price'/></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Ціна за місяць день, грн</p>
-                        <div><input type='number'  min='1' name='month_price'/></div>
+                        <div className='input-div'><input type='number'  min='1' name='month_price'/></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Наявність</p>
-                        <div><input type='radio' id='available1' name='availability' value='1'/><label htmlFor='available1'>Так</label></div>
-                        <div><input type='radio' id='available2' name='availability' value='0'/><label htmlFor='available2'>Ні</label></div>
+                        <div className='input-div'> <input type='radio' id='available1' name='availability' value='1'/><label htmlFor='available1'>Так</label></div>
+                        <div className='input-div'><input type='radio' id='available2' name='availability' value='0'/><label htmlFor='available2'>Ні</label></div>
                     </div>
-                    <div className='admin-block-option'>
+                    <div className='admin-block-option photo'>
                         <p>Фото</p>
-                        <div><input type='file' name='img1' onChange={handleChange} /></div>
+                        <div className='photo-cont'>
+                            <div className='input-div'><input type='file' name='img1' onChange={handleChange} /></div>
+                            <div className='input-div'><input type='file' name='img1' onChange={handleChange} /></div>
+                        </div>
                         
                     </div>
                     <button onClick={submitHandler}>Додати</button>
