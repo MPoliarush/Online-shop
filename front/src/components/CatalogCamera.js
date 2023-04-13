@@ -9,6 +9,14 @@ function CatalogCamera(){
     const [fetchedData, setFetchedData] = useState([])
     const [initalData, setinitaiData]=useState([])
     const [selectionMode, setSelectionMode] = useState('');
+    const [filterList,setFilterList] = useState({
+        brand:[],
+        type:[],
+        imgdepth:[],
+        video:[],
+        maxPrice:'',
+        availability:[]
+    })
 
 async function getInfo (props) {
     try{
@@ -25,23 +33,25 @@ async function getInfo (props) {
     
 useEffect(()=>{  
     getInfo()
-    console.log('runned')
-    console.log(fetchedData)
 
 },[])
 
-    function rangeValue(event){
-        console.log(event.target.value)
-        setRangeValue(event.target.value)
-    }
+
+function rangeValue(event){
+    console.log(event.target.value)
+    setRangeValue(event.target.value)
+}
 
 
 let uniqueChars = fetchedData.map(item=>{
     return item.imgdepth
 })
-
 const single = [...new Set(uniqueChars)]
 
+let uniqueBrands = fetchedData.map(item=>{
+    return item.brand
+})
+const singleBrand = [...new Set(uniqueBrands)]
 
 
 function selctions(event){
@@ -67,8 +77,51 @@ useEffect(()=>{
 },[selectionMode])
 
 
+function inputHandler(e){
+    console.log(e.target.value)
+    if (e.target.name =='brand'){
+        setFilterList({...filterList,
+            brand: filterList.brand.concat([e.target.value])
+        })
+    }
+    if (e.target.name =='type'){
+        setFilterList({...filterList,
+            type: filterList.type.concat([e.target.value])
+        })
+    }
+    if (e.target.name =='imgdepth'){
+        setFilterList({...filterList,
+            imgdepth:filterList.imgdepth.concat([e.target.value])
+        })
+    }
+    if (e.target.name =='video'){
+        setFilterList({...filterList,
+            video:filterList.video.concat([e.target.value])
+        })
+    }
+    if (e.target.name =='maxPrice'){
+        setFilterList({...filterList,
+            maxPrice:e.target.value
+        })
+    }
+    if (e.target.name =='availability'){
+        setFilterList({...filterList,
+            availability:filterList.availability.concat([e.target.value])
+        })
+    }
 
 
+}
+
+function filterHandler(e){
+    e.preventDefault()
+    console.log(filterList)
+
+}
+
+
+
+    console.log(fetchedData)
 
     return (
         <>
@@ -88,7 +141,6 @@ useEffect(()=>{
                         <ul className='goods-container-ul'>
                            
                             {fetchedData.map(item=>{
-                                console.log(item)
                                 return (
                                     <Cart key={Math.random()} itemData={item} ></Cart>
                                 )
@@ -100,30 +152,12 @@ useEffect(()=>{
                     </div>
                     <div className='side-bar'>
                         <form className='select'>
-                            <div className='select-block'>
+                        <div className='select-block' onChange={inputHandler}>
                                 <p>Бренд</p>
                                 <ul>
-                                    {fetchedData.map(item=>{
+                                    {singleBrand.map(item=>{
                                         return (
-                                            <div><input type='checkbox' id={item.brand} name='brand'/><label htmlFor={item.brand}>{item.brand}</label></div>
-                                        )
-                                        })
-                                    }
-                                </ul>
-                                
-                            </div>
-                            <div className='select-block'>
-                                <p>Тип</p>
-                                <div><input type='checkbox' id='mirr' name='brand'/><label htmlFor='mirr'>Дзеркальна</label></div>
-                                <div><input type='checkbox' id='compact' name='brand'/><label htmlFor='compact'>Компактна</label></div>
-                            </div>
-                            <div className='select-block'>
-                                <p>Глибина зображення</p>
-                                <ul>
-                                    {single.map(item=>{
-                                        
-                                        return (
-                                            <div><input type='checkbox' id={item.imgdepth} name='imgdepth'/><label htmlFor={item.imgdepth}>{item}</label></div>
+                                            <div><input type='checkbox' id={item} name='brand' value={item}/><label htmlFor={item}>{item}</label></div>
                                             )
                                         })
                                     }
@@ -131,23 +165,43 @@ useEffect(()=>{
                                 
                                 
                             </div>
-                            <div className='select-block'>
+                            <div className='select-block' onChange={inputHandler}>
+                                <p>Тип</p>
+                                <div><input type='checkbox' id='mirr' name='type' value='Дзеркальна'/><label htmlFor='mirr'>Дзеркальна</label></div>
+                                <div><input type='checkbox' id='compact' name='type' value='Компактна'/><label htmlFor='compact'>Компактна</label></div>
+                            </div>
+                            <div className='select-block' onChange={inputHandler}>
+                                <p>Глибина зображення</p>
+                                <ul>
+                                    {single.map(item=>{
+                                        
+                                        return (
+                                            <div><input type='checkbox' id={item} name='imgdepth' value={item}/><label htmlFor={item}>{item}</label></div>
+                                            )
+                                        })
+                                    }
+                                </ul>
+                                
+                                
+                            </div>
+                            <div className='select-block' onChange={inputHandler}>
                                 <p>Відео</p>
-                                <div><input type='checkbox' id='3К' name='brand'/><label htmlFor='3К'>3К</label></div>
-                                <div><input type='checkbox' id='4К' name='brand'/><label htmlFor='4К'>4К</label></div>
-                                <div><input type='checkbox' id='FullHD' name='brand'/><label htmlFor='FullHD'>FullHD</label></div>
+                                <div><input type='checkbox' id='3К' name='video' value='3К'/><label htmlFor='3К'>3К</label></div>
+                                <div><input type='checkbox' id='4К' name='video' value='4К'/><label htmlFor='4К'>4К</label></div>
+                                <div><input type='checkbox' id='FullHD' name='video' value='FullHD'/><label htmlFor='FullHD'>FullHD</label></div>
                             </div>
-                            <div className='select-block'>
+                            <div className='select-block' onChange={inputHandler}>
                                 <p>Ціна за день, грн</p>
-                                <div className='range'><input type="range" min="1" max="300" id="myRange" value='100' onChange={rangeValue}/><label htmlFor='FullHD'>{rangeVal}</label></div>
+                                <div className='range'><input type="range" name='maxPrice' min="1" max="300" id="myRange" value onChange={rangeValue}/><label htmlFor='FullHD'>{rangeVal}</label></div>
                                 
                                 
                             </div>
-                            <div className='select-block'>
+                            <div className='select-block' onChange={inputHandler}>
                                 <p>Наявність товару</p>
-                                <div><input type='checkbox' id='3К' name='brand'/><label htmlFor='3К'>В наявності</label></div>
-                                <div><input type='checkbox' id='4К' name='brand'/><label htmlFor='4К'>Не в наявності</label></div>
+                                <div><input type='checkbox' id='3К' name='availability' value='1'/><label htmlFor='3К'>В наявності</label></div>
+                                <div><input type='checkbox' id='4К' name='availability' value='0'/><label htmlFor='4К'>Не в наявності</label></div>
                             </div>
+                            <button className='apply-btn' onClick={filterHandler}>Застосувати</button>
                         </form>
                         
                     </div>

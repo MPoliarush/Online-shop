@@ -123,6 +123,17 @@
 .select-block input[type='range'] {
   accent-color:#2c4308;
 }
+
+.apply-btn{
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+}
+
+.apply-btn:hover{
+  background-color:#76c302;
+  cursor: pointer;
+}
   
   
 
