@@ -24,10 +24,22 @@ const upload = multer({
 
 
 
-router.get('/', (req,res)=>{
+router.get('/products',async (req,res)=>{
    console.log('logged')
-   res.send('<h1>Server is running</h1>')
+   let result;
+   try{
+       result = await db.getDb().collection('cameras').find().toArray()
+       console.log(result)
+   }  catch(error) {
+      
+   }
+
+   res.send(result)
 })
+
+
+
+
 
 router.post('/admin',upload.array("imgS"), async (req,res)=>{
 

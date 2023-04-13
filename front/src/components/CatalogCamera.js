@@ -7,12 +7,17 @@ import axios from "axios";
 function CatalogCamera(){
     const [rangeVal, setRangeValue]=useState('100')
     const [fetchedData, setFetchedData] = useState([])
+    const [initalData, setinitaiData]=useState([])
+    const [selectionMode, setSelectionMode] = useState('');
 
 async function getInfo (props) {
     try{
         const response = await axios("http://localhost:5000/products")
-        console.log(response.data)
-        setFetchedData(response.data)
+        const sortedUp = response.data.sort((a,b)=>{
+            return a.work_price-b.work_price
+        })
+        setFetchedData(sortedUp)
+        setinitaiData(sortedUp)
     }catch(e){
         console.log(e.response)
     }
@@ -39,6 +44,31 @@ const single = [...new Set(uniqueChars)]
 
 
 
+function selctions(event){
+    setSelectionMode(event.target.value)
+}
+
+useEffect(()=>{
+
+    if (selectionMode == "up"){
+        const sortedUp = [...fetchedData].sort((a,b)=>{
+            return a.work_price-b.work_price
+        })
+        console.log(selectionMode)
+        setFetchedData(sortedUp)
+        
+    } else if (selectionMode == "down"){
+        const sortedUp = [...fetchedData].sort((a,b)=>{
+            return b.work_price-a.work_price
+        })
+        console.log(selectionMode)
+        setFetchedData(sortedUp)  
+    }
+},[selectionMode])
+
+
+
+
 
     return (
         <>
@@ -49,19 +79,21 @@ const single = [...new Set(uniqueChars)]
             <div>
                 <h3>Знайдено 21 товарів </h3>
                 <p className="basic-text">В нашому магазині представлений широкий вибір фотокамер для оренди як для професіонального, так і сімейного вискористання. Зафіксуйте найцінніші моменти свого життя у повних барвах</p>
-                <select id='price-selection'> 
-                    <option>Сортувати</option>
-                    <option>За зростанням ціни</option>
-                    <option>За спаданням ціни</option>
+                <select id='price-selection' onChange={selctions} sortValue={selctions}> 
+                    <option value='up'> За зростанням ціни</option>
+                    <option value='down'> За спаданням ціни</option>
                 </select>
                 <div className='big-goods-container'>
                     <div className='goods-container'>
                         <ul className='goods-container-ul'>
+                           
                             {fetchedData.map(item=>{
+                                console.log(item)
                                 return (
                                     <Cart key={Math.random()} itemData={item} ></Cart>
                                 )
-                            })}
+                            })
+                            }
 
                         </ul>
                         
