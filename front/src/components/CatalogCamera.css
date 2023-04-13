@@ -75,6 +75,11 @@
    
   }
 
+  .goods-container-ul{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   .goods-container .card-frame{
     min-width: 200px;
     width: 32%;

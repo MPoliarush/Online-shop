@@ -1,5 +1,29 @@
+import { useState, useEffect } from 'react'
+import axios from "axios";
 
-function FirstPage(){
+import Cart from './Cart'
+
+function FirstPage(props){
+
+const [fetchedData, setFetchedData] = useState([])
+
+async function getInfo () {
+    try{
+        const response = await axios("http://localhost:5000/products")
+        console.log(response.data)
+        setFetchedData(response.data)
+    }catch(e){
+        console.log(e.response)
+    }
+    }
+    
+useEffect(()=>{  
+    getInfo()
+    console.log('runned')
+
+},[])
+
+
     return (
         <main>
         <div className='first-page'>
@@ -46,6 +70,12 @@ function FirstPage(){
               <div className='slider-visible-wrapper'>
                   <ul className='slider-string'>
 
+                  {fetchedData.map( item=>{
+                    return  <Cart key= {Math.random()} itemData={item}></Cart>
+                    })
+                  }
+                 
+{/* 
                     <li className='card-frame'>
                       <div className='product-info'>
                         <div className='product-img-wrapper'><img src={process.env.PUBLIC_URL + '/imagesProducts/Photo/1/1.1.png'} className='product-img' alt='user'/></div>
@@ -180,7 +210,7 @@ function FirstPage(){
                         <button className='view-details'>Деталі товару</button>
                         <button className='add-to-basket'><img src={process.env.PUBLIC_URL + '/imagesHTML/icons/basket.png'} alt='basket'/> В кошик </button>
                       </div>
-                    </li>
+                    </li> */}
 
                   </ul>
                 
