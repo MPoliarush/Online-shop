@@ -31,27 +31,65 @@ async function getInfo (props) {
     }
     }
     
+
+let uniqueChars  
+let uniqueBrands 
+uniqueChars = fetchedData.map(item=>{
+    return item.imgdepth
+})
+uniqueBrands = fetchedData.map(item=>{
+    return item.brand
+})
+
+
+
 useEffect(()=>{  
     getInfo()
-
 },[])
+
+
+
+// useEffect(()=>{
+// console.log(filterList)
+// console.log(fetchedData)
+
+// let filteredProducts = []
+
+// for (const product of fetchedData){
+    
+//     for (let i=0;i<filterList.brand.length;i++){
+        
+//         if (product.brand == filterList.brand[i]){
+//             filteredProducts.push(product)
+//         }
+//     }
+// }
+
+
+// for (const product of filteredProducts){
+    
+//     for (let i=0;i<filterList.type.length;i++){
+        
+//         if (product.type == filterList.type[i]){
+//             filteredProducts.push(product)
+//         }
+//     }
+// }
+
+// console.log(filteredProducts)
+
+// },[filterList])
+
+
+const single = [...new Set(uniqueChars)]
+const singleBrand = [...new Set(uniqueBrands)]
+
 
 
 function rangeValue(event){
     console.log(event.target.value)
     setRangeValue(event.target.value)
 }
-
-
-let uniqueChars = fetchedData.map(item=>{
-    return item.imgdepth
-})
-const single = [...new Set(uniqueChars)]
-
-let uniqueBrands = fetchedData.map(item=>{
-    return item.brand
-})
-const singleBrand = [...new Set(uniqueBrands)]
 
 
 function selctions(event){
@@ -78,50 +116,115 @@ useEffect(()=>{
 
 
 function inputHandler(e){
-    console.log(e.target.value)
-    if (e.target.name =='brand'){
+   
+    if(e.target.name =='brand'){
+       
+        let brandList=[...filterList.brand]
+        
+        if (e.target.checked){
+            console.log(e.target.checked)
+            brandList = [...filterList.brand, e.target.value]
+           
+        } else{
+          
+            brandList.splice(filterList.brand.indexOf(e.target.value),1)
+            
+        }
         setFilterList({...filterList,
-            brand: filterList.brand.concat([e.target.value])
+            brand:brandList
         })
     }
+
+
+
+    
+    
+
     if (e.target.name =='type'){
+        let typeList=[...filterList.type]
+        
+        if (e.target.checked){
+            console.log(e.target.checked)
+            typeList = [...filterList.type, e.target.value]
+           
+        } else{
+           
+            typeList.splice(filterList.type.indexOf(e.target.value),1)
+        }
         setFilterList({...filterList,
-            type: filterList.type.concat([e.target.value])
+            type:typeList
         })
+    
     }
+
+
     if (e.target.name =='imgdepth'){
+        let imgdepthList=[...filterList.imgdepth]
+        
+        if (e.target.checked){
+            console.log(e.target.checked)
+            imgdepthList = [...filterList.imgdepth, e.target.value]
+           
+        } else{
+            
+            imgdepthList.splice(filterList.imgdepth.indexOf(e.target.value),1)
+        }
         setFilterList({...filterList,
-            imgdepth:filterList.imgdepth.concat([e.target.value])
+            imgdepth:imgdepthList
         })
     }
+
     if (e.target.name =='video'){
+        let videoList=[...filterList.video]
+        
+        if (e.target.checked){
+            console.log(e.target.checked)
+            videoList = [...filterList.video, e.target.value]
+           
+        } else{
+           
+            videoList.splice(filterList.video.indexOf(e.target.value),1)
+        }
         setFilterList({...filterList,
-            video:filterList.video.concat([e.target.value])
+            video:videoList
         })
     }
+
     if (e.target.name =='maxPrice'){
         setFilterList({...filterList,
             maxPrice:e.target.value
         })
     }
+
     if (e.target.name =='availability'){
+        let availabilityList=[...filterList.availability]
+        
+        if (e.target.checked){
+            console.log(e.target.checked)
+            availabilityList = [...filterList.availability, e.target.value]
+           
+        } else{
+            console.log(filterList.brand.indexOf(e.target.value))
+            availabilityList.splice(filterList.availability.indexOf(e.target.value),1)
+        }
         setFilterList({...filterList,
-            availability:filterList.availability.concat([e.target.value])
+            availability:availabilityList
         })
     }
 
 
 }
 
+console.log(filterList)
+
 function filterHandler(e){
     e.preventDefault()
     console.log(filterList)
-
 }
 
 
 
-    console.log(fetchedData)
+   
 
     return (
         <>
@@ -130,8 +233,8 @@ function filterHandler(e){
         <div className="catalog-content-container">
             <h1 className="catalog-h1">ВСІ ФОТОКАМЕРИ</h1>
             <div>
-                <h3>Знайдено 21 товарів </h3>
-                <p className="basic-text">В нашому магазині представлений широкий вибір фотокамер для оренди як для професіонального, так і сімейного вискористання. Зафіксуйте найцінніші моменти свого життя у повних барвах</p>
+                <h3>Знайдено {fetchedData.length} товарів </h3>
+                <p className="basic-text">В нашому магазині представлений широкий вибір фотокамер для оренди як для професіонального, так і сімейного вискористання. Зафіксуйте найцінніші моменти свого життя у повних барвах.</p>
                 <select id='price-selection' onChange={selctions} sortValue={selctions}> 
                     <option value='up'> За зростанням ціни</option>
                     <option value='down'> За спаданням ціни</option>

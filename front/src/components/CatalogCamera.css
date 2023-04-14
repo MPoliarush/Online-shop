@@ -128,11 +128,13 @@
   padding: 10px 20px;
   border: none;
   border-radius: 50px;
+  transition: 0.5s;
 }
 
 .apply-btn:hover{
   background-color:#76c302;
   cursor: pointer;
+  transition: 0.5s;
 }
   
   
