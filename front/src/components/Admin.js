@@ -21,11 +21,14 @@ function Admin(){
         weekend_price:0,
         week_price:0,
         month_price:0,
+        min_focus_length:'',
+        diametr:'',
         availability:1,
     })
 
     const [isSubmitted, setSubmitted] = useState(false)
     const [uploadedIMG, setUploadedIMG] = useState(null)
+    const [typeGoods,setTypeGoods] = useState('none')
  
 function inputHandler(event){
     // console.log(event.target.name)
@@ -34,6 +37,12 @@ function inputHandler(event){
         setInput({...input,
             typeGoods:event.target.value
         })
+        if (event.target.value=='Лінза'){
+            setTypeGoods('Лінза')
+        } else {
+            setTypeGoods('Фотокамера')
+        }
+
     } 
 
     if (event.target.name==='brand'){
@@ -189,6 +198,7 @@ function handleChange(e){
 
 
 
+
     return(
         <div className='content-container-admin'>
             <h1>ПАНЕЛЬ АДМІНІСТРАТОРА</h1>
@@ -208,28 +218,28 @@ function handleChange(e){
                         <p>Модель</p>
                         <div className='input-div'><input type='text'  name='model'/></div>
                     </div>
-                    <div className='admin-block-option' onChange={inputHandler}>
+                    <div className={typeGoods=='Фотокамера' || typeGoods=='none' ? 'admin-block-option' : 'admin-block-option hiddenFields'} onChange={inputHandler}>
                         <p>Глибина зображення</p>
                         <div className='input-div'><input type='text'  name='imgdepth'/></div>
                     </div>
-                    <div className='admin-block-option' onChange={inputHandler}>
+                    <div className={typeGoods=='Фотокамера' || typeGoods=='none' ? 'admin-block-option' : 'admin-block-option hiddenFields'} onChange={inputHandler}>
                         <p>Тип зображення</p>
                         <div className='input-div'><input type='radio' id='type1' name='type' value='Дзеркальна'/><label htmlFor='type1'>Дзеркальна</label></div>
                         <div className='input-div'><input type='radio' id='type2' name='type' value='Компактна'/><label htmlFor='type2'>Компактна</label></div>
                     </div>
-                    <div className='admin-block-option' onChange={inputHandler}>
+                    <div className={typeGoods=='Фотокамера' || typeGoods=='none' ? 'admin-block-option' : 'admin-block-option hiddenFields'} onChange={inputHandler}>
                         <p>Матриця</p>
                         <div className='input-div'><input type='text'  name='matrix'/></div>
                     </div>
-                    <div className='admin-block-option' onChange={inputHandler}>
+                    <div className={typeGoods=='Фотокамера' || typeGoods=='none' ? 'admin-block-option' : 'admin-block-option hiddenFields'} onChange={inputHandler}>
                         <p>Роздільна здатність, Mpx</p>
                         <div className='input-div'><input type='text'  name='mpx'/></div>
                     </div>
-                    <div className='admin-block-option' onChange={inputHandler}>
+                    <div className={typeGoods=='Фотокамера' || typeGoods=='none' ? 'admin-block-option' : 'admin-block-option hiddenFields'} onChange={inputHandler}>
                         <p>Якість відео</p>
                         <div className='input-div'><input type='text'  name='video'/></div>
                     </div>
-                    <div className='admin-block-option' onChange={inputHandler}>
+                    <div className={typeGoods=='Фотокамера' || typeGoods=='none' ? 'admin-block-option' : 'admin-block-option hiddenFields'} onChange={inputHandler}>
                         <p>Експокорекція</p>
                         <div className='input-div'><input type='text'  name='exposition'/></div>
                     </div>
@@ -265,12 +275,23 @@ function handleChange(e){
                         <p>Ціна за місяць день, грн</p>
                         <div className='input-div'><input type='number'  min='1' name='month_price'/></div>
                     </div>
-                    <div className='admin-block-option' onChange={inputHandler}>
+                    <div className={typeGoods!=='Фотокамера' || typeGoods=='none' ? 'admin-block-option' : 'admin-block-option hiddenFields'} onChange={inputHandler}>
+                        <p>Найменша фокусна відстань, мм</p>
+                        <div className='input-div'><input type='number'  min='1' name='min_focus_length'/></div>
+                    </div>
+                    <div className={typeGoods!=='Фотокамера' || typeGoods=='none' ? 'admin-block-option' : 'admin-block-option hiddenFields'} onChange={inputHandler}>
+                        <p>Діаметр, мм</p>
+                        <div className='input-div'><input type='number'  min='1' name='diametr'/></div>
+                    </div>
+
+
+
+                    <div className='admin-block-option'onChange={inputHandler}>
                         <p>Наявність</p>
                         <div className='input-div'> <input type='radio' id='available1' name='availability' value='1'/><label htmlFor='available1'>Так</label></div>
                         <div className='input-div'><input type='radio' id='available2' name='availability' value='0'/><label htmlFor='available2'>Ні</label></div>
                     </div>
-                    <div className='admin-block-option photo'>
+                    <div className='admin-block-option'>
                         <p>Фото</p>
                         <div className='photo-cont'>
                             <div className='input-div'><input type='file' name='imgS' onChange={handleChange} multiple/></div>
