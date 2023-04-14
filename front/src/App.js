@@ -6,6 +6,7 @@ import FirstPage from './components/FirstPage';
 import CatalogCamera from './components/CatalogCamera';
 import Root from './Root'
 import Admin from './components/Admin'
+import CatalogLinse from './components/CatalogLinse';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       {path:'', element:<FirstPage />},
       {path:'/admin', element:<Admin />},
       {path:'/product-camera', element:<CatalogCamera />},
+      {path:'/product-linse', element:<CatalogLinse />},
     ]},
   ])
 

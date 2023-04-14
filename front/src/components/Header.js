@@ -24,7 +24,7 @@ function catalogUnhover(event){
                 <a href='#'>КАТАЛОГ</a>
                 <ul className={!mouseOvered ? 'nested-list': 'nested-list visible'} >
                   <li> <Link to={'/product-camera'}>Фотокамери</Link></li>
-                  <li>Об'єктиви</li>
+                  <li><Link to={'/product-linse'}>Об'єктиви</Link> </li>
                 </ul>
               </li>
               <li className='nav-li'><a href='#'>ПРО КОМПАНІЮ </a></li>

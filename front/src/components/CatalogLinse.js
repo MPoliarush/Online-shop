@@ -4,7 +4,7 @@ import Cart from './Cart'
 import axios from "axios";
 
 
-function CatalogCamera(){
+function CatalogLinse(){
     const [rangeVal, setRangeValue]=useState('100')
     const [fetchedData, setFetchedData] = useState([])
     const [initalData, setinitaiData]=useState([])
@@ -71,6 +71,8 @@ for (const product of fetchedData){
 }
 
 },[filterList])
+
+
 
 
 
@@ -215,10 +217,10 @@ return (
        
         <main>
         <div className="catalog-content-container">
-            <h1 className="catalog-h1">ВСІ ФОТОКАМЕРИ</h1>
+            <h1 className="catalog-h1">ВСІ ОБ'ЄКТИВИ</h1>
             <div>
                 <h3>Знайдено {fetchedData.length} товарів </h3>
-                <p className="basic-text">В нашому магазині представлений широкий вибір фотокамер для оренди як для професіонального, так і сімейного вискористання. Зафіксуйте найцінніші моменти свого життя у повних барвах.</p>
+                <p className="basic-text">В нашому магазині представлений широкий вибір об'єктивів для фотокамер. Об'єктив – найважливіший компонент фотоапарата. Від якості його конструкції та матеріалів залежать не тільки деталізація, контраст і перенесення кольорів, а й загальний характер зображення.</p>
                 <select id='price-selection' onChange={selctions} sortValue={selctions}> 
                     <option value='up'> За зростанням ціни</option>
                     <option value='down'> За спаданням ціни</option>
@@ -307,4 +309,4 @@ return (
     )
 }
 
-export default CatalogCamera
+export default CatalogLinse
