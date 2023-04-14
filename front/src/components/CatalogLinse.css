@@ -1,5 +1,11 @@
-/* 
-.hiddenFields{
-    color: rgb(189, 187, 185);
-    border-color: rgb(155, 156, 156);
-} */
+
+.goods-linse-container{
+    width: 85%;
+}
+
+.goods-linse-container .card-frame {
+    width: 32%;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+

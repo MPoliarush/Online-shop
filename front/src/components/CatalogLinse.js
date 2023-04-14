@@ -22,7 +22,8 @@ function CatalogLinse(){
 
 async function getInfo (props) {
     try{
-        const response = await axios("http://localhost:5000/products")
+        const response = await axios("http://localhost:5000/linses")
+        console.log(response.data)
         const sortedUp = response.data.sort((a,b)=>{
             return a.work_price-b.work_price
         })
@@ -226,7 +227,7 @@ return (
                     <option value='down'> За спаданням ціни</option>
                 </select>
                 <div className='big-goods-container'>
-                    <div className='goods-container'>
+                    <div className='goods-linse-container'>
                         <ul className='goods-container-ul'>
                            
                             {fetchedData.map(item=>{

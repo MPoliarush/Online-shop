@@ -4,25 +4,27 @@ import axios from "axios";
 
 function Admin(){
     const [input,setInput]=useState({
-        typeGoods:'',
-        brand:'',
-        model:'',
-        imgdepth:'',
-        type:'',
-        matrix:'',
-        mpx:'',
-        video:'',
-        exposition:'',
-        width:0,
-        height:0,
-        depth:0,
-        weight:0,
-        work_price:0,
-        weekend_price:0,
-        week_price:0,
-        month_price:0,
-        min_focus_length:'',
-        diametr:'',
+        typeGoods:null,
+        brand:null,
+        model:null,
+        imgdepth:null,
+        type:null,
+        matrix:null,
+        mpx:null,
+        video:null,
+        exposition:null,
+        width:null,
+        height:null,
+        depth:null,
+        weight:null,
+        work_price:null,
+        weekend_price:null,
+        week_price:null,
+        month_price:null,
+        min_focus_length:null,
+        diametr:null,
+        linseType:null,
+        linceLength:null,
         availability:1,
     })
 
@@ -141,6 +143,30 @@ function inputHandler(event){
         })
     }
 
+    if (event.target.name==='min_focus_length'){
+        setInput({...input,
+            min_focus_length:+event.target.value
+        })
+    }
+
+    if (event.target.name==='diametr'){
+        setInput({...input,
+            diametr:+event.target.value
+        })
+    }
+
+    if (event.target.name==='linseType'){
+        setInput({...input,
+            linseType:+event.target.value
+        })
+    }
+
+    if (event.target.name==='linceLength'){
+        setInput({...input,
+            linceLength:+event.target.value
+        })
+    }
+
 
     if (event.target.name==='availability'){
         setInput({...input,
@@ -176,18 +202,18 @@ async function submitHandler(event){
     console.log(response)
 
    
-    let inputData = input
-    fetch('http://localhost:5000/admin',{
-        method:'POST',
-        headers:{
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin" : "*"
-        },
-        body:JSON.stringify(inputData)
-        }
-    ).then(res=>res.json()).then(data=>{
-        console.log(data)
-    })
+    // let inputData = input
+    // fetch('http://localhost:5000/admin',{
+    //     method:'POST',
+    //     headers:{
+    //         "Content-Type": "application/json",
+    //         "Access-Control-Allow-Origin" : "*"
+    //     },
+    //     body:JSON.stringify(inputData)
+    //     }
+    // ).then(res=>res.json()).then(data=>{
+    //     console.log(data)
+    // })
 
     
 }
@@ -243,19 +269,19 @@ function handleChange(e){
                         <p>Експокорекція</p>
                         <div className='input-div'><input type='text'  name='exposition'/></div>
                     </div>
-                    <div className='admin-block-option' onChange={inputHandler}>
+                    <div className={typeGoods=='Фотокамера' || typeGoods=='none' ? 'admin-block-option' : 'admin-block-option hiddenFields'} onChange={inputHandler}>
                         <p>Ширина, мм</p>
                         <div className='input-div'><input type='number'  min='1' name='width'/></div>
                     </div>
-                    <div className='admin-block-option' onChange={inputHandler}>
+                    <div className={typeGoods=='Фотокамера' || typeGoods=='none' ? 'admin-block-option' : 'admin-block-option hiddenFields'} onChange={inputHandler}>
                         <p>Висота, мм</p>
                         <div className='input-div'><input type='number' min='1' name='height'/></div>
                     </div>
-                    <div className='admin-block-option' onChange={inputHandler}>
+                    <div className={typeGoods=='Фотокамера' || typeGoods=='none' ? 'admin-block-option' : 'admin-block-option hiddenFields'} onChange={inputHandler}>
                         <p>Глибина, мм</p>
                         <div className='input-div'><input type='number' min='1' name='depth'/></div>
                     </div>
-                    <div className='admin-block-option' onChange={inputHandler}>
+                    <div className={typeGoods=='Фотокамера' || typeGoods=='none' ? 'admin-block-option' : 'admin-block-option hiddenFields'} onChange={inputHandler}>
                         <p>Вага, г</p>
                         <div className='input-div'> <input type='number'  min='1' name='weight'/></div>
                     </div>
@@ -283,6 +309,14 @@ function handleChange(e){
                         <p>Діаметр, мм</p>
                         <div className='input-div'><input type='number'  min='1' name='diametr'/></div>
                     </div>
+                    <div className={typeGoods!=='Фотокамера' || typeGoods=='none' ? 'admin-block-option' : 'admin-block-option hiddenFields'} onChange={inputHandler}>
+                        <p>Довжина,мм</p>
+                        <div className='input-div'><input type='number'  min='1' name='linceLength'/></div>
+                    </div>
+                    <div className={typeGoods!=='Фотокамера' || typeGoods=='none' ? 'admin-block-option' : 'admin-block-option hiddenFields'} onChange={inputHandler}>
+                        <p>Тип об'єктива</p>
+                        <div className='input-div'><input type='text'  min='1' name='linseType'/></div>
+                    </div>
 
 
 
@@ -295,9 +329,7 @@ function handleChange(e){
                         <p>Фото</p>
                         <div className='photo-cont'>
                             <div className='input-div'><input type='file' name='imgS' onChange={handleChange} multiple/></div>
-                            
                         </div>
-                        
                     </div>
                     <button className='button-admin' onClick={submitHandler}>Додати</button>
                 </form>
