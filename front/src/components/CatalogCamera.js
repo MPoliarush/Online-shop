@@ -209,7 +209,16 @@ async function filterHandler(e){
   
 }
 
-
+function filterClearHandler(e){
+    setFilterList({
+        brand:[],
+        type:[],
+        imgdepth:[],
+        video:[],
+        maxPrice:['300'],
+        availability:[]
+    })
+}
 
    
 
@@ -283,9 +292,10 @@ return (
                             </div>
                             <div className='select-block' onChange={inputHandler}>
                                 <p>Відео</p>
+                                <div><input type='checkbox' id='FullHD' name='video' value='FullHD'/><label htmlFor='FullHD'>FullHD</label></div>
                                 <div><input type='checkbox' id='3К' name='video' value='3К'/><label htmlFor='3К'>3К</label></div>
                                 <div><input type='checkbox' id='4К' name='video' value='4К'/><label htmlFor='4К'>4К</label></div>
-                                <div><input type='checkbox' id='FullHD' name='video' value='FullHD'/><label htmlFor='FullHD'>FullHD</label></div>
+                                
                             </div>
                             <div className='select-block' onChange={inputHandler}>
                                 <p>Ціна за день, грн</p>
@@ -299,6 +309,7 @@ return (
                                 <div><input type='checkbox' id='availab2' name='availability' value='false'/><label htmlFor='availab2'>Не в наявності</label></div>
                             </div>
                             <button className='apply-btn' onClick={filterHandler}>Застосувати</button>
+                            <button className='apply-btn' onClick={filterClearHandler}>Очистити</button>
                         </form>
                         
                     </div>
