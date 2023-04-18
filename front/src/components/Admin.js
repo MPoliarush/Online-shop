@@ -1,4 +1,5 @@
 import {useState,useEffect} from 'react'
+import AdminCart from './AdminCart'
 import axios from "axios";
 
 
@@ -28,9 +29,27 @@ function Admin(){
         availability:'false',
     })
 
+    const [fetchedData, setFetchedData] = useState([])
     const [isSubmitted, setSubmitted] = useState(false)
     const [uploadedIMG, setUploadedIMG] = useState(null)
     const [typeGoods,setTypeGoods] = useState('none')
+
+
+    async function getInfo () {
+        try{
+            const response = await axios("http://localhost:5000/products")
+            console.log(response.data)
+            setFetchedData(response.data)
+        }catch(e){
+            console.log(e.response)
+        }
+        }
+        
+    useEffect(()=>{  
+        getInfo()
+        console.log(fetchedData)
+    
+    },[])
  
 function inputHandler(event){
     // console.log(event.target.name)
@@ -223,12 +242,24 @@ function handleChange(e){
 }
 
 
-
-
     return(
         <div className='content-container-admin'>
             <h1>ПАНЕЛЬ АДМІНІСТРАТОРА</h1>
-            <div>
+            <div className='admin'>
+                <ul className='admin-navigation'>
+                    <li>Додати товар</li>
+                    
+                </ul>
+                <ul className='goods'>
+                {fetchedData.map( item=>{
+                    {/* console.log(item) */}
+                    return  <AdminCart key= {Math.random()} itemData={item}></AdminCart>
+                    })
+                  }
+                </ul>
+            </div>
+            
+            {/* <div className='addform'>
                 <h3>Форма додавання товару на сайт</h3>
                 <form className='admin-block' onSubmit={(e)=>e.preventDefault()}>
                     <div className='admin-block-option' onChange={inputHandler}>
@@ -333,7 +364,7 @@ function handleChange(e){
                     </div>
                     <button className='button-admin' onClick={submitHandler}>Додати</button>
                 </form>
-            </div>
+            </div> */}
         </div>
     )
 }

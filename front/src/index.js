@@ -5,6 +5,7 @@ import './components/Header.css'
 import './components/CatalogCamera.css'
 import './components/CatalogLinse.css'
 import './components/Admin.css'
+import './components/AdminCart.css'
 import App from './App';
 
 

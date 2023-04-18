@@ -1,0 +1,16 @@
+.goods{
+    margin-left: 100px;
+    padding: 10px 20px;
+}
+form{
+    margin-bottom: 70px;
+    border-bottom: solid;
+}
+.photo-cont {
+    display: flex;
+}
+
+.adminGoodsIMG{
+    width:100px;
+
+}
