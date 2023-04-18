@@ -25,7 +25,7 @@ function Admin(){
         diametr:null,
         linseType:null,
         linceLength:null,
-        availability:1,
+        availability:'false',
     })
 
     const [isSubmitted, setSubmitted] = useState(false)
@@ -97,80 +97,80 @@ function inputHandler(event){
 
     if (event.target.name==='width'){
         setInput({...input,
-            width:+event.target.value
+            width:event.target.value
         })
     }
 
     if (event.target.name==='height'){
         setInput({...input,
-            height:+event.target.value
+            height:event.target.value
         })
     }
 
     if (event.target.name==='depth'){
         setInput({...input,
-            depth:+event.target.value
+            depth:event.target.value
         })
     }
 
     if (event.target.name==='weight'){
         setInput({...input,
-            weight:+event.target.value
+            weight:event.target.value
         })
     }
 
     if (event.target.name==='work_price'){
         setInput({...input,
-            work_price:+event.target.value
+            work_price:event.target.value
         })
     }
 
     if (event.target.name==='weekend_price'){
         setInput({...input,
-            weekend_price:+event.target.value
+            weekend_price:event.target.value
         })
     }
 
     if (event.target.name==='week_price'){
         setInput({...input,
-            week_price:+event.target.value
+            week_price:event.target.value
         })
     }
 
     if (event.target.name==='month_price'){
         setInput({...input,
-            month_price:+event.target.value
+            month_price:event.target.value
         })
     }
 
     if (event.target.name==='min_focus_length'){
         setInput({...input,
-            min_focus_length:+event.target.value
+            min_focus_length:event.target.value
         })
     }
 
     if (event.target.name==='diametr'){
         setInput({...input,
-            diametr:+event.target.value
+            diametr:event.target.value
         })
     }
 
     if (event.target.name==='linseType'){
         setInput({...input,
-            linseType:+event.target.value
+            linseType:event.target.value
         })
     }
 
     if (event.target.name==='linceLength'){
         setInput({...input,
-            linceLength:+event.target.value
+            linceLength:event.target.value
         })
     }
 
 
     if (event.target.name==='availability'){
         setInput({...input,
-            availability:Number(event.target.value)
+            availability:event.target.value.toString()
         })
     } 
    
@@ -322,8 +322,8 @@ function handleChange(e){
 
                     <div className='admin-block-option'onChange={inputHandler}>
                         <p>Наявність</p>
-                        <div className='input-div'> <input type='radio' id='available1' name='availability' value='1'/><label htmlFor='available1'>Так</label></div>
-                        <div className='input-div'><input type='radio' id='available2' name='availability' value='0'/><label htmlFor='available2'>Ні</label></div>
+                        <div className='input-div'> <input type='radio' id='available1' name='availability' value='true'/><label htmlFor='available1'>Так</label></div>
+                        <div className='input-div'><input type='radio' id='available2' name='availability' value='false'/><label htmlFor='available2'>Ні</label></div>
                     </div>
                     <div className='admin-block-option'>
                         <p>Фото</p>

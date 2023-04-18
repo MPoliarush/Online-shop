@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 function CatalogCamera(){
-    const [rangeVal, setRangeValue]=useState('100')
+    const [rangeVal, setRangeValue]=useState('300')
     const [fetchedData, setFetchedData] = useState([])
     const [initalData, setinitaiData]=useState([])
     const [selectionMode, setSelectionMode] = useState('');
@@ -14,13 +14,13 @@ function CatalogCamera(){
         type:[],
         imgdepth:[],
         video:[],
-        maxPrice:'100',
+        maxPrice:['300'],
         availability:[]
     })
 
    
 
-async function getInfo (props) {
+async function getInfo () {
     try{
         const response = await axios("http://localhost:5000/cameras")
         console.log(response.data)
@@ -38,13 +38,13 @@ async function getInfo (props) {
 let uniqueChars  
 let uniqueBrands 
 let uniqueType
-uniqueChars = fetchedData.map(item=>{
+uniqueChars = initalData.map(item=>{
     return item.imgdepth
 })
-uniqueBrands = fetchedData.map(item=>{
+uniqueBrands = initalData.map(item=>{
     return item.brand
 })
-uniqueType = fetchedData.map(item=>{
+uniqueType = initalData.map(item=>{
     return item.type
 })
 const single = [...new Set(uniqueChars)]
@@ -55,23 +55,6 @@ const singleType = [...new Set(uniqueType)]
 useEffect(()=>{  
     getInfo()
 },[])
-
-
-
-useEffect(()=>{
-// console.log(filterList)
-// console.log(fetchedData)
-
-let basicProducts = []
-
-for (const product of fetchedData){
-    
-    for (let i=0;i<filterList.brand.length;i++){
-        
-    }
-}
-
-},[filterList])
 
 
 
@@ -177,7 +160,7 @@ function inputHandler(e){
 
     if (e.target.name =='maxPrice'){
         setFilterList({...filterList,
-            maxPrice:e.target.value
+            maxPrice:[e.target.value.toString()]
         })
     }
 
@@ -196,15 +179,34 @@ function inputHandler(e){
             availability:availabilityList
         })
     }
+    console.log(filterList)
 }
 
 
 
-function filterHandler(e){
+async function filterHandler(e){
     e.preventDefault()
     console.log(filterList)
-    
 
+    let inputData = filterList
+    fetch('http://localhost:5000/cameras-filters',{
+        method:'POST',
+        headers:{
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin" : "*",
+            
+        },
+        body:JSON.stringify(inputData)
+        }
+    ).then(res=>res.json()).then(data=>{
+        console.log(data)
+        let sortedData = data.sort((a,b)=>{
+        return a.work_price-b.work_price
+        })
+        setFetchedData(sortedData)
+    })
+
+  
 }
 
 
@@ -258,7 +260,7 @@ return (
                                 <ul>
                                     {singleType.map(item=>{
                                         return (
-                                            <div><input type='checkbox' id={item} name='type' value={item}/><label htmlFor='mirr'>{item}</label></div>
+                                            <div><input type='checkbox' id={item} name='type' value={item}/><label htmlFor={item}>{item}</label></div>
                                             )
                                         })
                                     }
@@ -293,8 +295,8 @@ return (
                             </div>
                             <div className='select-block' onChange={inputHandler}>
                                 <p>Наявність товару</p>
-                                <div><input type='checkbox' id='3К' name='availability' value='1'/><label htmlFor='3К'>В наявності</label></div>
-                                <div><input type='checkbox' id='4К' name='availability' value='0'/><label htmlFor='4К'>Не в наявності</label></div>
+                                <div><input type='checkbox' id='availab' name='availability' value='true'/><label htmlFor='availab'>В наявності</label></div>
+                                <div><input type='checkbox' id='availab2' name='availability' value='false'/><label htmlFor='availab2'>Не в наявності</label></div>
                             </div>
                             <button className='apply-btn' onClick={filterHandler}>Застосувати</button>
                         </form>

@@ -17,8 +17,8 @@ function App() {
     children:[
       {path:'', element:<FirstPage />},
       {path:'/admin', element:<Admin />},
-      {path:'/product-camera', element:<CatalogCamera />},
-      {path:'/product-linse', element:<CatalogLinse />},
+      {path:'/cameras', element:<CatalogCamera />},
+      {path:'/linses', element:<CatalogLinse />},
     ]},
   ])
 
