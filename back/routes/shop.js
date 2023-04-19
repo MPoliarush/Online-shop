@@ -219,56 +219,109 @@ try{
 
 router.post('/admin/update/:id',upload.array("imgS"), async (req,res)=>{
    
-   console.log(req.params.id)
-   console.log(req.body)
+   // console.log(req.params.id)
+   // console.log(req.files)
+   // console.log(JSON.parse(req.body.input))
 
    const productId = req.params.id;
    // const imgS = req.files
    // console.log(imgS)
 
    
-   const rawData = JSON.parse(req.body.input)
-
+   
   
 try{
-   const newItem = {
-      typeGoods:rawData.typeGoods,
-      brand: rawData.brand,
-      model: rawData.model,
-      imgdepth:rawData.imgdepth,
-      type:rawData.type,
-      matrix:rawData.matrix,
-      mpx:rawData.mpx,
-      video:rawData.video,
-      exposition:rawData.exposition,
-      width:rawData.width,
-      height:rawData.height,
-      depth:rawData.depth,
-      weight:rawData.weight,
-      work_price:rawData.work_price,
-      weekend_price:rawData.weekend_price,
-      week_price:rawData.week_price,
-      month_price:rawData.month_price,
-      min_focus_length:rawData.min_focus_length,
-      diametr:rawData.diametr,
-      linseType:rawData.linseType,
-      linceLength: rawData.linceLength,
-      availability:rawData.availability,
-      img1:req.body.imgS,
+   if(req.files){
+      const rawData = JSON.parse(req.body.input)
+      let imgarray= rawData.img1
+      imgarray.push(...req.files)
+      console.log(imgarray)
+
+      const newItem = {
+         typeGoods:rawData.typeGoods,
+         brand: rawData.brand,
+         model: rawData.model,
+         imgdepth:rawData.imgdepth,
+         type:rawData.type,
+         matrix:rawData.matrix,
+         mpx:rawData.mpx,
+         video:rawData.video,
+         exposition:rawData.exposition,
+         width:rawData.width,
+         height:rawData.height,
+         depth:rawData.depth,
+         weight:rawData.weight,
+         work_price:rawData.work_price,
+         weekend_price:rawData.weekend_price,
+         week_price:rawData.week_price,
+         month_price:rawData.month_price,
+         min_focus_length:rawData.min_focus_length,
+         diametr:rawData.diametr,
+         linseType:rawData.linseType,
+         linceLength: rawData.linceLength,
+         availability:rawData.availability,
+         img1:rawData.img1
+      }
+      
+     
+      if(newItem.typeGoods=="Фотокамера"){
+         const result = await db.getDb().collection('cameras').updateOne( {_id:new ObjectId(productId)}, {$set : newItem} )
+         console.log(result)
+      } else if (newItem.typeGoods=="Лінза"){
+         const result = await db.getDb().collection('linses').updateOne( {_id: new ObjectId(productId)}, {$set :newItem} )
+         console.log(result)
+      }
+
+
+   } else if (!req.files){
+
+      const rawData = req.body
+      
+      console.log(rawData)
+
+         const newItem = {
+            typeGoods:rawData.typeGoods,
+            brand: rawData.brand,
+            model: rawData.model,
+            imgdepth:rawData.imgdepth,
+            type:rawData.type,
+            matrix:rawData.matrix,
+            mpx:rawData.mpx,
+            video:rawData.video,
+            exposition:rawData.exposition,
+            width:rawData.width,
+            height:rawData.height,
+            depth:rawData.depth,
+            weight:rawData.weight,
+            work_price:rawData.work_price,
+            weekend_price:rawData.weekend_price,
+            week_price:rawData.week_price,
+            month_price:rawData.month_price,
+            min_focus_length:rawData.min_focus_length,
+            diametr:rawData.diametr,
+            linseType:rawData.linseType,
+            linceLength: rawData.linceLength,
+            availability:rawData.availability,
+            img1:rawData.img1
+         }
+         
+      
+         if(newItem.typeGoods=="Фотокамера"){
+            const result = await db.getDb().collection('cameras').updateOne( {_id:new ObjectId(productId)}, {$set : newItem} )
+            console.log(result)
+         } else if (newItem.typeGoods=="Лінза"){
+            const result = await db.getDb().collection('linses').updateOne( {_id: new ObjectId(productId)}, {$set :newItem} )
+            console.log(result)
+         }
+
+
    }
-   console.log(newItem)
-  
-//    if(newItem.typeGoods=="Фотокамера"){
-//       const result = await db.getDb().collection('cameras').updateOne( {_id:new ObjectId(productId)}, {$set : newItem} )
-//       console.log(result)
-//    } else if (newItem.typeGoods=="Лінза"){
-//       const result = await db.getDb().collection('linses').updateOne( {_id: new ObjectId(productId)}, {$set :newItem} )
-//       console.log(result)
-//    }
 
 }  catch(error) {
-   console.log(error);
+      console.log(error);
 }
+
+  
 
 })
 

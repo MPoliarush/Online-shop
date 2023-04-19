@@ -27,9 +27,10 @@ function AdminCart(props){
         linseType:props.itemData.linseType,
         linceLength:props.itemData.linceLength,
         availability:props.itemData.availability,
+        img1:props.itemData.img1
     })
 
-    const [uploadedIMG, setUploadedIMG] = useState(null)
+    const [uploadedIMG, setUploadedIMG] = useState('')
     // const [newImgArr, setNewImagArr] = useState([])
     const [imgArray,setImgArray] = useState(props.itemData.img1)
 
@@ -188,6 +189,9 @@ function AdminCart(props){
         })
         
         setImgArray(imgArr)
+        setInput({...input, 
+            img1:imgArr
+        })
     }
     console.log(imgArray)
   
@@ -196,10 +200,11 @@ function AdminCart(props){
 
    async function editHandler(e){
         e.preventDefault()
+        let formData = new FormData()
 
         if(imgArray==[] || imgArray.length==0){
             console.log('logged 1')
-            let formData = new FormData()
+            
             
                 formData.append('imgS', null)
                 formData.append('input', JSON.stringify(input))
@@ -213,14 +218,13 @@ function AdminCart(props){
                 console.log(response)
            
         } else if(uploadedIMG){
-            console.log('logged 2')
-            let formData = new FormData()
-    
+            
             for (let i=0; i<uploadedIMG.length;i++){
+                console.log('logged 2')
                 formData.append('imgS', uploadedIMG[i])
             }
 
-            formData.append('imgS', imgArray)
+            console.log(imgArray)
             formData.append('input', JSON.stringify(input))
             const config = {
                 headers:{
@@ -228,12 +232,18 @@ function AdminCart(props){
                 }
             }
                 const response = await axios.post(`http://localhost:5000/admin/update/${props.itemData._id}`, formData, config )
-                console.log(response)
         }
-    
+        
        
 
-         
+        const config = {
+                headers:{
+                    "Content-Type": "application/json"
+                }
+            }
+        const response = await axios.post(`http://localhost:5000/admin/update/${props.itemData._id}`, input, config )
+        console.log(response)
+        
         // console.log(input)
         // const config = {
         //     headers:{
