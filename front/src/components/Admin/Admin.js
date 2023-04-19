@@ -251,15 +251,15 @@ function handleChange(e){
                     
                 </ul>
                 <ul className='goods'>
-                {/* {fetchedData.map( item=>{
+                {fetchedData.map( item=>{
                    
                     return  <AdminCart key= {Math.random()} itemData={item}></AdminCart>
                     })
-                } */}
+                }
                 </ul>
             </div>
             
-            <div className='addform'>
+            {/* <div className='addform'>
                 <h3>Форма додавання товару на сайт</h3>
                 <form className='admin-block' onSubmit={(e)=>e.preventDefault()}>
                     <div className='admin-block-option' onChange={inputHandler}>
@@ -364,7 +364,7 @@ function handleChange(e){
                     </div>
                     <button className='button-admin' onClick={submitHandler}>Додати</button>
                 </form>
-            </div>
+            </div> */}
         </div>
     )
 }

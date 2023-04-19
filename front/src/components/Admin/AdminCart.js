@@ -1,39 +1,45 @@
 import { useState,useEffect } from "react"
+import axios from "axios";
+
 
 
 function AdminCart(props){
     const [input,setInput]=useState({
-        typeGoods:null,
-        brand:null,
-        model:null,
-        imgdepth:null,
-        type:null,
-        matrix:null,
-        mpx:null,
-        video:null,
-        exposition:null,
-        width:null,
-        height:null,
-        depth:null,
-        weight:null,
-        work_price:null,
-        weekend_price:null,
-        week_price:null,
-        month_price:null,
-        min_focus_length:null,
-        diametr:null,
-        linseType:null,
-        linceLength:null,
-        availability:'false',
+        typeGoods:props.itemData.typeGoods,
+        brand:props.itemData.brand,
+        model:props.itemData.model,
+        imgdepth:props.itemData.imgdepth,
+        type:props.itemData.type,
+        matrix:props.itemData.matrix,
+        mpx:props.itemData.mpx,
+        video:props.itemData.video,
+        exposition:props.itemData.exposition,
+        width:props.itemData.width,
+        height:props.itemData.height,
+        depth:props.itemData.weight,
+        weight:props.itemData.weight,
+        work_price:props.itemData.work_price,
+        weekend_price:props.itemData.weekend_price,
+        week_price:props.itemData.week_price,
+        month_price:props.itemData.month_price,
+        min_focus_length:props.itemData.min_focus_length,
+        diametr:props.itemData.diametr,
+        linseType:props.itemData.linseType,
+        linceLength:props.itemData.linceLength,
+        availability:props.itemData.availability,
     })
+
+    // const [uploadedIMG, setUploadedIMG] = useState(props.itemData.img1)
+
+
     function inputHandler(event){
         // console.log(event.target.name)
         // console.log(event.target.value)
+        // console.log(props.itemData._id)
         if (event.target.name==='typeGoods'){
             setInput({...input,
                 typeGoods:event.target.value
             })
-           
     
         } 
     
@@ -166,14 +172,52 @@ function AdminCart(props){
        
     }
 
+    // function handleChange(e){
+    //     setUploadedIMG(e.target.files)
+    // }
+
+
+   async function editHandler(e){
+        e.preventDefault()
+        
+   
+        // let formData = new FormData()
+        //     for (let i=0; i<uploadedIMG.length;i++){
+        //         formData.append('imgS', uploadedIMG[i])
+        //         formData.append('input', JSON.stringify(input))
+        //         const config = {
+        //             headers:{
+        //                 "Content-Type": "multipart/form-data"
+        //             }
+        //         }
+        //         const response = await axios.post(`http://localhost:5000/admin/update/${props.itemData._id}`, formData, config )
+        //         console.log(response)
+        //     }
+
+         
+        console.log(input)
+        const config = {
+            headers:{
+                "Content-Type": "application/json"
+            }
+        }
+        const response = await axios.post(`http://localhost:5000/admin/update/${props.itemData._id}`,input, config )
+        console.log(response)
+    
+       
+        console.log('finished!')
+       
+
+   } 
+
 // console.log(props.itemData.img1)
 
     return (
         <form  onSubmit={(e)=>e.preventDefault()}>
                     <div onChange={inputHandler}>
                         <p>Вид товару</p>
-                        <div className='input-div'><input type='radio' id='3К' name='typeGoods' value='Фотокамера' /><label htmlFor='3К'>Фотокамера</label></div>
-                        <div className='input-div'><input type='radio' id='4К' name='typeGoods' value='Лінза'/><label htmlFor='4К'>Лінза</label></div>
+                        <div className='input-div'><input type='radio' id='3К' name='typeGoods' value='Фотокамера' defaultChecked={props.itemData.typeGoods==='Фотокамера' ? true : false}/><label htmlFor='3К'>Фотокамера</label></div>
+                        <div className='input-div'><input type='radio' id='4К' name='typeGoods' value='Лінза' defaultChecked={props.itemData.typeGoods==='Лінза' ? true : false}/><label htmlFor='4К'>Лінза</label></div>
                     </div>
                     <div  onChange={inputHandler}>
                         <p>Марка</p>
@@ -189,8 +233,8 @@ function AdminCart(props){
                     </div>
                     <div onChange={inputHandler}>
                         <p>Тип зображення</p>
-                        <div className='input-div'><input type='radio' id='type1' name='type' defaultValue='Дзеркальна'/><label htmlFor='type1'>Дзеркальна</label></div>
-                        <div className='input-div'><input type='radio' id='type2' name='type' defaultValue='Компактна'/><label htmlFor='type2'>Компактна</label></div>
+                        <div className='input-div'><input type='radio' id='type1' name='type' defaultValue='Дзеркальна' defaultChecked={props.itemData.type==='Дзеркальна' ? true : false} /><label htmlFor='type1'>Дзеркальна</label></div>
+                        <div className='input-div'><input type='radio' id='type2' name='type' defaultValue='Компактна' defaultChecked={props.itemData.type==='Компактна' ? true : false} /><label htmlFor='type2'>Компактна</label></div>
                     </div>
                     <div onChange={inputHandler}>
                         <p>Матриця</p>
@@ -259,8 +303,8 @@ function AdminCart(props){
 
                     <div onChange={inputHandler}>
                         <p>Наявність</p>
-                        <div className='input-div'> <input type='radio' id='available1' name='availability' value='true'/><label htmlFor='available1'>Так</label></div>
-                        <div className='input-div'><input type='radio' id='available2' name='availability' value='false'/><label htmlFor='available2'>Ні</label></div>
+                        <div className='input-div'> <input type='radio' id='available1' name='availability' value='true' defaultChecked={props.itemData.availability==='true' ? true : false} /><label htmlFor='available1'>Так</label></div>
+                        <div className='input-div'><input type='radio' id='available2' name='availability' value='false' defaultChecked={props.itemData.availability==='false' ? true : false}/><label htmlFor='available2'>Ні</label></div>
                     </div>
                     <div >
                         <p>Фото</p>
@@ -270,10 +314,16 @@ function AdminCart(props){
                                     <img className="adminGoodsIMG" src={`http://localhost:5000/uploadedIMG/${img.filename}`} />
                                 )
                             })}
+                            <div className='input-div'><input type='file' name='imgS' multiple /></div>
                          
                         </div>
                     </div>
-                    <button >Редагувати</button>
+                    <div className="btns">
+                        <button className="delete-btn">Видалити товар</button>
+                        <button className="edit-btn" onClick={editHandler}>Зберегти зімни</button>
+                        
+                    </div>
+                    
         </form>
     )
 }
