@@ -79,3 +79,18 @@ form>div p{
 .delete-btn:hover{
     background-color:#ee0b0b;
 }
+
+
+.img-box{
+    display: flex;
+    align-items: center;
+}
+
+.img-delete{
+    height: 50px;
+
+}
+
+.img-delete:hover{
+    cursor: pointer;
+}

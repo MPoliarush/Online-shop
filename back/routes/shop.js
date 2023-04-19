@@ -163,18 +163,73 @@ try{
 
 
 
-router.post('/admin/update/:id', async (req,res)=>{
+// router.post('/admin/update/:id', async (req,res)=>{
+   
+//    console.log(req.params.id)
+//    const productId = req.params.id;
+//    // const imgS = req.files
+//    // console.log(imgS)
+   
+//    const rawData = req.body
+//    // const data = JSON.parse(rawData)
+
+// console.log(rawData)
+ 
+// try{
+//    const newItem = {
+//       typeGoods:rawData.typeGoods,
+//       brand: rawData.brand,
+//       model: rawData.model,
+//       imgdepth:rawData.imgdepth,
+//       type:rawData.type,
+//       matrix:rawData.matrix,
+//       mpx:rawData.mpx,
+//       video:rawData.video,
+//       exposition:rawData.exposition,
+//       width:rawData.width,
+//       height:rawData.height,
+//       depth:rawData.depth,
+//       weight:rawData.weight,
+//       work_price:rawData.work_price,
+//       weekend_price:rawData.weekend_price,
+//       week_price:rawData.week_price,
+//       month_price:rawData.month_price,
+//       min_focus_length:rawData.min_focus_length,
+//       diametr:rawData.diametr,
+//       linseType:rawData.linseType,
+//       linceLength: rawData.linceLength,
+//       availability:rawData.availability,
+      
+//    }
+  
+//    if(newItem.typeGoods=="Фотокамера"){
+//       const result = await db.getDb().collection('cameras').updateOne( {_id:new ObjectId(productId)}, {$set : newItem} )
+//       console.log(result)
+//    } else if (newItem.typeGoods=="Лінза"){
+//       const result = await db.getDb().collection('linses').updateOne( {_id: new ObjectId(productId)}, {$set :newItem} )
+//       console.log(result)
+//    }
+
+// }  catch(error) {
+//    console.log(error);
+// }
+
+// })
+
+
+router.post('/admin/update/:id',upload.array("imgS"), async (req,res)=>{
    
    console.log(req.params.id)
+   console.log(req.body)
+
    const productId = req.params.id;
    // const imgS = req.files
    // console.log(imgS)
-   
-   const rawData = req.body
-   // const data = JSON.parse(rawData)
 
-console.log(rawData)
- 
+   
+   const rawData = JSON.parse(req.body.input)
+
+  
 try{
    const newItem = {
       typeGoods:rawData.typeGoods,
@@ -199,16 +254,17 @@ try{
       linseType:rawData.linseType,
       linceLength: rawData.linceLength,
       availability:rawData.availability,
-      
+      img1:req.body.imgS,
    }
+   console.log(newItem)
   
-   if(newItem.typeGoods=="Фотокамера"){
-      const result = await db.getDb().collection('cameras').updateOne( {_id:new ObjectId(productId)}, {$set : newItem} )
-      console.log(result)
-   } else if (newItem.typeGoods=="Лінза"){
-      const result = await db.getDb().collection('linses').updateOne( {_id: new ObjectId(productId)}, {$set :newItem} )
-      console.log(result)
-   }
+//    if(newItem.typeGoods=="Фотокамера"){
+//       const result = await db.getDb().collection('cameras').updateOne( {_id:new ObjectId(productId)}, {$set : newItem} )
+//       console.log(result)
+//    } else if (newItem.typeGoods=="Лінза"){
+//       const result = await db.getDb().collection('linses').updateOne( {_id: new ObjectId(productId)}, {$set :newItem} )
+//       console.log(result)
+//    }
 
 }  catch(error) {
    console.log(error);
