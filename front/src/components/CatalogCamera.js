@@ -293,8 +293,8 @@ return (
                             <div className='select-block' onChange={inputHandler}>
                                 <p>Відео</p>
                                 <div><input type='checkbox' id='FullHD' name='video' value='FullHD'/><label htmlFor='FullHD'>FullHD</label></div>
-                                <div><input type='checkbox' id='3К' name='video' value='3К'/><label htmlFor='3К'>3К</label></div>
-                                <div><input type='checkbox' id='4К' name='video' value='4К'/><label htmlFor='4К'>4К</label></div>
+                                <div><input type='checkbox' id='3K' name='video' value='3K'/><label htmlFor='3К'>3K</label></div>
+                                <div><input type='checkbox' id='4K' name='video' value='4K'/><label htmlFor='4К'>4K</label></div>
                                 
                             </div>
                             <div className='select-block' onChange={inputHandler}>

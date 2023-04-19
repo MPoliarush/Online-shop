@@ -251,21 +251,21 @@ function handleChange(e){
                     
                 </ul>
                 <ul className='goods'>
-                {fetchedData.map( item=>{
-                    {/* console.log(item) */}
+                {/* {fetchedData.map( item=>{
+                   
                     return  <AdminCart key= {Math.random()} itemData={item}></AdminCart>
                     })
-                  }
+                } */}
                 </ul>
             </div>
             
-            {/* <div className='addform'>
+            <div className='addform'>
                 <h3>Форма додавання товару на сайт</h3>
                 <form className='admin-block' onSubmit={(e)=>e.preventDefault()}>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Вид товару</p>
-                        <div className='input-div'><input type='radio' id='3К' name='typeGoods' value='Фотокамера' /><label htmlFor='3К'>Фотокамера</label></div>
-                        <div className='input-div'><input type='radio' id='4К' name='typeGoods' value='Лінза'/><label htmlFor='4К'>Лінза</label></div>
+                        <div className='input-div'><input type='radio' id='Фотокамера' name='typeGoods' value='Фотокамера' /><label htmlFor='Фотокамера'>Фотокамера</label></div>
+                        <div className='input-div'><input type='radio' id='Лінза' name='typeGoods' value='Лінза'/><label htmlFor='Лінза'>Лінза</label></div>
                     </div>
                     <div className='admin-block-option' onChange={inputHandler}>
                         <p>Марка</p>
@@ -364,7 +364,7 @@ function handleChange(e){
                     </div>
                     <button className='button-admin' onClick={submitHandler}>Додати</button>
                 </form>
-            </div> */}
+            </div>
         </div>
     )
 }

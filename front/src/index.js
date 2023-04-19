@@ -4,8 +4,8 @@ import './components/FirstPage.css'
 import './components/Header.css'
 import './components/CatalogCamera.css'
 import './components/CatalogLinse.css'
-import './components/Admin.css'
-import './components/AdminCart.css'
+import './components/Admin/Admin.css'
+import './components/Admin/AdminCart.css'
 import App from './App';
 
 

@@ -5,7 +5,7 @@ import Header from './components/Header'
 import FirstPage from './components/FirstPage';
 import CatalogCamera from './components/CatalogCamera';
 import Root from './Root'
-import Admin from './components/Admin'
+import Admin from './components/Admin/Admin'
 import CatalogLinse from './components/CatalogLinse';
 
 
