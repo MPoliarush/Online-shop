@@ -38,6 +38,7 @@ function AdminCart(props){
     const [imgArray,setImgArray] = useState([])
     const [edited,setEdited] = useState(false)
     const [cartDeleted,setCartdeleted] =useState(false)
+   
     
 
     async function getCartData(){
@@ -60,7 +61,6 @@ function AdminCart(props){
     }, [])
 
 
-    
 
 
     function inputHandler(event){
@@ -241,8 +241,9 @@ function AdminCart(props){
 
    async function editHandler(e){
         e.preventDefault()
-        
+
         setEdited(true)
+
         setTimeout(()=>{
             setEdited(false)
         }, 1000)
@@ -296,7 +297,8 @@ function AdminCart(props){
 
     return (
         <div className="content-container-admin">
-        {cartDeleted ? <div className="message"><p >Товар видалено</p><Link to='/admin'>Назад до товарів</Link></div> :
+        {cartDeleted ? <div className="message"><p >Товар видалено</p><Link to='/admin'>Назад до товарів</Link></div> 
+        :
         <form className="form-block " onSubmit={(e)=>e.preventDefault()}>
             <div className='form-container' onChange={inputHandler}>
                 <p>Вид товару</p>
