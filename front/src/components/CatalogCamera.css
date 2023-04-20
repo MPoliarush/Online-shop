@@ -64,7 +64,7 @@
   .goods-container{
     width:85%;
     display: flex;
-    align-items: center;
+   margin-top: 35px;
     flex-wrap: wrap;
     gap:15px;
    
@@ -73,11 +73,12 @@
   .goods-container-ul{
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
     gap:15px;
   }
 
   .goods-container .card-frame{
-    min-width: 200px;
+    min-width: 240px;
     width: 32%;
     justify-content: space-between;
     margin-bottom: 15px;

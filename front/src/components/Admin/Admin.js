@@ -44,14 +44,13 @@ function Admin(){
         <div className='content-container-admin'>
             <h1>ПАНЕЛЬ АДМІНІСТРАТОРА</h1>
             <div className='admin'>
-                <ul className='admin-navigation'>
-                    <li><Link to='/admin/add'>Додати товар</Link></li>
-                </ul>
+                
+                <p className='addItem'><Link to='/admin/add'><img src='/imagesHTML/icons/add.png'/>Додати товар </Link></p>
+                
                 <ul className='goods'>
-                {fetchedData.map( item=>{
-                   
-                    return  <AdminCart key= {Math.random()} itemData={item} cartRemover={removeCart}></AdminCart>
-                    })
+                {fetchedData ? fetchedData.map( item=>{
+                        return  <AdminCart key= {Math.random()} itemData={item} cartRemover={removeCart}></AdminCart>
+                    }) : <p className='empty'>Товари для редагування відсутні</p>
                 }
                 </ul>
             </div>

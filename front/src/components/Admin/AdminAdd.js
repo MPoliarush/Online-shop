@@ -33,6 +33,7 @@ function AdminAdd(){
     const [isSubmitted, setSubmitted] = useState(false)
     const [uploadedIMG, setUploadedIMG] = useState(null)
     const [typeGoods,setTypeGoods] = useState('none')
+    const [productSaved,setProductSaved] = useState(false)
 
 
     async function getInfo () {
@@ -203,7 +204,7 @@ async function submitHandler(event){
     event.preventDefault()
     console.log('submitted')
     setSubmitted(true)
-
+    setProductSaved(true)
     
     let formData = new FormData()
     
@@ -234,7 +235,33 @@ async function submitHandler(event){
     //     console.log(data)
     // })
 
-    
+    const clearedData={
+        typeGoods:null,
+        brand:null,
+        model:null,
+        imgdepth:null,
+        type:null,
+        matrix:null,
+        mpx:null,
+        video:null,
+        exposition:null,
+        width:null,
+        height:null,
+        depth:null,
+        weight:null,
+        work_price:null,
+        weekend_price:null,
+        week_price:null,
+        month_price:null,
+        min_focus_length:null,
+        diametr:null,
+        linseType:null,
+        linceLength:null,
+        availability:'false',
+    }
+
+    setInput(clearedData)
+
 }
     
 function handleChange(e){
@@ -248,6 +275,8 @@ function handleChange(e){
             <div className='addform'>
 
                 <p><Link to='/admin'>Назад до товарів</Link></p>
+
+                {productSaved==false ?<>
                 <h3>Форма додавання товару на сайт</h3>
                 <form className='admin-block' onSubmit={(e)=>e.preventDefault()}>
                     <div className='admin-block-option' onChange={inputHandler}>
@@ -352,6 +381,11 @@ function handleChange(e){
                     </div>
                     <button className='button-admin' onClick={submitHandler}>Додати</button>
                 </form>
+               
+                </> :<p className='saved'>Товар успішно збережено!</p>
+                }
+        
+
             </div>
         </div> 
     )

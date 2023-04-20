@@ -1,11 +1,47 @@
 .admin{
     display: flex;
+    margin-top: 50px;
+    flex-shrink: 0;
+    align-items: flex-start;
+}
+
+.addItem img{
+    display: block;
+    margin: 0 auto;
+}
+
+.addItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.5s;
+    border-radius: 50px;
+}
+
+.addItem:hover{
+    background-color: rgb(228, 252, 217);
+    transition: 0.5s;
+    
+}
+
+.addItem a{
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+    padding: 10px 35px 20px;
+    border-radius: 50px;
 }
 
 
-
 .goods{
-    border: solid ;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.empty{
+
+    font-size: 20px;
+    padding: 20px 15px;
 }
 
   .content-container-admin{
@@ -80,6 +116,12 @@ gap: 25px;
     border-radius: 40px;
     border:none;
     background-color: #76c302;
+    transition: 0.5s;
+}
+
+.button-admin:hover{
+    background-color: #8be405;
+    transition: 0.5s;
 }
 
 .admin-block-option.photo{
@@ -101,5 +143,12 @@ gap: 25px;
     border-color: rgb(236, 234, 234);
 }
 
+
+.saved{
+    width:100%;
+    text-align: center;
+    font-size: 30px;
+    margin: 20px auto;
+}
 
     
