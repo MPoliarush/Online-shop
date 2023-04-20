@@ -4,8 +4,12 @@
 }
 form{
     margin-bottom: 70px;
-    border-bottom: solid;
 }
+
+.form-block{
+border-bottom: 1px solid;
+}
+
 .photo-cont {
     display: flex;
 }
@@ -30,13 +34,13 @@ form{
     padding-bottom: 20px;
 }
 
-form>div{
+.form-container{
     display: flex;
     width:100%;
     margin-bottom: 10px;
 }
 
-form>div p{
+.form-container p{
     min-width:250px;
 }
 
@@ -84,10 +88,11 @@ form>div p{
 .img-box{
     display: flex;
     align-items: center;
+
 }
 
 .img-delete{
-    height: 50px;
+    height: 40px;
 
 }
 

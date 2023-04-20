@@ -6,6 +6,7 @@ import FirstPage from './components/FirstPage';
 import CatalogCamera from './components/CatalogCamera';
 import Root from './Root'
 import Admin from './components/Admin/Admin'
+import AdminAdd from './components/Admin/AdminAdd'
 import CatalogLinse from './components/CatalogLinse';
 
 
@@ -17,6 +18,7 @@ function App() {
     children:[
       {path:'', element:<FirstPage />},
       {path:'/admin', element:<Admin />},
+      {path:'/admin/add', element:<AdminAdd/>},
       {path:'/cameras', element:<CatalogCamera />},
       {path:'/linses', element:<CatalogLinse />},
     ]},
