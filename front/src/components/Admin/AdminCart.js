@@ -1,39 +1,66 @@
 import { useState,useEffect } from "react"
+import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import axios from "axios";
 
 
 
 function AdminCart(props){
+    const params = useParams();
+
     const [input,setInput]=useState({
-        typeGoods:props.itemData.typeGoods,
-        brand:props.itemData.brand,
-        model:props.itemData.model,
-        imgdepth:props.itemData.imgdepth,
-        type:props.itemData.type,
-        matrix:props.itemData.matrix,
-        mpx:props.itemData.mpx,
-        video:props.itemData.video,
-        exposition:props.itemData.exposition,
-        width:props.itemData.width,
-        height:props.itemData.height,
-        depth:props.itemData.weight,
-        weight:props.itemData.weight,
-        work_price:props.itemData.work_price,
-        weekend_price:props.itemData.weekend_price,
-        week_price:props.itemData.week_price,
-        month_price:props.itemData.month_price,
-        min_focus_length:props.itemData.min_focus_length,
-        diametr:props.itemData.diametr,
-        linseType:props.itemData.linseType,
-        linceLength:props.itemData.linceLength,
-        availability:props.itemData.availability,
-        img1:props.itemData.img1
+            typeGoods:null,
+            brand:null,
+            model:null,
+            imgdepth:null,
+            type:null,
+            matrix:null,
+            mpx:null,
+            video:null,
+            exposition:null,
+            width:null,
+            height:null,
+            depth:null,
+            weight:null,
+            work_price:null,
+            weekend_price:null,
+            week_price:null,
+            month_price:null,
+            min_focus_length:null,
+            diametr:null,
+            linseType:null,
+            linceLength:null,
+            availability:'false'
     })
 
     const [uploadedIMG, setUploadedIMG] = useState('')
     // const [newImgArr, setNewImagArr] = useState([])
-    const [imgArray,setImgArray] = useState(props.itemData.img1)
+    const [imgArray,setImgArray] = useState([])
     const [edited,setEdited] = useState(false)
+    const [cartDeleted,setCartdeleted] =useState(false)
+    
+
+    async function getCartData(){
+        console.log(params.id)
+        try{
+            const response = await axios(`http://localhost:5000/products/${params.id}`)
+            console.log(response.data)
+            setInput(response.data)
+            setImgArray(response.data.img1)
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+ 
+
+    useEffect(()=> {
+        getCartData()
+        console.log('logged')
+    }, [])
+
+
+    
 
 
     function inputHandler(event){
@@ -196,9 +223,17 @@ function AdminCart(props){
     }
    
 
-    function deleteHandler(e){
-        console.log(props.itemData._id)
-        props.cartRemover(props.itemData._id, props.itemData)
+   async function deleteHandler(e){
+        e.preventDefault()
+        console.log(params.id)
+        setCartdeleted(true)
+        const config = {
+            headers:{
+                "Content-Type": "application/json"
+            }
+        }
+        const response = await axios.post(`http://localhost:5000/admin/delete/${params.id}`, input ,config )
+        
     }
   
 
@@ -206,151 +241,154 @@ function AdminCart(props){
 
    async function editHandler(e){
         e.preventDefault()
-        // let formData = new FormData()
-
-        // if(imgArray==[] || imgArray.length==0){
-        //     console.log('logged 1')
-            
-            
-        //         formData.append('imgS', null)
-        //         formData.append('input', JSON.stringify(input))
-           
-        //         const config = {
-        //             headers:{
-        //                 "Content-Type": "multipart/form-data"
-        //             }
-        //         }
-        //         const response = await axios.post(`http://localhost:5000/admin/update/${props.itemData._id}`, formData, config )
-        //         console.log(response)
-           
-        // } else if(uploadedIMG){
-            
-        //     for (let i=0; i<uploadedIMG.length;i++){
-        //         console.log('logged 2')
-        //         formData.append('imgS', uploadedIMG[i])
-        //     }
-
-        //     console.log(imgArray)
-        //     formData.append('input', JSON.stringify(input))
-        //     const config = {
-        //         headers:{
-        //             "Content-Type": "multipart/form-data"
-        //         }
-        //     }
-        //         const response = await axios.post(`http://localhost:5000/admin/update/${props.itemData._id}`, formData, config )
-        // }
         
-        // const config = {
-        //         headers:{
-        //             "Content-Type": "application/json"
-        //         }
-        //     }
-        // const response = await axios.post(`http://localhost:5000/admin/update/${props.itemData._id}`, input, config )
-        // console.log(response)
-        
-
         setEdited(true)
         setTimeout(()=>{
             setEdited(false)
         }, 1000)
+
+        let formData = new FormData()
+
+        if(imgArray==[] || imgArray.length==0){
+            console.log('logged 1')
+            
+            
+                formData.append('imgS', null)
+                formData.append('input', JSON.stringify(input))
+           
+                const config = {
+                    headers:{
+                        "Content-Type": "multipart/form-data"
+                    }
+                }
+                const response = await axios.post(`http://localhost:5000/admin/update/${params.id}`, formData, config )
+                console.log(response)
+           
+        } else if(uploadedIMG){
+            
+            for (let i=0; i<uploadedIMG.length;i++){
+                console.log('logged 2')
+                formData.append('imgS', uploadedIMG[i])
+            }
+
+            console.log(imgArray)
+            formData.append('input', JSON.stringify(input))
+            const config = {
+                headers:{
+                    "Content-Type": "multipart/form-data"
+                }
+            }
+                const response = await axios.post(`http://localhost:5000/admin/update/${params.id}`, formData, config )
+        }
+        
+        const config = {
+                headers:{
+                    "Content-Type": "application/json"
+                }
+            }
+        const response = await axios.post(`http://localhost:5000/admin/update/${params.id}`, input, config )
+        console.log(response)
+        
        
    } 
 
 
 
     return (
-        <form className="form-block" onSubmit={(e)=>e.preventDefault()}>
+        <div className="content-container-admin">
+        {cartDeleted ? <div className="message"><p >Товар видалено</p><Link to='/admin'>Назад до товарів</Link></div> :
+        <form className="form-block " onSubmit={(e)=>e.preventDefault()}>
             <div className='form-container' onChange={inputHandler}>
                 <p>Вид товару</p>
-                <div className='input-div'><input type='radio' id='3К' name='typeGoods' value='Фотокамера' defaultChecked={props.itemData.typeGoods==='Фотокамера' ? true : false}/><label htmlFor='3К'>Фотокамера</label></div>
-                <div className='input-div'><input type='radio' id='4К' name='typeGoods' value='Лінза' defaultChecked={props.itemData.typeGoods==='Лінза' ? true : false}/><label htmlFor='4К'>Лінза</label></div>
+                <div className='input-div'><input type='radio' id='3К' name='typeGoods' value='Фотокамера' checked={input.typeGoods=='Фотокамера' ? true : false}/><label htmlFor='3К'>Фотокамера</label></div>
+                <div className='input-div'><input type='radio' id='4К' name='typeGoods' value='Лінза' checked={input.typeGoods=='Лінза' ? true : false}/><label htmlFor='4К'>Лінза</label></div>
             </div>
             <div className='form-container' onChange={inputHandler}>
                 <p>Марка</p>
-                <div className='input-div'><input type='text' size='20' name='brand' defaultValue={props.itemData.brand}/></div>
+                <div className='input-div'><input type='text' size='20' name='brand' defaultValue={input.brand}/></div>
             </div>
             <div className='form-container' onChange={inputHandler}>
                 <p>Модель</p>
-                <div className='input-div'><input type='text'  name='model' defaultValue={props.itemData.model}/></div>
+                <div className='input-div'><input type='text'  name='model' defaultValue={input.model}/></div>
             </div>
             <div className='form-container' onChange={inputHandler}>
                 <p>Глибина зображення</p>
-                <div className='input-div'><input type='text'  name='imgdepth' defaultValue={props.itemData.imgdepth}/></div>
+                <div className='input-div'><input type='text'  name='imgdepth' defaultValue={input.imgdepth}/></div>
             </div>
             <div className='form-container'onChange={inputHandler}>
                 <p>Тип зображення</p>
-                <div className='input-div'><input type='radio' id='type1' name='type' defaultValue='Дзеркальна' defaultChecked={props.itemData.type==='Дзеркальна' ? true : false} /><label htmlFor='type1'>Дзеркальна</label></div>
-                <div className='input-div'><input type='radio' id='type2' name='type' defaultValue='Компактна' defaultChecked={props.itemData.type==='Компактна' ? true : false} /><label htmlFor='type2'>Компактна</label></div>
+                <div className='input-div'><input type='radio' id='type1' name='type' defaultValue='Дзеркальна' checked={input.type=='Дзеркальна' ? true : false} /><label htmlFor='type1'>Дзеркальна</label></div>
+                <div className='input-div'><input type='radio' id='type2' name='type' defaultValue='Компактна' checked={input.type=='Компактна' ? true : false} /><label htmlFor='type2'>Компактна</label></div>
             </div>
             <div className='form-container'onChange={inputHandler}>
                 <p>Матриця</p>
-                <div className='input-div'><input type='text'  name='matrix' defaultValue={props.itemData.matrix}/></div>
+                <div className='input-div'><input type='text'  name='matrix' defaultValue={input.matrix}/></div>
             </div>
             <div className='form-container' onChange={inputHandler}>
                 <p>Роздільна здатність, Mpx</p>
-                <div className='input-div'><input type='text'  name='mpx' defaultValue={props.itemData.mpx}/></div>
+                <div className='input-div'><input type='text'  name='mpx' defaultValue={input.mpx}/></div>
             </div>
             <div className='form-container' onChange={inputHandler}>
                 <p>Якість відео</p>
-                <div className='input-div'><input type='text'  name='video' defaultValue={props.itemData.video}/></div>
+                <div className='input-div'><input type='text'  name='video' defaultValue={input.video}/></div>
             </div>
             <div className='form-container'c onChange={inputHandler}>
                 <p>Експокорекція</p>
-                <div className='input-div'><input type='text'  name='exposition' defaultValue={props.itemData.exposition}/></div>
+                <div className='input-div'><input type='text'  name='exposition' defaultValue={input.exposition}/></div>
             </div>
             <div className='form-container' onChange={inputHandler}>
                 <p>Ширина, мм</p>
-                <div className='input-div'><input type='number'  min='1' name='width' defaultValue={props.itemData.width}/></div>
+                <div className='input-div'><input type='number'  min='1' name='width' defaultValue={input.width}/></div>
             </div>
             <div className='form-container' onChange={inputHandler}>
                 <p>Висота, мм</p>
-                <div className='input-div'><input type='number' min='1' name='height' defaultValue={props.itemData.height}/></div>
+                <div className='input-div'><input type='number' min='1' name='height' defaultValue={input.height}/></div>
             </div>
             <div className='form-container' onChange={inputHandler}>
                 <p>Глибина, мм</p>
-                <div className='input-div'><input type='number' min='1' name='depth' defaultValue={props.itemData.depth}/></div>
+                <div className='input-div'><input type='number' min='1' name='depth' defaultValue={input.depth}/></div>
             </div>
             <div className='form-container'onChange={inputHandler}>
                 <p>Вага, г</p>
-                <div className='input-div'> <input type='number'  min='1' name='weight' defaultValue={props.itemData.weight}/></div>
+                <div className='input-div'> <input type='number'  min='1' name='weight' defaultValue={input.weight}/></div>
             </div>
             <div className='form-container'onChange={inputHandler}>
                 <p>Ціна будній день, грн</p>
-                <div className='input-div'><input type='number'  min='1' name='work_price' defaultValue={props.itemData.work_price}/></div>
+                <div className='input-div'><input type='number'  min='1' name='work_price' defaultValue={input.work_price}/></div>
             </div>
             <div className='form-container' onChange={inputHandler}>
                 <p>Ціна вихідний день, грн</p>
-                <div className='input-div'><input type='number'  min='1' name='weekend_price' defaultValue={props.itemData.weekend_price}/></div>
+                <div className='input-div'><input type='number'  min='1' name='weekend_price' defaultValue={input.weekend_price}/></div>
             </div>
             <div className='form-container'onChange={inputHandler}>
                 <p>Ціна за тиждень день, грн</p>
-                <div className='input-div'><input type='number' i min='1' name='week_price' defaultValue={props.itemData.week_price}/></div>
+                <div className='input-div'><input type='number' i min='1' name='week_price' defaultValue={input.week_price}/></div>
             </div>
             <div  className='form-container'onChange={inputHandler}>
                 <p>Ціна за місяць день, грн</p>
-                <div className='input-div'><input type='number'  min='1' name='month_price' defaultValue={props.itemData.month_price}/></div>
+                <div className='input-div'><input type='number'  min='1' name='month_price' defaultValue={input.month_price}/></div>
             </div>
             <div className='form-container' onChange={inputHandler}>
                 <p>Найменша фокусна відстань, мм</p>
-                <div className='input-div'><input type='number'  min='1' name='min_focus_length' defaultValue={props.itemData.min_focus_length}/></div>
+                <div className='input-div'><input type='number'  min='1' name='min_focus_length' defaultValue={input.min_focus_length}/></div>
             </div>
             <div className='form-container' onChange={inputHandler}>
                 <p>Діаметр, мм</p>
-                <div className='input-div'><input type='number'  min='1' name='diametr' defaultValue={props.itemData.diametr}/></div>
+                <div className='input-div'><input type='number'  min='1' name='diametr' defaultValue={input.diametr}/></div>
             </div>
             <div className='form-container' onChange={inputHandler}>
                 <p>Довжина,мм</p>
-                <div className='input-div'><input type='number'  min='1' name='linceLength' defaultValue={props.itemData.linceLength}/></div>
+                <div className='input-div'><input type='number'  min='1' name='linceLength' defaultValue={input.linceLength}/></div>
             </div>
             <div className='form-container'onChange={inputHandler}>
                 <p>Тип об'єктива</p>
-                <div className='input-div'><input type='text'  min='1' name='linseType' defaultValue={props.itemData.linseType}/></div>
+                <div className='input-div'><input type='text'  min='1' name='linseType' defaultValue={input.linseType}/></div>
             </div>
 
             <div className='form-container'onChange={inputHandler}>
                 <p>Наявність</p>
-                <div className='input-div'> <input type='radio' id='available1' name='availability' value='true' defaultChecked={props.itemData.availability==='true' ? true : false} /><label htmlFor='available1'>Так</label></div>
-                <div className='input-div'><input type='radio' id='available2' name='availability' value='false' defaultChecked={props.itemData.availability==='false' ? true : false}/><label htmlFor='available2'>Ні</label></div>
+                <div className='input-div'> <input type='radio' id='available1' name='availability' value='true' checked={input.availability==='true' ? true : false} /><label htmlFor='available1'>Так</label></div>
+                <div className='input-div'><input type='radio' id='available2' name='availability' value='false' checked={input.availability==='false' ? true : false}/><label htmlFor='available2'>Ні</label></div>
             </div>
             <div className='form-container'>
                 <p>Фото</p>
@@ -374,6 +412,9 @@ function AdminCart(props){
             </div>
                     
         </form>
+
+        }
+    </div>
     )
 }
 
