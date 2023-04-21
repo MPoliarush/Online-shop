@@ -63,7 +63,7 @@ function Admin(){
 
     return(
         <div className='content-container-admin'>
-            <h1>ПАНЕЛЬ АДМІНІСТРАТОРА</h1>
+            <h1 className='h1'>ПАНЕЛЬ АДМІНІСТРАТОРА</h1>
             <div className='admin'>
                 
                 <p className='addItem'><Link to='/admin/add'><img src='/imagesHTML/icons/add.png'/>Додати товар </Link></p>
@@ -81,6 +81,7 @@ function Admin(){
                                         <p>{item.brand}</p>
                                         <p>{item.model}</p>
                                         <p>{item.type}</p>
+                                        <p>{item.work_price}</p>
                                     </li>
                                 </Link>
                     })

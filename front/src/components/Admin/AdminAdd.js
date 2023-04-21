@@ -27,6 +27,7 @@ function AdminAdd(){
         linseType:null,
         linceLength:null,
         availability:'false',
+        description:null
     })
 
     const [fetchedData, setFetchedData] = useState([])
@@ -193,6 +194,12 @@ function inputHandler(event){
             availability:event.target.value.toString()
         })
     } 
+
+    if (event.target.name==='description'){
+        setInput({...input,
+            description:event.target.value.toString()
+        })
+    } 
    
 }
 
@@ -258,6 +265,7 @@ async function submitHandler(event){
         linseType:null,
         linceLength:null,
         availability:'false',
+        description:null
     }
 
     setInput(clearedData)
@@ -364,6 +372,11 @@ function handleChange(e){
                     <div className={typeGoods!=='Фотокамера' || typeGoods=='none' ? 'admin-block-option' : 'admin-block-option hiddenFields'} onChange={inputHandler}>
                         <p>Тип об'єктива</p>
                         <div className='input-div'><input type='text'  min='1' name='linseType'/></div>
+                    </div>
+
+                    <div className={typeGoods!=='Фотокамера' || typeGoods=='none' ? 'admin-block-option text' : 'admin-block-option hiddenFields'} onChange={inputHandler}>
+                        <p>Опис товару</p>
+                        <div className='input-div'><textarea min='1'  name='description'/></div>
                     </div>
 
 

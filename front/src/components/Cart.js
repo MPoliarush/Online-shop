@@ -1,7 +1,18 @@
 import { useState,useEffect } from "react"
+import {Link, useParams} from 'react-router-dom'
 
 
 function Cart(props){
+// const params = useParams()
+// console.log(params.id)
+console.log(props.itemData)
+
+let cartPath=''
+    if (props.itemData.typeGoods=='Фотокамера'){
+        cartPath = `/cameras/view/${props.itemData._id}`
+    } else if (props.itemData.typeGoods=='Лінза'){
+        cartPath = `/linses/view/${props.itemData._id}`
+    }
 
 
     return (
@@ -35,7 +46,7 @@ function Cart(props){
           </div>
         </div>
         <div className='product-options'>
-          <button className='view-details'>Деталі товару</button>
+          <button className='view-details'><Link to={cartPath}>Деталі товару</Link></button>
           <button className='add-to-basket'><img src= '/imagesHTML/icons/basket.png' alt='basket'/> В кошик </button>
         </div>
     </li>

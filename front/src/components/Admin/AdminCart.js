@@ -30,7 +30,8 @@ function AdminCart(props){
             diametr:null,
             linseType:null,
             linceLength:null,
-            availability:'false'
+            availability:'false',
+            description:null
     })
 
     const [uploadedIMG, setUploadedIMG] = useState('')
@@ -198,6 +199,12 @@ function AdminCart(props){
         if (event.target.name==='availability'){
             setInput({...input,
                 availability:event.target.value.toString()
+            })
+        } 
+
+        if (event.target.name==='description'){
+            setInput({...input,
+                description:event.target.value.toString()
             })
         } 
        
@@ -386,6 +393,10 @@ function AdminCart(props){
                 <p>Тип об'єктива</p>
                 <div className='input-div'><input type='text'  min='1' name='linseType' defaultValue={input.linseType}/></div>
             </div>
+            <div className='form-container' onChange={inputHandler} >
+                        <p>Опис товару</p>
+                        <div className='input-div'><textarea  min='1' row='10' defaultValue={input.description}  name='description'/></div>
+                    </div>
 
             <div className='form-container'onChange={inputHandler}>
                 <p>Наявність</p>

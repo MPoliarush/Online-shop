@@ -1,11 +1,10 @@
 import { useState,useEffect } from 'react'
-import ProductIntro from './ProductIntro'
-import Cart from './Cart'
+import Cart from '../Cart'
 import axios from "axios";
 
 
-function CatalogCamera(){
-    const [rangeVal, setRangeValue]=useState('300')
+function CatalogLinse(){
+    const [rangeVal, setRangeValue]=useState('100')
     const [fetchedData, setFetchedData] = useState([])
     const [initalData, setinitaiData]=useState([])
     const [selectionMode, setSelectionMode] = useState('');
@@ -14,15 +13,15 @@ function CatalogCamera(){
         type:[],
         imgdepth:[],
         video:[],
-        maxPrice:['300'],
+        maxPrice:'100',
         availability:[]
     })
 
    
 
-async function getInfo () {
+async function getInfo (props) {
     try{
-        const response = await axios("http://localhost:5000/cameras")
+        const response = await axios("http://localhost:5000/linses")
         console.log(response.data)
         const sortedUp = response.data.sort((a,b)=>{
             return a.work_price-b.work_price
@@ -38,13 +37,13 @@ async function getInfo () {
 let uniqueChars  
 let uniqueBrands 
 let uniqueType
-uniqueChars = initalData.map(item=>{
+uniqueChars = fetchedData.map(item=>{
     return item.imgdepth
 })
-uniqueBrands = initalData.map(item=>{
+uniqueBrands = fetchedData.map(item=>{
     return item.brand
 })
-uniqueType = initalData.map(item=>{
+uniqueType = fetchedData.map(item=>{
     return item.type
 })
 const single = [...new Set(uniqueChars)]
@@ -55,6 +54,25 @@ const singleType = [...new Set(uniqueType)]
 useEffect(()=>{  
     getInfo()
 },[])
+
+
+
+useEffect(()=>{
+// console.log(filterList)
+// console.log(fetchedData)
+
+let basicProducts = []
+
+for (const product of fetchedData){
+    
+    for (let i=0;i<filterList.brand.length;i++){
+        
+    }
+}
+
+},[filterList])
+
+
 
 
 
@@ -160,7 +178,7 @@ function inputHandler(e){
 
     if (e.target.name =='maxPrice'){
         setFilterList({...filterList,
-            maxPrice:[e.target.value.toString()]
+            maxPrice:e.target.value
         })
     }
 
@@ -179,46 +197,18 @@ function inputHandler(e){
             availability:availabilityList
         })
     }
-    console.log(filterList)
 }
 
 
 
-async function filterHandler(e){
+function filterHandler(e){
     e.preventDefault()
     console.log(filterList)
+    
 
-    let inputData = filterList
-    fetch('http://localhost:5000/cameras-filters',{
-        method:'POST',
-        headers:{
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin" : "*",
-            
-        },
-        body:JSON.stringify(inputData)
-        }
-    ).then(res=>res.json()).then(data=>{
-        console.log(data)
-        let sortedData = data.sort((a,b)=>{
-        return a.work_price-b.work_price
-        })
-        setFetchedData(sortedData)
-    })
-
-  
 }
 
-function filterClearHandler(e){
-    setFilterList({
-        brand:[],
-        type:[],
-        imgdepth:[],
-        video:[],
-        maxPrice:['300'],
-        availability:[]
-    })
-}
+
 
    
 
@@ -227,16 +217,16 @@ return (
        
         <main>
         <div className="catalog-content-container">
-            <h1 className="catalog-h1">ВСІ ФОТОКАМЕРИ</h1>
+            <h1 className="catalog-h1">ВСІ ОБ'ЄКТИВИ</h1>
             <div>
                 <h3>Знайдено {fetchedData.length} товарів </h3>
-                <p className="basic-text">В нашому магазині представлений широкий вибір фотокамер для оренди як для професіонального, так і сімейного вискористання. Зафіксуйте найцінніші моменти свого життя у повних барвах.</p>
+                <p className="basic-text">В нашому магазині представлений широкий вибір об'єктивів для фотокамер. Об'єктив – найважливіший компонент фотоапарата. Від якості його конструкції та матеріалів залежать не тільки деталізація, контраст і перенесення кольорів, а й загальний характер зображення.</p>
                 <select id='price-selection' onChange={selctions} sortValue={selctions}> 
                     <option value='up'> За зростанням ціни</option>
                     <option value='down'> За спаданням ціни</option>
                 </select>
                 <div className='big-goods-container'>
-                    <div className='goods-container'>
+                    <div className='goods-linse-container'>
                         <ul className='goods-container-ul'>
                            
                             {fetchedData.map(item=>{
@@ -269,7 +259,7 @@ return (
                                 <ul>
                                     {singleType.map(item=>{
                                         return (
-                                            <div><input type='checkbox' id={item} name='type' value={item}/><label htmlFor={item}>{item}</label></div>
+                                            <div><input type='checkbox' id={item} name='type' value={item}/><label htmlFor='mirr'>{item}</label></div>
                                             )
                                         })
                                     }
@@ -292,10 +282,9 @@ return (
                             </div>
                             <div className='select-block' onChange={inputHandler}>
                                 <p>Відео</p>
+                                <div><input type='checkbox' id='3К' name='video' value='3К'/><label htmlFor='3К'>3К</label></div>
+                                <div><input type='checkbox' id='4К' name='video' value='4К'/><label htmlFor='4К'>4К</label></div>
                                 <div><input type='checkbox' id='FullHD' name='video' value='FullHD'/><label htmlFor='FullHD'>FullHD</label></div>
-                                <div><input type='checkbox' id='3K' name='video' value='3K'/><label htmlFor='3К'>3K</label></div>
-                                <div><input type='checkbox' id='4K' name='video' value='4K'/><label htmlFor='4К'>4K</label></div>
-                                
                             </div>
                             <div className='select-block' onChange={inputHandler}>
                                 <p>Ціна за день, грн</p>
@@ -305,11 +294,10 @@ return (
                             </div>
                             <div className='select-block' onChange={inputHandler}>
                                 <p>Наявність товару</p>
-                                <div><input type='checkbox' id='availab' name='availability' value='true'/><label htmlFor='availab'>В наявності</label></div>
-                                <div><input type='checkbox' id='availab2' name='availability' value='false'/><label htmlFor='availab2'>Не в наявності</label></div>
+                                <div><input type='checkbox' id='3К' name='availability' value='1'/><label htmlFor='3К'>В наявності</label></div>
+                                <div><input type='checkbox' id='4К' name='availability' value='0'/><label htmlFor='4К'>Не в наявності</label></div>
                             </div>
                             <button className='apply-btn' onClick={filterHandler}>Застосувати</button>
-                            <button className='apply-btn' onClick={filterClearHandler}>Очистити</button>
                         </form>
                         
                     </div>
@@ -321,4 +309,4 @@ return (
     )
 }
 
-export default CatalogCamera
+export default CatalogLinse

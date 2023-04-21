@@ -1,8 +1,7 @@
 import {Outlet} from 'react-router-dom'
 
 import Header from './components/Header'
-import FirstPage from './components/FirstPage';
-import CatalogCamera from './components/CatalogCamera';
+
 
 function Root (){
 return (
