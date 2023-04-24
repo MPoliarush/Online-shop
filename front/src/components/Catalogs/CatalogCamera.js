@@ -1,5 +1,6 @@
 import { useState,useEffect } from 'react'
 import Cart from '../Cart'
+import Footer from '../Footer';
 import axios from "axios";
 
 
@@ -316,6 +317,7 @@ return (
             </div>
         </div>
         </main>
+        <Footer></Footer>
         </>
     )
 }

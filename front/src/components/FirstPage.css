@@ -314,6 +314,11 @@ display: inline-block;
   cursor: pointer;
 }
 
+.view-details a{
+  text-decoration: none;
+  color: #000000;
+}
+
 .add-to-basket{
   padding: 8px 10px;
   background-color: #76c302;
