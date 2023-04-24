@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from "axios";
 
 import Cart from './Cart'
+import Footer from './Footer';
 
 function FirstPage(props){
 
@@ -15,19 +16,20 @@ async function getInfo () {
     }catch(e){
         console.log(e.response)
     }
-    }
+  }
     
 useEffect(()=>{  
     getInfo()
     console.log('runned')
-
+    
 },[])
 
 
     return (
+      <>
         <main>
         <div className='first-page'>
-          <img src={process.env.PUBLIC_URL + '/imagesHTML/girl.jpg'} className='first-page-img' alt='girl'/>
+          <img src={process.env.PUBLIC_URL + '/imagesHTML/girl.jpg'}  className='first-page-img' alt='girl'/>
           <div className='content-container'>
             <div className='first-page-text-container'>
               <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/bg.png'} alt='user'/>
@@ -74,144 +76,6 @@ useEffect(()=>{
                     return  <Cart key= {Math.random()} itemData={item}></Cart>
                     })
                   }
-                 
-{/* 
-                    <li className='card-frame'>
-                      <div className='product-info'>
-                        <div className='product-img-wrapper'><img src={process.env.PUBLIC_URL + '/imagesProducts/Photo/1/1.1.png'} className='product-img' alt='user'/></div>
-                        <p className='model'>D5300 Kit</p>
-                        <p className='brand'>Canon</p>
-                        <div className='card-block-nav'>
-                            <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/compare.png'} alt='compare' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compareHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compare.png')} />
-                            <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/star.png'} alt='star' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/starHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/star.png')}  />
-                        </div>
-                      </div>
-                      <div className='product-pricing'>
-                        <div className='product-pricing-box'>
-                            <span className='product-pricing-box-price'>230 UAH</span>
-                            <span>Будній</span>
-                        </div>
-                        <div className='product-pricing-box weekend'>
-                            <span className='product-pricing-box-price'>250 UAH</span>
-                            <span>Вихідний</span>
-                        </div>
-                        <div className='product-pricing-box week'>
-                            <span className='product-pricing-box-price'>3250 UAH</span>
-                            <span>Тиждень</span>
-                        </div>
-                        <div className='product-pricing-box month'>
-                            <span className='product-pricing-box-price'>6250 UAH</span>
-                            <span>Місяць</span>
-                        </div>
-                      </div>
-                      <div className='product-options'>
-                        <button className='view-details'>Деталі товару</button>
-                        <button className='add-to-basket'><img src={process.env.PUBLIC_URL + '/imagesHTML/icons/basket.png'} alt='basket'/> В кошик </button>
-                      </div>
-                    </li>
-
-                    <li className='card-frame'>
-                      <div className='product-info'>
-                        <div className='product-img-wrapper'><img src={process.env.PUBLIC_URL + '/imagesProducts/Photo/2/2.1.jpg'} className='product-img' alt='user'/></div>
-                        <p className='model'>D5300 Kit</p>
-                        <p className='brand'>Canon</p>
-                        <div className='card-block-nav'>
-                            <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/compare.png'} alt='compare' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compareHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compare.png')} />
-                            <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/star.png'} alt='star' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/starHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/star.png')}  />
-                        </div>
-                      </div>
-                      <div className='product-pricing'>
-                        <div className='product-pricing-box'>
-                            <span className='product-pricing-box-price'>230 UAH</span>
-                            <span>Будній</span>
-                        </div>
-                        <div className='product-pricing-box weekend'>
-                            <span className='product-pricing-box-price'>250 UAH</span>
-                            <span>Вихідний</span>
-                        </div>
-                        <div className='product-pricing-box week'>
-                            <span className='product-pricing-box-price'>3250 UAH</span>
-                            <span>Тиждень</span>
-                        </div>
-                        <div className='product-pricing-box month'>
-                            <span className='product-pricing-box-price'>6250 UAH</span>
-                            <span>Місяць</span>
-                        </div>
-                      </div>
-                      <div className='product-options'>
-                        <button className='view-details'>Деталі товару</button>
-                        <button className='add-to-basket'><img src={process.env.PUBLIC_URL + '/imagesHTML/icons/basket.png'} alt='basket'/> В кошик </button>
-                      </div>
-                    </li>
-
-                    <li className='card-frame'>
-                      <div className='product-info'>
-                        <div className='product-img-wrapper'>  <img src={process.env.PUBLIC_URL + '/imagesProducts/Photo/3/3.1.jpg'} className='product-img' alt='user'/></div>
-                        <p className='model'>D5300 Kit</p>
-                        <p className='brand'>Canon</p>
-                        <div className='card-block-nav'>
-                            <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/compare.png'} alt='compare' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compareHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compare.png')} />
-                            <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/star.png'} alt='star' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/starHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/star.png')}  />
-                        </div>
-                      </div>
-                      <div className='product-pricing'>
-                        <div className='product-pricing-box'>
-                            <span className='product-pricing-box-price'>230 UAH</span>
-                            <span>Будній</span>
-                        </div>
-                        <div className='product-pricing-box weekend'>
-                            <span className='product-pricing-box-price'>250 UAH</span>
-                            <span>Вихідний</span>
-                        </div>
-                        <div className='product-pricing-box week'>
-                            <span className='product-pricing-box-price'>3250 UAH</span>
-                            <span>Тиждень</span>
-                        </div>
-                        <div className='product-pricing-box month'>
-                            <span className='product-pricing-box-price'>6250 UAH</span>
-                            <span>Місяць</span>
-                        </div>
-                      </div>
-                      <div className='product-options'>
-                        <button className='view-details'>Деталі товару</button>
-                        <button className='add-to-basket'><img src={process.env.PUBLIC_URL + '/imagesHTML/icons/basket.png'} alt='basket'/> В кошик </button>
-                      </div>
-                    </li>
-
-                    <li className='card-frame'>
-                      <div className='product-info'>
-                        <div className='product-img-wrapper'><img src={process.env.PUBLIC_URL + '/imagesProducts/Photo/3/3.1.jpg'} className='product-img' alt='user'/></div>
-                        <p className='model'>D5300 Kit</p>
-                        <p className='brand'>Canon</p>
-                        <div className='card-block-nav'>
-                            <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/compare.png'} alt='compare' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compareHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compare.png')} />
-                            <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/star.png'} alt='star' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/starHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/star.png')}  />
-                        </div>
-                      </div>
-                      <div className='product-pricing'>
-                        <div className='product-pricing-box'>
-                            <span className='product-pricing-box-price'>230 UAH</span>
-                            <span>Будній</span>
-                        </div>
-                        <div className='product-pricing-box weekend'>
-                            <span className='product-pricing-box-price'>250 UAH</span>
-                            <span>Вихідний</span>
-                        </div>
-                        <div className='product-pricing-box week'>
-                            <span className='product-pricing-box-price'>3250 UAH</span>
-                            <span>Тиждень</span>
-                        </div>
-                        <div className='product-pricing-box month'>
-                            <span className='product-pricing-box-price'>6250 UAH</span>
-                            <span>Місяць</span>
-                        </div>
-                      </div>
-                      <div className='product-options'>
-                        <button className='view-details'>Деталі товару</button>
-                        <button className='add-to-basket'><img src={process.env.PUBLIC_URL + '/imagesHTML/icons/basket.png'} alt='basket'/> В кошик </button>
-                      </div>
-                    </li> */}
-
                   </ul>
                 
               </div>
@@ -223,8 +87,8 @@ useEffect(()=>{
             <h3>ВИ <span>ШУКАЄТЕ</span> ЩОСЬ КОНКРЕТНЕ?</h3>
             <p>Проект Fotoprokat24 є агрегатором пропозицій всіх фотопрокатів міста та служить для Вашої зручності. Виберіть потрібну категорію, або почніть пошук за назвою. Оформивши замовлення, Ви зможете забрати його з Пункту Видачі або замовити доставку в будь-яку точку міста.</p>
             <div className='third-page-btns'>
-              <button className='thirt-page-button'>ПЕРЕЙТИ В КАТАЛОГ</button>
-              <button className='thirt-page-button'>ПОШУК</button>
+              <button className='thirt-page-button'>ПЕРЕЙТИ В КАТАЛОГ ФОТОКАМЕР</button>
+              <button className='thirt-page-button'>ПЕРЕЙТИ В КАТАЛОГ ЛІНЗ</button>
             </div>
           </div>
         </div>
@@ -274,7 +138,10 @@ useEffect(()=>{
             </div>
           </div>
         </div>
+
       </main>
+      <Footer></Footer>
+      </>
     )
 }
 

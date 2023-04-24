@@ -5,7 +5,8 @@ import {Link, useParams} from 'react-router-dom'
 function Cart(props){
 // const params = useParams()
 // console.log(params.id)
-console.log(props.itemData)
+// console.log(props.itemData)
+const[cartPathNew, setCartPathNew] = useState('')
 
 let cartPath=''
     if (props.itemData.typeGoods=='Фотокамера'){
@@ -13,6 +14,7 @@ let cartPath=''
     } else if (props.itemData.typeGoods=='Лінза'){
         cartPath = `/linses/view/${props.itemData._id}`
     }
+
 
 
     return (
@@ -46,8 +48,8 @@ let cartPath=''
           </div>
         </div>
         <div className='product-options'>
-          <button className='view-details'><Link to={cartPath}>Деталі товару</Link></button>
-          <button className='add-to-basket'><img src= '/imagesHTML/icons/basket.png' alt='basket'/> В кошик </button>
+            <Link to={cartPath}> <button className='view-details'>Деталі товару</button></Link>
+            <button className='add-to-basket'><img src= '/imagesHTML/icons/basket.png' alt='basket'/> В кошик </button>
         </div>
     </li>
     )

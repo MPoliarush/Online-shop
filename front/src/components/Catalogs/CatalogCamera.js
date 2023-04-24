@@ -1,5 +1,6 @@
 import { useState,useEffect } from 'react'
 import Cart from '../Cart'
+import Footer from '../Footer';
 import axios from "axios";
 
 
@@ -83,7 +84,13 @@ useEffect(()=>{
         console.log(selectionMode)
         setFetchedData(sortedUp)  
     }
+
+   
 },[selectionMode])
+
+useEffect(()=>{
+    window.scrollTo(0, 0)
+},[])
 
 
 function inputHandler(e){
@@ -316,6 +323,7 @@ return (
             </div>
         </div>
         </main>
+        <Footer></Footer>
         </>
     )
 }

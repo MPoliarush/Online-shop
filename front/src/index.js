@@ -7,6 +7,7 @@ import './components/Catalogs/CatalogLinse.css'
 import './components/Catalogs/ProductPage.css'
 import './components/Admin/Admin.css'
 import './components/Admin/AdminCart.css'
+import './components/Footer.css'
 
 import App from './App';
 

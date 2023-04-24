@@ -1,5 +1,6 @@
 import { useState,useEffect } from 'react'
 import Cart from '../Cart'
+import Footer from '../Footer';
 import axios from "axios";
 
 
@@ -54,6 +55,11 @@ const singleType = [...new Set(uniqueType)]
 useEffect(()=>{  
     getInfo()
 },[])
+
+
+useEffect(()=>{
+    window.scrollTo(0, 0)
+},[fetchedData])
 
 
 
@@ -305,6 +311,7 @@ return (
             </div>
         </div>
         </main>
+        <Footer></Footer>
         </>
     )
 }
