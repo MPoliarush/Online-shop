@@ -36,16 +36,23 @@
     object-fit: contain;
 }
 
-.small{
-    display: block;
-    width: 100px;
-    height: 70px;
-    border: solid  #EFEFEF 1px;;
+.small-cont{
+    padding: 10px 10px;
+    border: solid  #EFEFEF 1px;
+    height: 80px;
+    display: flex;
+    align-items: center;
     margin-bottom: 10px;
     transition: 0.5s;
 }
 
-.small:hover{
+.small{
+    width: 100px;
+    height: fit-content;
+   display: block; 
+}
+
+.small-cont:hover{
     cursor: pointer;
     border: solid  #91ef05 1px;
     transition: 0.5s;

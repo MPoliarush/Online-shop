@@ -94,7 +94,7 @@ function replacePhoto() {
                 <div className='card-frame-single'>
                     <div>
                         {imgArray.map(img=>{
-                            return <img className='small' onClick={replacePhoto} src={`http://localhost:5000/uploadedIMG/${img.filename}`} />
+                            return <div className='small-cont'><img className='small' onClick={replacePhoto} src={`http://localhost:5000/uploadedIMG/${img.filename}`} /></div> 
                             })
                         }
                     </div>
