@@ -35,6 +35,12 @@
     width:90%;
     min-width: 250px;
     object-fit: contain;
+    transition: 0.5s;
+}
+
+.product-img-wrapper-single img:hover{
+    transform: scale(1.3);
+    transition: 0.5s;
 }
 
 .small-cont{
