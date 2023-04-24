@@ -21,7 +21,7 @@ async function getInfo () {
 useEffect(()=>{  
     getInfo()
     console.log('runned')
-
+    
 },[])
 
 

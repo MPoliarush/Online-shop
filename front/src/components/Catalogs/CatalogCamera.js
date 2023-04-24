@@ -84,7 +84,13 @@ useEffect(()=>{
         console.log(selectionMode)
         setFetchedData(sortedUp)  
     }
+
+   
 },[selectionMode])
+
+useEffect(()=>{
+    window.scrollTo(0, 0)
+},[fetchedData])
 
 
 function inputHandler(e){
