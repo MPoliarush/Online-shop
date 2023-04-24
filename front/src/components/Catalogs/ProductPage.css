@@ -178,3 +178,10 @@ position: relative;
 margin-bottom: 100px;
 
 }
+
+.add-to-basket.big{
+    display: block;
+    margin: 15px auto;
+    width:30%;
+    padding: 10px 0;
+}

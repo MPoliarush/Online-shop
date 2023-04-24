@@ -5,7 +5,8 @@ import {Link, useParams} from 'react-router-dom'
 function Cart(props){
 // const params = useParams()
 // console.log(params.id)
-console.log(props.itemData)
+// console.log(props.itemData)
+const[cartPathNew, setCartPathNew] = useState('')
 
 let cartPath=''
     if (props.itemData.typeGoods=='Фотокамера'){
@@ -13,6 +14,7 @@ let cartPath=''
     } else if (props.itemData.typeGoods=='Лінза'){
         cartPath = `/linses/view/${props.itemData._id}`
     }
+
 
 
     return (
