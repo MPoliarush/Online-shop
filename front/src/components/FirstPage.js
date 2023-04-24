@@ -16,7 +16,7 @@ async function getInfo () {
     }catch(e){
         console.log(e.response)
     }
-    }
+  }
     
 useEffect(()=>{  
     getInfo()
@@ -29,7 +29,7 @@ useEffect(()=>{
       <>
         <main>
         <div className='first-page'>
-          <img src={process.env.PUBLIC_URL + '/imagesHTML/girl.jpg'} className='first-page-img' alt='girl'/>
+          <img src={process.env.PUBLIC_URL + '/imagesHTML/girl.jpg'}  className='first-page-img' alt='girl'/>
           <div className='content-container'>
             <div className='first-page-text-container'>
               <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/bg.png'} alt='user'/>

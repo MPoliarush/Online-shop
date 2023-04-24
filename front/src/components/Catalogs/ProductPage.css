@@ -28,6 +28,7 @@
 .product-img-wrapper-single{
     margin-top: 30px;
     margin-bottom: 50px;
+    margin-right: 20px;
 }
 
 .product-img-wrapper-single img{
@@ -172,6 +173,8 @@ color: #75758A;
 
 .recommended{
 margin-top: 100px;
+padding: 0 50px;
 position: relative;
 margin-bottom: 100px;
+
 }

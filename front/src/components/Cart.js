@@ -46,8 +46,8 @@ let cartPath=''
           </div>
         </div>
         <div className='product-options'>
-          <button className='view-details'><Link to={cartPath}>Деталі товару</Link></button>
-          <button className='add-to-basket'><img src= '/imagesHTML/icons/basket.png' alt='basket'/> В кошик </button>
+            <Link to={cartPath}> <button className='view-details'>Деталі товару</button></Link>
+            <button className='add-to-basket'><img src= '/imagesHTML/icons/basket.png' alt='basket'/> В кошик </button>
         </div>
     </li>
     )
