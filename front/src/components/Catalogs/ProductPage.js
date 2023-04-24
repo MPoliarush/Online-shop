@@ -44,7 +44,7 @@ function ProductPage(){
 async function getInfo () {
     try{
         const response = await axios("http://localhost:5000/products")
-        console.log(response.data)
+        
         setFetchedData(response.data)
     }catch(e){
         console.log(e.response)
@@ -53,7 +53,7 @@ async function getInfo () {
     
 useEffect(()=>{  
     getInfo()
-    console.log('runned')
+    
 },[])
 
 
@@ -63,11 +63,11 @@ useEffect(()=>{
         console.log(params.id)
         try{
             const response = await axios(`http://localhost:5000/products/${params.id}`)
-            console.log(response.data)
-            console.log(response.data.img1)
+           
+           
             setInput(response.data)
             setImgArray(response.data.img1)
-            setImg(response.data.img1[0])
+            setImg(response.data.img1[0].filename)
         }catch(e){
             console.log(e)
         }
@@ -84,7 +84,6 @@ useEffect(()=>{
 
     function activeHandler(e){
         e.preventDefault()
-        console.log(e.target.value)
         if(e.target.value=='Опис'){
             setActiveInputs({
                 descr:true,
@@ -98,11 +97,10 @@ useEffect(()=>{
     }
 
 
-console.log(activeInputs)
-
-
-function replacePhoto() {
-
+function replacePhoto(e) {
+    console.log(img)
+    console.log(e.currentTarget.name)
+setImg(e.currentTarget.name)
 }
 
 
@@ -164,14 +162,14 @@ let linsa=(<>
                         <div className='card-frame-single'>
                             <div>
                                 {imgArray.map(img=>{
-                                    return <div className='small-cont'><img className='small' onClick={replacePhoto} src={`http://localhost:5000/uploadedIMG/${img.filename}`} /></div> 
+                                    return <div className='small-cont'><img className='small' onClick={replacePhoto} src={`http://localhost:5000/uploadedIMG/${img.filename}`} name={img.filename} /></div> 
                                     })
                                 }
                             </div>
                             <div className='product-info'>
                                 <div className='product-img-wrapper-single'>
                             
-                                <img className='product-img' src={`http://localhost:5000/uploadedIMG/${img.filename}`} />
+                                <img className='product-img' src={`http://localhost:5000/uploadedIMG/${img}`} />
                                 
                             
                                 </div>
