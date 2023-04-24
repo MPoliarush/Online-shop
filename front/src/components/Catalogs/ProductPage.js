@@ -151,6 +151,10 @@ let linsa=(<>
 </>
 )
 
+function addToBasket(){
+    
+}
+
 
     return (
         <>
@@ -179,7 +183,7 @@ let linsa=(<>
                                 </div>
                             </div>
                         </div>
-                        <button className='add-to-basket big'><img src= '/imagesHTML/icons/basket.png' alt='basket'/> В кошик </button>
+                        <button className='add-to-basket big' onClick={addToBasket}><img src= '/imagesHTML/icons/basket.png' alt='basket'/> В кошик </button>
                     </div>
                     <div className='product-description'>
                         <div className='product-header'>

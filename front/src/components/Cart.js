@@ -15,7 +15,9 @@ let cartPath=''
         cartPath = `/linses/view/${props.itemData._id}`
     }
 
-
+function addToBasket(){
+    
+}
 
     return (
         
@@ -49,7 +51,7 @@ let cartPath=''
         </div>
         <div className='product-options'>
             <Link to={cartPath}> <button className='view-details'>Деталі товару</button></Link>
-            <button className='add-to-basket'><img src= '/imagesHTML/icons/basket.png' alt='basket'/> В кошик </button>
+            <button className='add-to-basket' onClick={addToBasket}><img src= '/imagesHTML/icons/basket.png' alt='basket'/> В кошик </button>
         </div>
     </li>
     )
