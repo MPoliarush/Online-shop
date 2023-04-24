@@ -12,7 +12,6 @@ import CatalogLinse from './components/Catalogs/CatalogLinse';
 import ProductPage from './components/Catalogs/ProductPage'
 
 
-
 function App() {
 
   const router = createBrowserRouter([
