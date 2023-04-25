@@ -1,5 +1,7 @@
 import {useState, useEffect,useRef} from 'react'
 import { useParams } from 'react-router-dom'
+import { useSelector,useDispatch } from "react-redux"
+import {orderActions,compareActions} from '../../store/store'
 import axios from "axios";
 import Cart from '../Cart';
 import Footer from '../Footer';
@@ -37,8 +39,21 @@ function ProductPage(){
         details:false
     })
     const [fetchedData, setFetchedData] = useState([])
+    const [added,setAdded] = useState("В кошик")
     const params = useParams()
+    const dispatch = useDispatch()
+    const stateBasket = useSelector(state=>state.basketOrders.goods)
+    const stateCompare = useSelector(state=>state.comparison.items)
 
+
+useEffect(()=>{
+    const elementInBasket = stateBasket.find(el=> el._id== input._id)
+    console.log(stateBasket)
+    console.log(elementInBasket)
+    if (elementInBasket){
+        setAdded('Додано!')
+    } 
+},[input])
 
 
 async function getInfo () {
@@ -100,7 +115,7 @@ useEffect(()=>{
 function replacePhoto(e) {
     console.log(img)
     console.log(e.currentTarget.name)
-setImg(e.currentTarget.name)
+    setImg(e.currentTarget.name)
 }
 
 
@@ -146,13 +161,25 @@ let linsa=(<>
         <span>Тип</span><span>{input.linceLength}</span>
     </div>
     <div className='details-block'>
-        <span>Довжина</span><span>{input.linceLength}</span>
+        <span>Довжина, мм</span><span>{input.linceLength}</span>
     </div>
 </>
 )
 
 function addToBasket(){
-    
+   
+    if(added=='В кошик'){
+        dispatch(orderActions.addGood(input))
+        setAdded('Додано!')
+    } else {
+        dispatch(orderActions.removeGood(input))
+        setAdded('В кошик!')
+    }
+}
+
+function addToCompare(e){
+    dispatch(compareActions.removeFromCompare(input))
+    e.currentTarget.src = '/imagesHTML/icons/compare.png'
 }
 
 
@@ -178,12 +205,12 @@ function addToBasket(){
                             
                                 </div>
                                 <div className='block-nav'>
-                                    <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/compare.png'} alt='compare' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compareHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compare.png')} />
+                                    <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/compare.png'} onClick={addToCompare} alt='compare' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compareHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compare.png')} />
                                     <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/star.png'} alt='star' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/starHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/star.png')}  />
                                 </div>
                             </div>
                         </div>
-                        <button className='add-to-basket big' onClick={addToBasket}><img src= '/imagesHTML/icons/basket.png' alt='basket'/> В кошик </button>
+                        <button className='add-to-basket big' onClick={addToBasket}><img src= '/imagesHTML/icons/basket.png' alt='basket'/> {added} </button>
                     </div>
                     <div className='product-description'>
                         <div className='product-header'>
