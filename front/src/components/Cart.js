@@ -10,6 +10,7 @@ function Cart(props){
 // console.log(props.itemData)
 const[cartPathNew, setCartPathNew] = useState('')
 const [added,setAdded] = useState("В кошик")
+const [compared,setCompared] = useState('http://localhost:3000/imagesHTML/icons/compare.png')
 const stateBasket = useSelector(state=>state.basketOrders.goods)
 const stateCompare = useSelector(state=>state.comparison.items)
 
@@ -20,8 +21,18 @@ useEffect(()=>{
 const elementInBasket = stateBasket.find(el=> el._id== props.itemData._id)
 if (elementInBasket){
     setAdded('Додано!')
-} 
+} {
+    setCompared('http://localhost:3000/imagesHTML/icons/compare.png')
+}
 
+},[])
+
+useEffect(()=>{
+    const elementInCompare = stateCompare.find(el=> el._id== props.itemData._id)
+    if (elementInCompare){
+        setCompared('http://localhost:3000/imagesHTML/icons/done.png')
+    } 
+    
 },[])
 
 
@@ -64,7 +75,7 @@ function addToCompare(e){
           <p className='model'>{props.itemData.model}</p>
           <p className='brand'>{props.itemData.brand}</p>
           <div className='card-block-nav'>
-              <img src='/imagesHTML/icons/compare.png' onClick={addToCompare} alt='compare' />
+              <img src={compared} onClick={addToCompare} alt='compare' />
               <img src='/imagesHTML/icons/star.png' alt='star' onMouseEnter={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/starHovered.png')} onMouseLeave={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/star.png')}  />
           </div>
         </div>

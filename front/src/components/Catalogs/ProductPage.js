@@ -40,20 +40,13 @@ function ProductPage(){
     })
     const [fetchedData, setFetchedData] = useState([])
     const [added,setAdded] = useState("В кошик")
+    const [compared,setCompared] = useState('http://localhost:3000/imagesHTML/icons/compare.png')
     const params = useParams()
     const dispatch = useDispatch()
     const stateBasket = useSelector(state=>state.basketOrders.goods)
     const stateCompare = useSelector(state=>state.comparison.items)
 
 
-useEffect(()=>{
-    const elementInBasket = stateBasket.find(el=> el._id== input._id)
-    console.log(stateBasket)
-    console.log(elementInBasket)
-    if (elementInBasket){
-        setAdded('Додано!')
-    } 
-},[input])
 
 
 async function getInfo () {
@@ -166,6 +159,17 @@ let linsa=(<>
 </>
 )
 
+
+
+useEffect(()=>{
+    const elementInBasket = stateBasket.find(el=> el._id== input._id)
+    console.log(stateBasket)
+    console.log(elementInBasket)
+    if (elementInBasket){
+        setAdded('Додано!')
+    } 
+},[input])
+
 function addToBasket(){
    
     if(added=='В кошик'){
@@ -177,9 +181,31 @@ function addToBasket(){
     }
 }
 
+
+useEffect(()=>{
+    const elementInCompare= stateCompare.find(el=> el._id== input._id)
+    console.log(stateCompare)
+    console.log(elementInCompare)
+    if (elementInCompare){
+        setCompared('http://localhost:3000/imagesHTML/icons/done.png')
+    } else {
+        setCompared('http://localhost:3000/imagesHTML/icons/compare.png')
+    }
+
+},[input])
+
 function addToCompare(e){
-    dispatch(compareActions.removeFromCompare(input))
-    e.currentTarget.src = '/imagesHTML/icons/compare.png'
+  
+    console.log(e.currentTarget.src)
+    if(e.currentTarget.src == 'http://localhost:3000/imagesHTML/icons/done.png'){
+        dispatch(compareActions.removeFromCompare(input))
+        e.currentTarget.src = 'http://localhost:3000/imagesHTML/icons/compare.png'
+        console.log('first', e.currentTarget.src)
+    } else if(e.currentTarget.src !== 'http://localhost:3000/imagesHTML/icons/done.png'){
+        dispatch(compareActions.addToCompare(input))
+        e.currentTarget.src = 'http://localhost:3000/imagesHTML/icons/done.png'
+        console.log('second', e.currentTarget.src)
+    } 
 }
 
 
@@ -205,7 +231,7 @@ function addToCompare(e){
                             
                                 </div>
                                 <div className='block-nav'>
-                                    <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/compare.png'} onClick={addToCompare} alt='compare' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compareHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compare.png')} />
+                                    <img src={compared} onClick={addToCompare} alt='compare'  />
                                     <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/star.png'} alt='star' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/starHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/star.png')}  />
                                 </div>
                             </div>
