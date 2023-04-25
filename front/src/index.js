@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './components/FirstPage.css'
-import './components/Header.css'
+import './components/Header/Header.css'
+import './components/Header/OrderCart.css'
 import './components/Catalogs/CatalogCamera.css'
 import './components/Catalogs/CatalogLinse.css'
 import './components/Catalogs/ProductPage.css'

@@ -1,7 +1,6 @@
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 
 
-import Header from './components/Header'
 import FirstPage from './components/FirstPage';
 import CatalogCamera from './components/Catalogs/CatalogCamera';
 import Root from './Root'
@@ -10,7 +9,7 @@ import AdminAdd from './components/Admin/AdminAdd'
 import AdminCart from './components/Admin/AdminCart'
 import CatalogLinse from './components/Catalogs/CatalogLinse';
 import ProductPage from './components/Catalogs/ProductPage'
-
+import OrderCart from './components/Header/OrderCart'
 
 function App() {
 
@@ -19,6 +18,7 @@ function App() {
     element: <Root />, 
     children:[
       {path:'', element:<FirstPage />},
+      {path:'/orders', element:<OrderCart />},
       {path:'/admin', element:<Admin />},
       {path:'/admin/add', element:<AdminAdd/>},
       {path:'/admin/view/:id', element:<AdminCart/>},
