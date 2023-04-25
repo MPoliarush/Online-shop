@@ -1,4 +1,14 @@
-import { createSlice, configureStore  } from "@reduxjs/toolkit";
+import { createSlice, configureStore, combineReducers  } from "@reduxjs/toolkit";
+import { persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+
+
+const persistConfig = {
+    key:'root',
+    storage,
+    version:1
+}
+
 
 const basic = {goods:[]}
 const orderSlice = createSlice({
@@ -38,10 +48,15 @@ const compareSlice = createSlice({
     }
 })
 
+const reducer = combineReducers({
+    basketOrders:orderSlice.reducer, 
+    comparison:compareSlice.reducer
+})
 
+const persistedReducer = persistReducer(persistConfig,reducer )
 
 const store = configureStore({
-    reducer: {basketOrders:orderSlice.reducer, comparison:compareSlice.reducer}
+    reducer: persistedReducer
 })
 
 export const orderActions = orderSlice.actions;
