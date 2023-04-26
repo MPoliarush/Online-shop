@@ -16,8 +16,6 @@ function catalogUnhover(event){
 }
 
 
-
-
     return (
         <header>
           <Link to='/' className='logo'> <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/logo.png'} alt='logo'/> </Link>

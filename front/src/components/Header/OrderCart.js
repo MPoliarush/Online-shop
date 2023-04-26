@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react"
 import { useSelector,useDispatch } from "react-redux"
+import {orderActions} from '../../store/store'
+
+
 
 function OrderCart(){
 
@@ -13,7 +16,8 @@ function OrderCart(){
     })
 
 const stateBasket = useSelector(state=>state.basketOrders.goods)
-// console.log(stateBasket)
+const dispatch = useDispatch()
+console.log(stateBasket)
 
 
 function startDaysHandler(e){
@@ -82,7 +86,6 @@ if (alldays.length%7 > 0 && alldays.length > 7){
         }
     }
 }   
-
     console.log(daysDescr)
 
     setDays({...days,
@@ -93,11 +96,15 @@ if (alldays.length%7 > 0 && alldays.length > 7){
     })
 
 console.log(days)
-
-
 },[days.till])
 
 console.log(days)
+
+function deleteFromBasket(e){
+    console.log(JSON.parse(e.currentTarget.name))
+    dispatch(orderActions.removeGood(JSON.parse(e.currentTarget.name)))
+}
+
 
 return(
     <>
@@ -140,7 +147,7 @@ return(
                             <p className="fixedWidth">{days.week} * {item.week_price} UAH</p>
                             <p className="fixedWidth">{days.month}* {item.month_price} UAH</p>
                             <p className="fixedWidth heavy highlight">{days.work*item.work_price + days.weekend*item.weekend_price + days.week*item.week_price + days.month*item.month_price} UAH</p>
-                            <span className="fixedWidth"><img className="delete" src = '/imagesHTML/icons/delete.png' /></span>
+                            <span className="fixedWidth"><img className="delete" src = '/imagesHTML/icons/delete.png' onClick={deleteFromBasket} name={JSON.stringify(item)} /></span>
                         </div>
                     )
                 })}
