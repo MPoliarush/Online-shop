@@ -55,6 +55,7 @@
 .fixedWidth{
     width:15%;
     text-align: center;
+    /* border:  solid 1px; */
 }
 
 .heading, .item{
@@ -80,4 +81,24 @@ padding: 10px 0;
     display: flex;
     align-items: center;
     padding: 20px 0px;
+}
+
+.basketIMG{
+    width: 11%;
+}
+
+.name{
+    width: 30%;
+}
+
+.heavy{
+    font-weight: 700;
+}
+
+.highlight{
+    color: #81d602;
+}
+
+.delete{
+    height: 35px;
 }
