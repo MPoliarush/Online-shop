@@ -31,6 +31,7 @@ function endDaysHandler(e){
 
 
 useEffect(()=>{
+
 const weekdays = [1,2,3,4,5]
 let startDate = new Date(days.since);
 let endDate = new Date(days.till);
@@ -44,14 +45,14 @@ while (startDate < endDate) {
     startDate.setDate(startDate.getDate() + 1);
     i++;
 }
-  console.log(alldays)
+console.log(alldays)
 
-  let daysDescr={
+let daysDescr={
     work:0,
     weekend:0,
     week:0,
     month:0
-  }
+}
 
 if (alldays.length%7 == 0){
     console.log('logged', alldays.length/7 )
@@ -68,8 +69,6 @@ if(alldays.length<7){
     }
 }
 
-
-
 if (alldays.length%7 > 0 && alldays.length > 7){
     console.log('logged', alldays.length,alldays.length%7 ,alldays.length/7  )
     daysDescr.week = alldays.length/7 - (alldays.length/7-1)
@@ -82,27 +81,21 @@ if (alldays.length%7 > 0 && alldays.length > 7){
             daysDescr.work = daysDescr.work+ 1
         }
     }
+}   
 
     console.log(daysDescr)
-} 
 
-//  if (alldays.length%7 !== 0){
-//     for(let i=0;i<alldays.length;i++){  
-//         if (alldays[i] == 6 || alldays[i] == 0){
-//             daysDescr.weekend = daysDescr.weekend+ 1
-//         } else {
-//             daysDescr.work = daysDescr.work+ 1
-//         }
-//       }
-// }
+    setDays({...days,
+        work:daysDescr.work,
+        weekend:daysDescr.weekend,
+        week:daysDescr.week,
+        month:daysDescr.month
+    })
+
+console.log(days)
 
 
-
-
-
-
-  console.log(daysDescr)
-},[days])
+},[days.till])
 
 console.log(days)
 
@@ -142,11 +135,11 @@ return(
                                 <p>{item.brand}</p>
                                 <p className="heavy">{item.model}</p>
                             </div>
-                            <p className="fixedWidth">6 * {item.work_price} UAH</p>
-                            <p className="fixedWidth">3 * {item.weekend_price} UAH</p>
-                            <p className="fixedWidth">0 * {item.week_price} UAH</p>
-                            <p className="fixedWidth">0 * {item.month_price} UAH</p>
-                            <p className="fixedWidth heavy highlight">{}UAH</p>
+                            <p className="fixedWidth">{days.work} * {item.work_price} UAH</p>
+                            <p className="fixedWidth">{days.weekend} * {item.weekend_price} UAH</p>
+                            <p className="fixedWidth">{days.week} * {item.week_price} UAH</p>
+                            <p className="fixedWidth">{days.month}* {item.month_price} UAH</p>
+                            <p className="fixedWidth heavy highlight">{days.work*item.work_price + days.weekend*item.weekend_price + days.week*item.week_price + days.month*item.month_price} UAH</p>
                             <span className="fixedWidth"><img className="delete" src = '/imagesHTML/icons/delete.png' /></span>
                         </div>
                     )
