@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 
 
 .orders{
     margin-bottom: 00px;
 }
 
+=======
+>>>>>>> e2905e54036bdb1679ffbdd5cb4be6d7df0248f2
 .orders-h1{
     font-family: 'Ubuntu';
     font-style: normal;
@@ -99,7 +102,10 @@ padding: 10px 0;
 
 .heavy{
     font-weight: 700;
+<<<<<<< HEAD
     margin-top: 10px;
+=======
+>>>>>>> e2905e54036bdb1679ffbdd5cb4be6d7df0248f2
 }
 
 .highlight{
@@ -108,6 +114,7 @@ padding: 10px 0;
 
 .delete{
     height: 35px;
+<<<<<<< HEAD
 }
 
 .day{
@@ -144,4 +151,6 @@ background-color: #95f506;
     bottom:-90px;
     background-color: transparent;
     font-size: 22px;
+=======
+>>>>>>> e2905e54036bdb1679ffbdd5cb4be6d7df0248f2
 }

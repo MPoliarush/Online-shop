@@ -10,8 +10,11 @@ import AdminCart from './components/Admin/AdminCart'
 import CatalogLinse from './components/Catalogs/CatalogLinse';
 import ProductPage from './components/Catalogs/ProductPage'
 import OrderCart from './components/Header/OrderCart'
+<<<<<<< HEAD
 import Confirmation from './components/Header/Confirmation';
 import Login from './components/Header/Login/Login';
+=======
+>>>>>>> e2905e54036bdb1679ffbdd5cb4be6d7df0248f2
 
 function App() {
 
@@ -20,9 +23,13 @@ function App() {
     element: <Root />, 
     children:[
       {path:'', element:<FirstPage />},
+<<<<<<< HEAD
       {path:'/login', element:<Login />},
       {path:'/orders', element:<OrderCart />},
       {path:'/orders/confirmation', element:<Confirmation />},
+=======
+      {path:'/orders', element:<OrderCart />},
+>>>>>>> e2905e54036bdb1679ffbdd5cb4be6d7df0248f2
       {path:'/admin', element:<Admin />},
       {path:'/admin/add', element:<AdminAdd/>},
       {path:'/admin/view/:id', element:<AdminCart/>},

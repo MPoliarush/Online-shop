@@ -21,9 +21,17 @@ useEffect(()=>{
 const elementInBasket = stateBasket.find(el=> el._id== props.itemData._id)
 if (elementInBasket){
     setAdded('Додано!')
+<<<<<<< HEAD
 } 
 
 },[added])
+=======
+} {
+    setCompared('http://localhost:3000/imagesHTML/icons/compare.png')
+}
+
+},[])
+>>>>>>> e2905e54036bdb1679ffbdd5cb4be6d7df0248f2
 
 useEffect(()=>{
     const elementInCompare = stateCompare.find(el=> el._id== props.itemData._id)
@@ -42,6 +50,7 @@ let cartPath=''
     }
 
 function addToBasket(){
+<<<<<<< HEAD
    console.log('CLIKKED')
     if(added=='В кошик'){
         dispatch(orderActions.addGood(props.itemData))
@@ -51,9 +60,32 @@ function addToBasket(){
         setAdded('В кошик')
     }
     console.log('CLIKKED end')
+=======
+    if(added=='В кошик'){
+        dispatch(orderActions.addGood(props.itemData))
+        setAdded('Додано!')
+    } else {
+        dispatch(orderActions.removeGood(props.itemData))
+        setAdded('В кошик!')
+    }
+>>>>>>> e2905e54036bdb1679ffbdd5cb4be6d7df0248f2
 }
 console.log(added)
 // console.log(added, props.itemData)
+
+
+function addToCompare(e){
+    console.log(e.currentTarget.src)
+    if(e.currentTarget.src == 'http://localhost:3000/imagesHTML/icons/done.png'){
+        dispatch(compareActions.removeFromCompare(props.itemData))
+        e.currentTarget.src = 'http://localhost:3000/imagesHTML/icons/compare.png'
+        console.log('first', e.currentTarget.src)
+    } else if(e.currentTarget.src !== 'http://localhost:3000/imagesHTML/icons/done.png'){
+        dispatch(compareActions.addToCompare(props.itemData))
+        e.currentTarget.src = 'http://localhost:3000/imagesHTML/icons/done.png'
+        console.log('second', e.currentTarget.src)
+    }  
+}
 
 
 function addToCompare(e){
