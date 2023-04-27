@@ -19,6 +19,15 @@
     align-items: flex-start;
 }
 
+.field-wrap p{
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.field-wrap span{
+    color: red;
+}
+
 .field-wrap:hover, .field-wrap:active{
     border: #81d602 solid 1px;
 }

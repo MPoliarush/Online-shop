@@ -9,10 +9,11 @@ function Login(){
     return (
         <>
             <main>
-                <div className = 'content-container orders'>
-                <h1></h1>
+                <div className = 'content-container login'>
+                <h2>Для більш зручного користуванням сайтом необхідно авторизуватись</h2>
                     <div className="wrapp">
                         <form className="credentials-form">
+                       
                             <div className="credentials">
                                 <label htmlFor="login">E-mail</label>
                                 <input type='text' id='login'/>
