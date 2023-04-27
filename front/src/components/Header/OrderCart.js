@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react"
-<<<<<<< HEAD
 import {Link} from 'react-router-dom'
 import { useSelector,useDispatch } from "react-redux"
 import {orderActions} from '../../store/store'
 import Footer from '../Footer';
-=======
-import { useSelector,useDispatch } from "react-redux"
-import {orderActions} from '../../store/store'
 
->>>>>>> e2905e54036bdb1679ffbdd5cb4be6d7df0248f2
+
 
 
 function OrderCart(){
@@ -19,12 +15,8 @@ function OrderCart(){
         work:0,
         weekend:0,
         week:0,
-<<<<<<< HEAD
         month:0,
         total:0,
-=======
-        month:0
->>>>>>> e2905e54036bdb1679ffbdd5cb4be6d7df0248f2
     })
 
 const stateBasket = useSelector(state=>state.basketOrders.goods)
@@ -48,10 +40,6 @@ function endDaysHandler(e){
 
 useEffect(()=>{
 
-<<<<<<< HEAD
-=======
-const weekdays = [1,2,3,4,5]
->>>>>>> e2905e54036bdb1679ffbdd5cb4be6d7df0248f2
 let startDate = new Date(days.since);
 let endDate = new Date(days.till);
 
@@ -123,10 +111,7 @@ function deleteFromBasket(e){
 
 return(
     <>
-<<<<<<< HEAD
     <main>
-=======
->>>>>>> e2905e54036bdb1679ffbdd5cb4be6d7df0248f2
         <div className = 'content-container orders'>
             <h1 className='orders-h1'>КОШИК ТОВАРІВ</h1>
             <div className='period'>
@@ -161,37 +146,27 @@ return(
                                 <p>{item.brand}</p>
                                 <p className="heavy">{item.model}</p>
                             </div>
-<<<<<<< HEAD
+
                             <p className="fixedWidth"><span className="day">{days.work}</span> <span className='pricesmall'>{item.work_price} UAH</span></p>
                             <p className="fixedWidth"><span className="day">{days.weekend}</span><span className='pricesmall'>{item.weekend_price} UAH</span></p>
                             <p className="fixedWidth"><span className="day">{days.week}</span><span className='pricesmall'>{item.week_price} UAH</span></p>
                             <p className="fixedWidth"><span className="day">{days.month}</span> <span className='pricesmall'>{item.month_price} UAH</span></p>
-=======
+
                             <p className="fixedWidth">{days.work} * {item.work_price} UAH</p>
                             <p className="fixedWidth">{days.weekend} * {item.weekend_price} UAH</p>
                             <p className="fixedWidth">{days.week} * {item.week_price} UAH</p>
                             <p className="fixedWidth">{days.month}* {item.month_price} UAH</p>
->>>>>>> e2905e54036bdb1679ffbdd5cb4be6d7df0248f2
-                            <p className="fixedWidth heavy highlight">{days.work*item.work_price + days.weekend*item.weekend_price + days.week*item.week_price + days.month*item.month_price} UAH</p>
-                            <span className="fixedWidth"><img className="delete" src = '/imagesHTML/icons/delete.png' onClick={deleteFromBasket} name={JSON.stringify(item)} /></span>
                         </div>
                     )
-<<<<<<< HEAD
-                })}  
-            </div>
+                }
+                )}  
+            
             <button className="confirm-btn total">Всього: 0 UAH </button>
             <Link to='/orders/confirmation'><button className="confirm-btn">Оформити замовлення</button></Link>
+            </div>
         </div>
     </main>
     <Footer></Footer>
-=======
-                })}
-                
-                    
-                
-            </div>
-        </div>
->>>>>>> e2905e54036bdb1679ffbdd5cb4be6d7df0248f2
     </>
 )
 }

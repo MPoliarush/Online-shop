@@ -7,7 +7,7 @@ import {orderActions, compareActions} from '../store/store'
 function Cart(props){
 // const params = useParams()
 // console.log(params.id)
-// console.log(props.itemData)
+console.log(props.itemData)
 const[cartPathNew, setCartPathNew] = useState('')
 const [added,setAdded] = useState("В кошик")
 const [compared,setCompared] = useState('http://localhost:3000/imagesHTML/icons/compare.png')
@@ -18,13 +18,12 @@ const dispatch = useDispatch()
 
 
 useEffect(()=>{
-const elementInBasket = stateBasket.find(el=> el._id== props.itemData._id)
-if (elementInBasket){
-    setAdded('Додано!')
-} 
-
+    const elementInBasket = stateBasket.find(el=> el._id== props.itemData._id)
+    if (elementInBasket){
+        setAdded('Додано!')
+    } 
+    
 },[])
-
 
 useEffect(()=>{
     const elementInCompare = stateCompare.find(el=> el._id== props.itemData._id)
@@ -48,13 +47,9 @@ function addToBasket(){
         setAdded('Додано!')
     } else {
         dispatch(orderActions.removeGood(props.itemData))
-        setAdded('В кошик!')
+        setAdded('В кошик')
     }
-
 }
-console.log(added)
-// console.log(added, props.itemData)
-
 
 function addToCompare(e){
     console.log(e.currentTarget.src)
@@ -62,21 +57,7 @@ function addToCompare(e){
         dispatch(compareActions.removeFromCompare(props.itemData))
         e.currentTarget.src = 'http://localhost:3000/imagesHTML/icons/compare.png'
         console.log('first', e.currentTarget.src)
-    } else if(e.currentTarget.src !== 'http://localhost:3000/imagesHTML/icons/done.png'){
-        dispatch(compareActions.addToCompare(props.itemData))
-        e.currentTarget.src = 'http://localhost:3000/imagesHTML/icons/done.png'
-        console.log('second', e.currentTarget.src)
-    }  
-}
-
-
-function addToCompare(e){
-    console.log(e.currentTarget.src)
-    if(e.currentTarget.src == 'http://localhost:3000/imagesHTML/icons/done.png'){
-        dispatch(compareActions.removeFromCompare(props.itemData))
-        e.currentTarget.src = 'http://localhost:3000/imagesHTML/icons/compare.png'
-        console.log('first', e.currentTarget.src)
-    } else if(e.currentTarget.src !== 'http://localhost:3000/imagesHTML/icons/done.png'){
+    } else if(e.currentTarget.src == 'http://localhost:3000/imagesHTML/icons/compare.png'){
         dispatch(compareActions.addToCompare(props.itemData))
         e.currentTarget.src = 'http://localhost:3000/imagesHTML/icons/done.png'
         console.log('second', e.currentTarget.src)

@@ -13,6 +13,7 @@ import OrderCart from './components/Header/OrderCart'
 
 import Confirmation from './components/Header/Confirmation';
 import Login from './components/Header/Login/Login';
+import Registration from './components/Header/Login/Registration';
 
 
 function App() {
@@ -23,10 +24,9 @@ function App() {
     children:[
       {path:'', element:<FirstPage />},
       {path:'/login', element:<Login />},
-      {path:'/orders', element:<OrderCart />},
+      {path:'/login/registration', element:<Registration />},
 
       {path:'/orders', element:<OrderCart />},
-
       {path:'/admin', element:<Admin />},
       {path:'/admin/add', element:<AdminAdd/>},
       {path:'/admin/view/:id', element:<AdminCart/>},

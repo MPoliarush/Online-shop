@@ -14,7 +14,7 @@ function Login(){
                     <div className="wrapp">
                         <form className="credentials-form">
                             <div className="credentials">
-                                <label htmlFor="login">Логін</label>
+                                <label htmlFor="login">E-mail</label>
                                 <input type='text' id='login'/>
                             </div>
                             <div className="credentials">
@@ -25,7 +25,7 @@ function Login(){
                         </form>
                         <div className="registr">
                             <p>Вперше на сайті?</p>
-                            <Link to=''><div className="auth-btn">РЕЄСТРАЦІЯ</div></Link>
+                            <Link to='/login/registration'><div className="auth-btn">РЕЄСТРАЦІЯ</div></Link>
                         </div>
                         
                     </div>

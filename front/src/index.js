@@ -5,8 +5,7 @@ import './components/Header/Header.css'
 import './components/Header/OrderCart.css'
 
 import './components/Header/Login/Login.css'
-
-
+import './components/Header/Login/Registration.css'
 import './components/Catalogs/CatalogCamera.css'
 import './components/Catalogs/CatalogLinse.css'
 import './components/Catalogs/ProductPage.css'
