@@ -11,7 +11,6 @@ const [fetchedData, setFetchedData] = useState([])
 async function getInfo () {
     try{
         const response = await axios("http://localhost:5000/products")
-        console.log(response.data)
         setFetchedData(response.data)
     }catch(e){
         console.log(e.response)
@@ -20,7 +19,6 @@ async function getInfo () {
     
 useEffect(()=>{  
     getInfo()
-    console.log('runned')
     
 },[])
 

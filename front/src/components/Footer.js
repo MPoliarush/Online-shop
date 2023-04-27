@@ -3,6 +3,9 @@
 
 function Footer(){
     return <>
+   <footer>
+        <div className="footer">
+
         <div className="footer-wrap">
             <div className="content-container">
                 <div className='subscribe'>
@@ -56,6 +59,8 @@ function Footer(){
                 </li>
             </ul>
         </div>
+        </div>
+    </footer> 
     </>
 }
 

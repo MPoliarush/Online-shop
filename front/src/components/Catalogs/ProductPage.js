@@ -1,5 +1,7 @@
 import {useState, useEffect,useRef} from 'react'
 import { useParams } from 'react-router-dom'
+import { useSelector,useDispatch } from "react-redux"
+import {orderActions,compareActions} from '../../store/store'
 import axios from "axios";
 import Cart from '../Cart';
 import Footer from '../Footer';
@@ -37,7 +39,13 @@ function ProductPage(){
         details:false
     })
     const [fetchedData, setFetchedData] = useState([])
+    const [added,setAdded] = useState("В кошик")
+    const [compared,setCompared] = useState('http://localhost:3000/imagesHTML/icons/compare.png')
     const params = useParams()
+    const dispatch = useDispatch()
+    const stateBasket = useSelector(state=>state.basketOrders.goods)
+    const stateCompare = useSelector(state=>state.comparison.items)
+
 
 
 
@@ -100,7 +108,7 @@ useEffect(()=>{
 function replacePhoto(e) {
     console.log(img)
     console.log(e.currentTarget.name)
-setImg(e.currentTarget.name)
+    setImg(e.currentTarget.name)
 }
 
 
@@ -146,19 +154,64 @@ let linsa=(<>
         <span>Тип</span><span>{input.linceLength}</span>
     </div>
     <div className='details-block'>
-        <span>Довжина</span><span>{input.linceLength}</span>
+        <span>Довжина, мм</span><span>{input.linceLength}</span>
     </div>
 </>
 )
 
+
+
+useEffect(()=>{
+    const elementInBasket = stateBasket.find(el=> el._id== input._id)
+    console.log(stateBasket)
+    console.log(elementInBasket)
+    if (elementInBasket){
+        setAdded('Додано!')
+    } 
+},[input])
+
 function addToBasket(){
-    
+   
+    if(added=='В кошик'){
+        dispatch(orderActions.addGood(input))
+        setAdded('Додано!')
+    } else {
+        dispatch(orderActions.removeGood(input))
+        setAdded('В кошик!')
+    }
+}
+
+
+useEffect(()=>{
+    const elementInCompare= stateCompare.find(el=> el._id== input._id)
+    console.log(stateCompare)
+    console.log(elementInCompare)
+    if (elementInCompare){
+        setCompared('http://localhost:3000/imagesHTML/icons/done.png')
+    } else {
+        setCompared('http://localhost:3000/imagesHTML/icons/compare.png')
+    }
+
+},[input])
+
+function addToCompare(e){
+  
+    console.log(e.currentTarget.src)
+    if(e.currentTarget.src == 'http://localhost:3000/imagesHTML/icons/done.png'){
+        dispatch(compareActions.removeFromCompare(input))
+        e.currentTarget.src = 'http://localhost:3000/imagesHTML/icons/compare.png'
+        console.log('first', e.currentTarget.src)
+    } else if(e.currentTarget.src !== 'http://localhost:3000/imagesHTML/icons/done.png'){
+        dispatch(compareActions.addToCompare(input))
+        e.currentTarget.src = 'http://localhost:3000/imagesHTML/icons/done.png'
+        console.log('second', e.currentTarget.src)
+    } 
 }
 
 
     return (
         <>
-        <div>
+        <main>
             <div className="content-container-admin">
                 {input.typeGoods=="Фотокамера"? <h1 className='main-header'>ФОТОКАМЕРИ</h1> : input.typeGoods=="Лінза"? <h1 className='main-header'>ЛІНЗИ </h1>:'' }
                 <div className="single">
@@ -178,12 +231,12 @@ function addToBasket(){
                             
                                 </div>
                                 <div className='block-nav'>
-                                    <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/compare.png'} alt='compare' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compareHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compare.png')} />
+                                    <img src={compared} onClick={addToCompare} alt='compare'  />
                                     <img src={process.env.PUBLIC_URL + '/imagesHTML/icons/star.png'} alt='star' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/starHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/star.png')}  />
                                 </div>
                             </div>
                         </div>
-                        <button className='add-to-basket big' onClick={addToBasket}><img src= '/imagesHTML/icons/basket.png' alt='basket'/> В кошик </button>
+                        <button className='add-to-basket big' onClick={addToBasket}><img src= '/imagesHTML/icons/basket.png' alt='basket'/> {added} </button>
                     </div>
                     <div className='product-description'>
                         <div className='product-header'>
@@ -233,7 +286,7 @@ function addToBasket(){
                 </div>
             </div>
             <Footer></Footer>
-        </div>
+        </main>
         </>
     )
 }

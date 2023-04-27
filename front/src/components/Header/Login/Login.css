@@ -1,0 +1,69 @@
+
+.wrapp{
+    width: 30%;
+    margin: 22% auto;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.wrapp a{
+    text-decoration: none;
+    color: black;
+}
+
+.credentials-form{
+
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    margin-bottom: 70px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+    border-radius: 25px;
+    padding: 50px 40px;
+}
+
+.credentials{
+    width: 100%;
+    
+}
+.credentials:last-of-type{
+    margin-bottom: 25px;
+}
+
+.credentials label{
+    display: inline-block;
+    width:25%;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.credentials input{
+   padding: 5px 10px;
+}
+
+.wrapp p{
+margin-bottom: 8px;
+}
+
+.auth-btn{
+    padding: 10px 0px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    font-weight: 700;
+    transition: 0.3s;
+    background-color: #d7f4c6;
+   
+}
+
+.auth-btn:hover{
+cursor: pointer;
+transition: 0.5s;
+background-color: #81d602;
+}
+
+.registr{
+    width: 60%;
+    margin: 0px auto;
+
+}
+

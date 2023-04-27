@@ -60,7 +60,13 @@
 
   .options-list{
     display: flex;
-    gap:15px;
+    gap:25px;
+    
+  }
+
+  .options-list a{
+    text-decoration: none;
+    position: relative;
   }
 
 
@@ -121,4 +127,16 @@
     background-clip: text; */
     /*  */
     
+  }
+
+  .iconNumber{
+    position: absolute;
+    vertical-align: super;
+    font-size: 10px;
+    color: white;
+    font-weight: 700;
+    background-color: #71bb02;
+    padding:2px 5px;
+    border-radius: 50px;
+    top:-8px;
   }
