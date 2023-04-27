@@ -4,6 +4,8 @@ import { useSelector,useDispatch } from "react-redux"
 import {orderActions} from '../../../store/store'
 import Footer from '../../Footer';
 
+import axios from "axios";
+
 function Registration(){
 
     const [client,setClient] = useState({
@@ -86,7 +88,7 @@ function Registration(){
 
 
 
-    function submitClient(e){
+    async function submitClient(e){
         console.log('logged')
         if(client.name.length==0){
             console.log('error')
@@ -140,7 +142,33 @@ function Registration(){
         //     navigate(path);
         // },4000)
         
+        // fetch('http://localhost:5000/new-client',{
+        //         method:'POST',
+        //         headers:{
+        //             "Content-Type": "application/json"
+        //         },
+        //         body:JSON.stringify(client)
+        //         }
+        //     ).then(res=>res.json())
+        //     .then(data=>{
+        //         console.log(data)
+        //     })
 
+    
+        // const config = {
+        //     headers:{
+        //         "Access-Control-Allow-Origin": '*',
+        //         "Content-Type": "application/json"
+        //     }
+        // }
+        console.log(client)
+        try{
+            const response = await axios.post('http://localhost:5000/new-client', client )
+        } catch(e){
+            console.log(e)
+        }
+        
+        
     }
 
 const sucsessMessage= <div className="successMessage">
