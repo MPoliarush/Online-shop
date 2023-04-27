@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './components/FirstPage.css'
 import './components/Header/Header.css'
 import './components/Header/OrderCart.css'
-<<<<<<< HEAD
+
 import './components/Header/Login/Login.css'
-=======
->>>>>>> e2905e54036bdb1679ffbdd5cb4be6d7df0248f2
+
+
 import './components/Catalogs/CatalogCamera.css'
 import './components/Catalogs/CatalogLinse.css'
 import './components/Catalogs/ProductPage.css'

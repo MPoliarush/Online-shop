@@ -21,17 +21,10 @@ useEffect(()=>{
 const elementInBasket = stateBasket.find(el=> el._id== props.itemData._id)
 if (elementInBasket){
     setAdded('Додано!')
-<<<<<<< HEAD
 } 
 
-},[added])
-=======
-} {
-    setCompared('http://localhost:3000/imagesHTML/icons/compare.png')
-}
-
 },[])
->>>>>>> e2905e54036bdb1679ffbdd5cb4be6d7df0248f2
+
 
 useEffect(()=>{
     const elementInCompare = stateCompare.find(el=> el._id== props.itemData._id)
@@ -50,17 +43,6 @@ let cartPath=''
     }
 
 function addToBasket(){
-<<<<<<< HEAD
-   console.log('CLIKKED')
-    if(added=='В кошик'){
-        dispatch(orderActions.addGood(props.itemData))
-        setAdded('Додано!')
-    } else if (added=='Додано!') {
-        dispatch(orderActions.removeGood(props.itemData))
-        setAdded('В кошик')
-    }
-    console.log('CLIKKED end')
-=======
     if(added=='В кошик'){
         dispatch(orderActions.addGood(props.itemData))
         setAdded('Додано!')
@@ -68,7 +50,7 @@ function addToBasket(){
         dispatch(orderActions.removeGood(props.itemData))
         setAdded('В кошик!')
     }
->>>>>>> e2905e54036bdb1679ffbdd5cb4be6d7df0248f2
+
 }
 console.log(added)
 // console.log(added, props.itemData)
