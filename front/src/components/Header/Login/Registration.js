@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import {Link} from 'react-router-dom'
+import {Link,useNavigate } from 'react-router-dom'
 import { useSelector,useDispatch } from "react-redux"
 import {orderActions} from '../../../store/store'
 import Footer from '../../Footer';
@@ -23,6 +23,12 @@ function Registration(){
         email:'',
         password:''
     })
+
+    const [success,setSuccess] = useState(null)
+
+    let navigate = useNavigate();
+
+
 
     function clientInputHandler(e){
         if(e.target.name == 'name' && e.target.name.length>0){
@@ -73,6 +79,7 @@ function Registration(){
                 password:null
             })
         }
+
         
     }
     console.log(client)
@@ -125,14 +132,32 @@ function Registration(){
         }
 
         console.log('sent')
+
+        setSuccess(true)
+
+        // setTimeout(()=>{
+        //     let path = `/login`; 
+        //     navigate(path);
+        // },4000)
+        
+
     }
+
+const sucsessMessage= <div className="successMessage">
+<h2>Дані збережено</h2>
+<p>Увійдіть в кабінет</p>
+</div>
+
 
     return (
         <>
             <main>
                 <div className = 'content-container registration'>
                     <h1>РЕЄСТРАЦІЯ КОРИСТУВАЧА</h1>
-                    <div className="form-wrapper">
+
+                    {success ? sucsessMessage : 
+                    (<div>
+                        <div className="form-wrapper">
                         <div className="field-wrap">
                             <div>
                                 <p>Ім'я*</p>
@@ -175,9 +200,11 @@ function Registration(){
                                 <input type="password" id= 'password' onChange={clientInputHandler} name='password'/>
                             </div>
                         </div>
-                       
                     </div>
-                    <button className="auth-btn-reg" onClick={submitClient}>ЗАВЕРШИТИ РЕЄСТРАЦІЮ</button>
+                        <button className="auth-btn-reg" onClick={submitClient}>ЗАВЕРШИТИ РЕЄСТРАЦІЮ</button>
+                    </div>
+                    )
+                    }
                 </div>
             </main>
             <Footer></Footer>
