@@ -4,6 +4,7 @@ import { useSelector,useDispatch } from "react-redux"
 import {useNavigate } from 'react-router-dom'
 import {clientActions} from '../../../store/store'
 import Footer from '../../Footer';
+import axios from "axios"
 
 
 
@@ -20,6 +21,7 @@ function Login(){
             password:''
         }
     )
+    const [userFound,setUserFound] = useState("")
     const dispatch = useDispatch()
     let navigate = useNavigate();
 
@@ -45,7 +47,7 @@ function Login(){
     console.log(clientCreds)
 
 
-    function loginHandler(){
+ async function loginHandler(){
         console.log(valid)
         if (!clientCreds.login.trim().includes('@')){
             console.log()
@@ -63,6 +65,23 @@ function Login(){
             return
         }
 
+        try{
+            const config = {
+                headers:{
+                    "Content-Type":'application/json',
+                    "Access-Control-Allow-Origin":'*'
+                }
+            }
+            const checkingUser = await axios.post('http://localhost:5000/getClient',clientCreds,config)
+            if(!checkingUser.data){
+                setUserFound('Користувача не знайдено')
+                return
+            } else {
+                setUserFound('')
+            }
+        }catch(e){
+            
+        }
         
 
         let path = `/login/authorized`; 
@@ -92,6 +111,10 @@ return (
                             </div>
                             <div className="auth-btn" onClick={loginHandler}>УВІЙТИ</div>
                         </form>
+
+                        <p className="userNotFound">{userFound ? userFound : ''}</p>
+
+
                         <div className="registr">
                             <p>Вперше на сайті?</p>
                             <Link to='/login/registration'><div className="auth-btn">РЕЄСТРАЦІЯ</div></Link>

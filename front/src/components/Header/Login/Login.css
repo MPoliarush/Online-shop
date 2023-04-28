@@ -81,3 +81,10 @@ background: linear-gradient(180deg, #85dd02 0%, #488d28 100%);
     color: red;
     text-align: left;
 }
+
+.userNotFound{
+    position: relative;
+    top:-20px;
+    font-size: 17px;
+    color: red;
+}
