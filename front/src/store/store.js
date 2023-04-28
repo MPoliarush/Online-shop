@@ -48,9 +48,27 @@ const compareSlice = createSlice({
     }
 })
 
+
+const clientBasic = {clientData:null}
+const clientSlice = createSlice({
+    name:'clientData',
+    initialState:clientBasic,
+    reducers:{
+        loginIn(state,action){
+            state.clientData = action.payload
+            console.log(action.payload)
+        },
+        logginOut(state){
+            state.clientData = null
+            console.log('logged out')
+        }
+    }
+})
+
 const reducer = combineReducers({
     basketOrders:orderSlice.reducer, 
-    comparison:compareSlice.reducer
+    comparison:compareSlice.reducer,
+    client:clientSlice.reducer
 })
 
 const persistedReducer = persistReducer(persistConfig,reducer )
@@ -61,5 +79,6 @@ const store = configureStore({
 
 export const orderActions = orderSlice.actions;
 export const compareActions = compareSlice.actions;
+export const clientActions = clientSlice.actions;
 
 export default store;

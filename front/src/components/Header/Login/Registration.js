@@ -155,15 +155,15 @@ function Registration(){
         //     })
 
     
-        // const config = {
-        //     headers:{
-        //         "Access-Control-Allow-Origin": '*',
-        //         "Content-Type": "application/json"
-        //     }
-        // }
+        const config = {
+            headers:{
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin" : "*"
+            }
+        }
         console.log(client)
         try{
-            const response = await axios.post('http://localhost:5000/new-client', client )
+            const response = await axios.post('http://localhost:5000/newClient', client, config )
         } catch(e){
             console.log(e)
         }

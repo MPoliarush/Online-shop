@@ -29,7 +29,7 @@
 
 .credentials{
     width: 100%;
-    
+   
 }
 .credentials:last-of-type{
     margin-bottom: 25px;
@@ -75,3 +75,9 @@ background: linear-gradient(180deg, #85dd02 0%, #488d28 100%);
 
 }
 
+
+.err{
+    font-size: 13px;
+    color: red;
+    text-align: left;
+}

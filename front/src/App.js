@@ -13,6 +13,7 @@ import OrderCart from './components/Header/OrderCart'
 
 import Confirmation from './components/Header/Confirmation';
 import Login from './components/Header/Login/Login';
+import Authorized from './components/Header/Login/Authorized';
 import Registration from './components/Header/Login/Registration';
 
 
@@ -25,7 +26,7 @@ function App() {
       {path:'', element:<FirstPage />},
       {path:'/login', element:<Login />},
       {path:'/login/registration', element:<Registration />},
-
+      {path:'/login/authorized', element:<Authorized />},
       {path:'/orders', element:<OrderCart />},
       {path:'/admin', element:<Admin />},
       {path:'/admin/add', element:<AdminAdd/>},
@@ -34,6 +35,7 @@ function App() {
       {path:'/cameras/view/:id', element:<ProductPage/>},
       {path:'/linses/view/:id', element:<ProductPage/>},
       {path:'/linses', element:<CatalogLinse />},
+      
     ]},
   ])
 
