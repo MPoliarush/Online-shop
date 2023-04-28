@@ -4,7 +4,7 @@ import { useSelector,useDispatch } from "react-redux"
 import {useNavigate } from 'react-router-dom'
 import {clientActions} from '../../../store/store'
 import Footer from '../../Footer';
-import axios from "axios";
+
 
 
 
@@ -62,6 +62,8 @@ function Login(){
             })
             return
         }
+
+        
 
         let path = `/login/authorized`; 
         navigate(path);

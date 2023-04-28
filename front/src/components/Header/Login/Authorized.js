@@ -1,6 +1,8 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import {useNavigate} from 'react-router-dom'
 import { useSelector,useDispatch } from "react-redux"
+import {clientActions} from '../../../store/store'
 
 
 function Authorized(){
@@ -27,8 +29,12 @@ function Authorized(){
     })
     const [success,setSuccess] = useState(null)
 
-    const clientState = useSelector(state=>state.client.clientData)
-    // console.log(clientState)
+    const stateLogin = useSelector(state=>state.client.clientData)
+    const dispatch = useDispatch()
+    let navigate = useNavigate()
+    // console.log(stateLogin)
+   
+
 
     async function getClientData(){
         // console.log(clientState, '  logged')
@@ -41,7 +47,7 @@ function Authorized(){
         }
         
         try{
-            const response = await axios.post('http://localhost:5000/getClient', clientState, config )
+            const response = await axios.post('http://localhost:5000/getClient', stateLogin, config )
             // console.log(response.data)
             setPredefinedData(response.data)
         } catch(e){
@@ -126,11 +132,10 @@ function clientInputHandler(e){
     }
     
 }
-console.log(predefinedData)
+
 
 async function updateData(){
-    console.log(valid)
-    console.log(predefinedData)
+  
     if(predefinedData.name.length==0){
         console.log('error')
         setValid({...valid,
@@ -186,8 +191,17 @@ async function updateData(){
     }
 
     const updading = await axios.post('http://localhost:5000/clientUpdate', predefinedData ,config)
+
+
 }
 
+
+function logOutHandler(){
+    dispatch(clientActions.logOut())
+    
+    let path='/login'
+    navigate(path)
+}
 
 
 return(
@@ -195,6 +209,8 @@ return(
     <main>
         <div className = 'content-container personalPage'>
             <h1 className="registration"><span>ОСОБОВИЙ</span> КАБІНЕТ</h1>
+            <p>Вітаємо, {predefinedData.name}!</p>
+            <button onClick={logOutHandler} >Вийти з кабінету</button>
             <div className='options personal-nav'>
                 <button onClick={activeHandler} className={activeInputs.personalData==true ? 'active' : 'passive'} value='Дані'>Мої дані</button>
                 <button onClick={activeHandler} className={activeInputs.ordersHistory==true ? 'active' : 'passive'} value='Історія'>Історія замовлень</button>

@@ -58,9 +58,10 @@ const clientSlice = createSlice({
             state.clientData = action.payload
             console.log(action.payload)
         },
-        logginOut(state){
+        logOut(state){
             state.clientData = null
             console.log('logged out')
+            
         }
     }
 })

@@ -140,3 +140,7 @@
     border-radius: 50px;
     top:-8px;
   }
+
+  .iconNumber.clientName{
+    top:35px;
+  }
