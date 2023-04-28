@@ -178,7 +178,14 @@ async function updateData(){
     console.log('sent')
     setSuccess(true)
 
-    
+    const config = {
+        headers:{
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin" : "*"
+        }
+    }
+
+    const updading = await axios.post('http://localhost:5000/clientUpdate', predefinedData ,config)
 }
 
 
