@@ -6,6 +6,8 @@ import './components/Header/OrderCart.css'
 
 import './components/Header/Login/Login.css'
 import './components/Header/Login/Registration.css'
+import './components/Header/Login/Authorized.css'
+
 import './components/Catalogs/CatalogCamera.css'
 import './components/Catalogs/CatalogLinse.css'
 import './components/Catalogs/ProductPage.css'

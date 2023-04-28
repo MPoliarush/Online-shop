@@ -1,0 +1,17 @@
+.personalPage h1{
+    margin-top: 30px;
+}
+
+.personalPage span{
+   color: #76c302;
+}
+
+.options.personal-nav{
+justify-content: end;
+margin-top: 15px;
+}
+
+.options.personal-nav button{
+width:200px;
+font-size: 15px;
+}

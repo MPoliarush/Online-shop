@@ -92,7 +92,7 @@ return (
                         </form>
                         <div className="registr">
                             <p>Вперше на сайті?</p>
-                            <div className="auth-btn">РЕЄСТРАЦІЯ</div>
+                            <Link to='/login/registration'><div className="auth-btn">РЕЄСТРАЦІЯ</div></Link>
                         </div>
                         
                     </div>

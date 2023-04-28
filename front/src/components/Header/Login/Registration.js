@@ -225,7 +225,7 @@ const sucsessMessage= <div className="successMessage">
                             <div>
                                 <p>Пароль*</p>
                                 <span>{valid.password}</span>
-                                <input type="password" id= 'password' onChange={clientInputHandler} name='password'/>
+                                <input type="text" id= 'password' onChange={clientInputHandler} name='password'/>
                             </div>
                         </div>
                     </div>
