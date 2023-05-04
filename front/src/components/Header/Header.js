@@ -57,7 +57,6 @@ let path
      path='/login/authorized'
   } else {
      path='/login'
-    
   }
   navigate(path)
 }

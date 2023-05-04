@@ -65,6 +65,8 @@ function Login(){
             return
         }
 
+        let checkingUser
+
         try{
             const config = {
                 headers:{
@@ -72,17 +74,23 @@ function Login(){
                     "Access-Control-Allow-Origin":'*'
                 }
             }
-            const checkingUser = await axios.post('http://localhost:5000/getClient',clientCreds,config)
+            checkingUser = await axios.post('http://localhost:5000/getClient',clientCreds,config)
             if(!checkingUser.data){
                 setUserFound('Користувача не знайдено')
                 return
+            } 
+            if(checkingUser.data.password===clientCreds.password){
+                console.log(checkingUser.data.password)
+                setUserFound('')   
             } else {
-                setUserFound('')
+                setUserFound('Пароль невірний.')
+                return
             }
+
+            
         }catch(e){
             
         }
-        
 
         let path = `/login/authorized`; 
         navigate(path);

@@ -1,12 +1,9 @@
-<<<<<<< HEAD
-
 
 .orders{
     margin-bottom: 00px;
 }
 
-=======
->>>>>>> e2905e54036bdb1679ffbdd5cb4be6d7df0248f2
+
 .orders-h1{
     font-family: 'Ubuntu';
     font-style: normal;
@@ -92,17 +89,22 @@ padding: 10px 0;
     padding: 20px 0px;
 }
 
-.basketIMG{
-    width: 11%;
+.goodIMG{
+    display: inline;
+    text-align: center;
+    width: 70%;
 }
 
-.name{
-    width: 30%;
+.basketIMG{
+    width: 25%;
 }
+
+/* .name{
+    width: 30%;
+} */
 
 .heavy{
     font-weight: 700;
-
     margin-top: 10px;
 
 }

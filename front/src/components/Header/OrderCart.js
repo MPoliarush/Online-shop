@@ -141,7 +141,7 @@ return(
                 {stateBasket.map(item=>{
                     return (
                         <div className='item'>
-                            <img className="fixedWidth basketIMG" src = {`http://localhost:5000/uploadedIMG/${item.img1[0].filename}`}/>
+                            <p className="fixedWidth"><img className="goodIMG" src = {`http://localhost:5000/uploadedIMG/${item.img1[0].filename}`}/></p>
                             <div className="fixedWidth name">
                                 <p>{item.brand}</p>
                                 <p className="heavy">{item.model}</p>
@@ -151,11 +151,8 @@ return(
                             <p className="fixedWidth"><span className="day">{days.weekend}</span><span className='pricesmall'>{item.weekend_price} UAH</span></p>
                             <p className="fixedWidth"><span className="day">{days.week}</span><span className='pricesmall'>{item.week_price} UAH</span></p>
                             <p className="fixedWidth"><span className="day">{days.month}</span> <span className='pricesmall'>{item.month_price} UAH</span></p>
-
-                            <p className="fixedWidth">{days.work} * {item.work_price} UAH</p>
-                            <p className="fixedWidth">{days.weekend} * {item.weekend_price} UAH</p>
-                            <p className="fixedWidth">{days.week} * {item.week_price} UAH</p>
-                            <p className="fixedWidth">{days.month}* {item.month_price} UAH</p>
+                            <p className="fixedWidth"> <span className='day'>{days.month*item.month_price + days.week*item.week_price + days.weekend*item.weekend_price +days.work*item.work_price} UAH</span></p>
+                            <p className="fixedWidth"><img className="basketIMG" src="/imagesHTML/icons/delete.png"/></p>
                         </div>
                     )
                 }

@@ -7,8 +7,8 @@ import {clientActions} from '../../../store/store'
 
 function Authorized(){
     const [activeInputs,setActiveInputs] = useState({
-        personalData:true,
-        ordersHistory:false,
+        personalData:false,
+        ordersHistory:true,
     })
 
     const [predefinedData, setPredefinedData] = useState({
@@ -181,7 +181,11 @@ async function updateData(){
     }
 
     console.log('sent')
+    
     setSuccess(true)
+    const updateded = setTimeout(()=>{
+        setSuccess('')
+    },2000)
 
     const config = {
         headers:{
@@ -193,7 +197,14 @@ async function updateData(){
     const updading = await axios.post('http://localhost:5000/clientUpdate', predefinedData ,config)
 
 
+
+    //
+
 }
+
+
+console.log(success)
+
 
 
 function logOutHandler(){
@@ -209,15 +220,19 @@ return(
     <main>
         <div className = 'content-container personalPage'>
             <h1 className="registration"><span>ОСОБОВИЙ</span> КАБІНЕТ</h1>
-            <p>Вітаємо, {predefinedData.name}!</p>
-            <button onClick={logOutHandler} >Вийти з кабінету</button>
+            <div className="greetings">
+                <p >Вітаємо, {predefinedData.name}!</p>
+                <button className="greet-btn" onClick={logOutHandler} >Вийти з кабінету</button>
+            </div>
             <div className='options personal-nav'>
-                <button onClick={activeHandler} className={activeInputs.personalData==true ? 'active' : 'passive'} value='Дані'>Мої дані</button>
                 <button onClick={activeHandler} className={activeInputs.ordersHistory==true ? 'active' : 'passive'} value='Історія'>Історія замовлень</button>
+                <button onClick={activeHandler} className={activeInputs.personalData==true ? 'active' : 'passive'} value='Дані'>Мої дані</button>
             </div>
             <div className="personalInfo">
-            <div>
-                        <div className="form-wrapper">
+
+            { activeInputs.personalData===true ?
+                <div className='clientCreds'>
+                    <div className="form-wrapper">
                         <div className="field-wrap">
                             <div>
                                 <p>Ім'я*</p>
@@ -261,8 +276,24 @@ return(
                             </div>
                         </div>
                     </div>
-                        <button className="auth-btn-reg" onClick={updateData}>ЗБЕРЕГТИ ДАНІ</button>
+                    <button className="auth-btn-reg" onClick={updateData}>{success ? "Дані збережено" : 'ЗБЕРЕГТИ ДАНІ'}</button>
+                </div>
+                :
+                <div className="clientsOrdersHistory">
+                    <div className="goods-wrapper">
+                        <div className="heading">
+                            <span  className="fixedWidth">Фото</span>
+                            <span  className="fixedWidth name">Назва</span>
+                            <span  className="fixedWidth">Днів</span>
+                            <span className="fixedWidth">Всього вартість</span>
+                            <span className="fixedWidth"></span>
+                        </div>
+
+                        <button className="confirm-btn total">Всього: 0 UAH </button>
+
                     </div>
+                </div>
+            }
             </div>
         </div>
     </main>
