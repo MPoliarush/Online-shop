@@ -1,1 +1,20 @@
+.confirm{
+    margin-top: 30px;
+}
 
+.registration span{
+    color: #76c302;
+}
+
+.heading-confirm{
+    display: flex;
+    border-top: #EFEFEF 1px solid;
+    border-bottom: #EFEFEF 1px solid;
+    justify-content: space-between;
+    padding: 15px 5px;
+}
+
+.heading-confirm span, .item p{
+   width:350px;
+   text-align: center;
+}

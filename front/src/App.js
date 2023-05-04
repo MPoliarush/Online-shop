@@ -28,6 +28,7 @@ function App() {
       {path:'/login/registration', element:<Registration />},
       {path:'/login/authorized', element:<Authorized />},
       {path:'/orders', element:<OrderCart />},
+      {path:'/ordersConfirmation', element:<Confirmation />},
       {path:'/admin', element:<Admin />},
       {path:'/admin/add', element:<AdminAdd/>},
       {path:'/admin/view/:id', element:<AdminCart/>},

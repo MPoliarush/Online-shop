@@ -159,7 +159,7 @@ return(
                 )}  
             
             <button className="confirm-btn total">Всього: 0 UAH </button>
-            <Link to='/orders/confirmation'><button className="confirm-btn">Оформити замовлення</button></Link>
+            <Link to='/ordersConfirmation'><button className="confirm-btn">Оформити замовлення</button></Link>
             </div>
         </div>
     </main>
