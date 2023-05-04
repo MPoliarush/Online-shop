@@ -2,11 +2,44 @@ import { useEffect, useState } from "react"
 import { useSelector,useDispatch } from "react-redux"
 import {orderActions} from '../../store/store'
 import Footer from '../Footer';
-
+import axios from "axios";
 
 function Confirmation(){
+
+    const [postPoints, setPostPoints]= useState([])
+
     const stateBasket = useSelector(state=>state.basketOrders.goods)
     const dispatch = useDispatch() 
+
+
+async function getWarehouses(){
+    
+    try{
+        const params = {
+            "apiKey": "6954dc5c4df388e9361fa0812f491bcd",
+            "modelName": "Address",
+            "calledMethod": "getWarehouses",
+            "methodProperties": {
+            "CityName" : "Київ",
+            "Page" : "1",
+            "Limit" : "430",
+            "Language" : "UA",
+            }
+         }
+        const response = await axios.post(`https://api.novaposhta.ua/v2.0/json/`, params)
+        console.log(response.data)
+        setPostPoints(response.data.data)
+    }catch(e){
+        console.log(e)
+    }
+}
+
+useEffect(()=>{
+    getWarehouses()
+    return
+},[])
+
+console.log(postPoints)
 
 
 return(
@@ -41,6 +74,15 @@ return(
                             }
                         )}
 
+                        <div class='post-point'>
+                            <label>Вибір відділення Нової Пошти</label>
+                            <select className="postSelect">
+                                {postPoints.map(point=>{
+                                    return <option className="option">{point.Description}</option>
+                                })}
+                            </select>
+                        </div>
+
                     </div>
                 </div>
             </main>
@@ -49,3 +91,5 @@ return(
 }
 
 export default Confirmation
+
+// 6954dc5c4df388e9361fa0812f491bcd

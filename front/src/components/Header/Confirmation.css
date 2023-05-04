@@ -18,3 +18,12 @@
    width:350px;
    text-align: center;
 }
+
+.post-point label{
+    display: block;
+    margin: 20px 0;
+}
+
+.postSelect{
+    padding: 10px 15px;
+}
