@@ -17,6 +17,8 @@ function Confirmation(){
         }
     })
 
+    const [isLoading, setIsLoading] = useState(true)
+
     const stateBasket = useSelector(state=>state.basketOrders.goods)
     const stateTotal = useSelector(state=>state.rentalDays)
     const stateTotalPrice = useSelector(state=>state.rentalDays.totalPrice)
@@ -27,6 +29,7 @@ function Confirmation(){
 async function getWarehouses(){
     
     try{
+        
         const params = {
             "apiKey": "6954dc5c4df388e9361fa0812f491bcd",
             "modelName": "Address",
@@ -42,6 +45,7 @@ async function getWarehouses(){
         const response = await axios.post(`https://api.novaposhta.ua/v2.0/json/`, params)
         console.log(response.data)
         setPostPoints(response.data.data)
+       
     }catch(e){
         console.log(e)
     }
@@ -51,6 +55,7 @@ async function getWarehouses(){
 
 useEffect(()=>{
     getWarehouses()
+    setIsLoading(false)
     return
 },[city])
 
@@ -110,6 +115,7 @@ function confirmOrder(){
         return
     }
 
+
    
 
 }
@@ -121,7 +127,7 @@ return(
                     <h1 className="registration"><span>ОФОРМЛЕННЯ</span> ЗАМОВЛЕННЯ</h1>
                     <p>Для успішного оформлення замовлення необхідно авторизуватись.</p>
                     <div className="goods-wrapper ">
-                        <h3>Товари:</h3>
+                        <h4>Товари:</h4>
                         <div className="heading-confirm">
                             <span  className="fixedWidth">Фото</span>
                             <span  className="fixedWidth">Назва</span>
@@ -169,12 +175,13 @@ return(
 
                                 <div class='post-point'>
                                     <label>Вибір відділення Нової Пошти</label>
-                                    <select className="postSelect" onChange={postalNumberHandler}>
-                                    
-                                        {postPoints.map(point=>{
-                                            return <option className="option" value={point.Description}>{point.Description} </option>
-                                        })}
-                                    </select>
+                                   
+                                    <select className="postSelect" onChange={postalNumberHandler}> 
+                                        { postPoints.map(point=>{
+                                                return <option className="option" value={point.Description}>{point.Description} </option>
+                                        }) }
+                                    </select>  
+                                        
                                 </div>
                             </div>
                             : ""

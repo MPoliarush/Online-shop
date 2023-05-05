@@ -179,9 +179,6 @@ function dateHandler(){
 }
 
 
-function submitHandler(){
-
-}
 
 
 return(
@@ -198,7 +195,7 @@ return(
                     <span>По яке число:</span>
                     <input type='date'  className="calendar-input" onChange={endDaysHandler} value={stateTotal.till}/>
                 </div>
-                <button className="" onClick={dateHandler}>Вибрати </button>
+                <button className="confirm-btn date" onClick={dateHandler}>Вибрати </button>
             </div>
 
             <div className="goods-wrapper">
@@ -236,7 +233,7 @@ return(
                 )}  
             
             <button className="confirm-btn total">Всього: {stateTotalPrice} UAH </button>
-            <Link to='/ordersConfirmation'><button className="confirm-btn" onClick={submitHandler}>Оформити замовлення</button></Link>
+            <Link to='/ordersConfirmation'><button className="confirm-btn">Оформити замовлення</button></Link>
             </div>
         </div>
     </main>
