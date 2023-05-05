@@ -195,9 +195,6 @@ async function updateData(){
     }
 
     const updading = await axios.post('http://localhost:5000/clientUpdate', predefinedData ,config)
-
-
-
     //
 
 }

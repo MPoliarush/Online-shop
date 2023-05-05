@@ -2,8 +2,15 @@
     margin-top: 30px;
 }
 
+
+
 .registration span{
     color: #76c302;
+}
+
+.confirm>p{
+    margin-top: 20px;
+    font-size: 18px;
 }
 
 .heading-confirm{
@@ -11,13 +18,18 @@
     border-top: #EFEFEF 1px solid;
     border-bottom: #EFEFEF 1px solid;
     justify-content: space-between;
-    padding: 15px 5px;
+    padding: 15px 0px;
 }
 
-.heading-confirm span, .item p{
-   width:350px;
-   text-align: center;
+.item-confirm{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0px;
+    
 }
+
+
 
 .post-point label{
     display: block;
@@ -26,4 +38,40 @@
 
 .postSelect{
     padding: 10px 15px;
+    width:fit-content;
+    min-width: 300px;
+}
+
+.confirm-btn.confirmation{
+    position: relative;
+    background-color: transparent;
+    font-size: 25px;
+    font-weight: 700;
+    padding-left: 0;
+    margin-top: 30px;
+}
+
+.delivery{
+    margin: 50px 0;
+}
+.delivery h3{
+    font-size: 25px;
+}
+
+
+.deleveryType{
+display: flex;
+margin-bottom: 30px;
+}
+
+.chooseCity{
+    margin-top: 20px;
+}
+
+.chooseCity label{
+    margin-right: 20px;
+}
+
+.chooseCity input{
+padding: 5px 10px;
 }

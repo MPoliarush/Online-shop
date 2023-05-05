@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import {Link} from 'react-router-dom'
 import { useSelector,useDispatch } from "react-redux"
-import {orderActions} from '../../store/store'
+import {orderActions,totalDaysActions} from '../../store/store'
 import Footer from '../Footer';
 
 
@@ -16,25 +16,44 @@ function OrderCart(){
         weekend:0,
         week:0,
         month:0,
-        total:0,
     })
+    const [total,setTotal] = useState(0)
 
 const stateBasket = useSelector(state=>state.basketOrders.goods)
-const dispatch = useDispatch()
 console.log(stateBasket)
+const stateTotalPrice = useSelector(state=>state.rentalDays.totalPrice)
+const stateTotal = useSelector(state=>state.rentalDays)
+
+const dispatch = useDispatch()
+
 
 
 function startDaysHandler(e){
     console.log(e.target.value)
     setDays({...days,
         since: e.target.value})
+    dispatch(totalDaysActions.since(e.target.value))
 }
 
 function endDaysHandler(e){
     console.log(e.target.value)
     setDays({...days,
         till: e.target.value})
+    dispatch(totalDaysActions.till(e.target.value))
 }
+
+useEffect(()=>{
+    // console.log(stateTotal)
+    // if(stateTotal.since){
+    //     setDays({...days,
+    //         since: stateTotal.since})
+    // }
+    // if(stateTotal.till){
+    //     setDays({...days,
+    //         since: stateTotal.till})
+    // }
+    
+},[stateTotal])
 
 
 
@@ -52,9 +71,11 @@ while (startDate < endDate) {
     startDate.setDate(startDate.getDate() + 1);
     i++;
 }
-console.log(alldays)
+
 
 let daysDescr={
+    since:days.since,
+    till:days.till,
     work:0,
     weekend:0,
     week:0,
@@ -62,7 +83,7 @@ let daysDescr={
 }
 
 if (alldays.length%7 == 0){
-    console.log('logged', alldays.length/7 )
+   
     daysDescr.week = alldays.length/7
 } 
 
@@ -77,10 +98,10 @@ if(alldays.length<7){
 }
 
 if (alldays.length%7 > 0 && alldays.length > 7){
-    console.log('logged', alldays.length,alldays.length%7 ,alldays.length/7  )
+    
     daysDescr.week = alldays.length/7 - (alldays.length/7-1)
     alldays = alldays.slice(-(alldays.length - 7*daysDescr.week))
-    console.log(alldays)
+  
     for(let i=0;i<alldays.length;i++){  
         if (alldays[i] == 6 || alldays[i] == 0){
             daysDescr.weekend = daysDescr.weekend+ 1
@@ -89,7 +110,7 @@ if (alldays.length%7 > 0 && alldays.length > 7){
         }
     }
 }   
-    console.log(daysDescr)
+    
 
     setDays({...days,
         work:daysDescr.work,
@@ -98,14 +119,59 @@ if (alldays.length%7 > 0 && alldays.length > 7){
         month:daysDescr.month
     })
 
-console.log(days)
-},[days.till])
+    dispatch(totalDaysActions.totalDays(daysDescr))
+
+
+},[days.till,days.since])
 
 console.log(days)
+
+
 
 function deleteFromBasket(e){
     console.log(JSON.parse(e.currentTarget.name))
     dispatch(orderActions.removeGood(JSON.parse(e.currentTarget.name)))
+}
+
+
+// function priceHandler(e){
+//     console.log(e.currentTarget.name)
+//     setTotal(total+e.currentTarget.name)
+//     // dispatch(totalDaysActions.totalPrice(days.month*item.month_price + days.week*item.week_price + days.weekend*item.weekend_price +days.work*item.work_price))
+// }
+
+useEffect(()=>{
+   
+    let price=0
+    for (const item of stateBasket){
+        
+        if(days.work>0){
+            price = price + days.work*item.work_price
+            console.log(price)
+        }
+         if(days.weekend>0){
+            price = price + days.work*item.weekend_price
+            console.log(price)
+        }
+         if(days.week>0){
+            price = price + days.week*item.week_price
+            console.log(price)
+        }
+    }
+    // console.log(price)
+
+    dispatch(totalDaysActions.totalPrice(price))
+
+},[days,stateBasket])
+
+
+function dateHandler(){
+    
+}
+
+
+function submitHandler(){
+
 }
 
 
@@ -117,12 +183,13 @@ return(
             <div className='period'>
                 <div className='from'>
                     <span>З якого числа:</span>
-                    <input type='date'  className="calendar-input" onChange={startDaysHandler}/>
+                    <input type='date'  className="calendar-input" onChange={startDaysHandler} value={days.since}/>
                 </div>
                 <div className='to'>
                     <span>По яке число:</span>
-                    <input type='date'  className="calendar-input" onChange={endDaysHandler}/>
+                    <input type='date'  className="calendar-input" onChange={endDaysHandler} value={days.till}/>
                 </div>
+                <button className="" onClick={dateHandler}>Вибрати </button>
             </div>
 
             <div className="goods-wrapper">
@@ -139,6 +206,7 @@ return(
                 </div>
 
                 {stateBasket.map(item=>{
+                    
                     return (
                         <div className='item'>
                             <p className="fixedWidth"><img className="goodIMG" src = {`http://localhost:5000/uploadedIMG/${item.img1[0].filename}`}/></p>
@@ -151,15 +219,15 @@ return(
                             <p className="fixedWidth"><span className="day">{days.weekend}</span><span className='pricesmall'>{item.weekend_price} UAH</span></p>
                             <p className="fixedWidth"><span className="day">{days.week}</span><span className='pricesmall'>{item.week_price} UAH</span></p>
                             <p className="fixedWidth"><span className="day">{days.month}</span> <span className='pricesmall'>{item.month_price} UAH</span></p>
-                            <p className="fixedWidth"> <span className='day'>{days.month*item.month_price + days.week*item.week_price + days.weekend*item.weekend_price +days.work*item.work_price} UAH</span></p>
-                            <p className="fixedWidth"><img className="basketIMG" src="/imagesHTML/icons/delete.png"/></p>
+                            <p className="fixedWidth"> <span className='day' >{days.month*item.month_price + days.week*item.week_price + days.weekend*item.weekend_price +days.work*item.work_price} UAH</span></p>
+                            <p className="fixedWidth"><img className="basketIMG" onClick={deleteFromBasket} name={JSON.stringify(item)} src="/imagesHTML/icons/delete.png"/></p>
                         </div>
                     )
                 }
                 )}  
             
-            <button className="confirm-btn total">Всього: 0 UAH </button>
-            <Link to='/ordersConfirmation'><button className="confirm-btn">Оформити замовлення</button></Link>
+            <button className="confirm-btn total">Всього: {stateTotalPrice} UAH </button>
+            <Link to='/ordersConfirmation'><button className="confirm-btn" onClick={submitHandler}>Оформити замовлення</button></Link>
             </div>
         </div>
     </main>

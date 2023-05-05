@@ -7,8 +7,20 @@ import axios from "axios";
 function Confirmation(){
 
     const [postPoints, setPostPoints]= useState([])
+    const [city,setCity] = useState('none')
+    const [active,setActive] =useState({
+        self:true,
+        post:false,
+        postalDetails:{
+            city:'',
+            number:''
+        }
+    })
 
     const stateBasket = useSelector(state=>state.basketOrders.goods)
+    const stateTotal = useSelector(state=>state.rentalDays)
+    const stateTotalPrice = useSelector(state=>state.rentalDays.totalPrice)
+    const stateLogin = useSelector(state=>state.client.clientData)
     const dispatch = useDispatch() 
 
 
@@ -20,10 +32,11 @@ async function getWarehouses(){
             "modelName": "Address",
             "calledMethod": "getWarehouses",
             "methodProperties": {
-            "CityName" : "Київ",
+            "CityName" : `${city}`,
             "Page" : "1",
-            "Limit" : "430",
+            "Limit" : "400",
             "Language" : "UA",
+            "TypeOfWarehouse": "841339c7-591a-42e2-8233-7a0a00f0ed6f"
             }
          }
         const response = await axios.post(`https://api.novaposhta.ua/v2.0/json/`, params)
@@ -34,58 +47,152 @@ async function getWarehouses(){
     }
 }
 
+
+
 useEffect(()=>{
     getWarehouses()
     return
-},[])
+},[city])
 
-console.log(postPoints)
 
+
+
+function cityHandler(e){
+    setCity(e.target.value)
+    setActive({...active,
+        city:e.target.value
+    })
+}
+
+function postalNumberHandler(e){
+    setActive({...active,
+        postalDetails: e.target.value
+    })
+}
+
+
+
+function deliveryTypeHandler(e){
+    console.log(e.target.name)
+    if(e.target.name=='Нова'){
+        setActive({...active,
+            self:false,
+            post:true
+        })
+    }
+    if(e.target.name=='Самовивіз'){
+        setActive({...active,
+            self:true,
+            post:false,
+           postalDetails:{}
+        })
+    }
+}
+
+console.log(active)
+
+
+
+
+function confirmOrder(){
+   
+    const completedOrder={
+        delivery:active,
+        daysAndPrice:stateTotal,
+        person:stateLogin,
+        goods:stateBasket,
+        dayOfOrder: new Date().toJSON().slice(0, 10)
+    }
+    console.log(completedOrder)
+
+    if(completedOrder.person == null){
+        console.log('Not authorized')
+        return
+    }
+
+   
+
+}
 
 return(
         <>
             <main>
                 <div className = 'content-container confirm'>
                     <h1 className="registration"><span>ОФОРМЛЕННЯ</span> ЗАМОВЛЕННЯ</h1>
-
+                    <p>Для успішного оформлення замовлення необхідно авторизуватись.</p>
                     <div className="goods-wrapper ">
                         <h3>Товари:</h3>
                         <div className="heading-confirm">
-                            <span  className="">Фото</span>
-                            <span  className="">Назва</span>
-                            <span  className="">Днів</span>
-                            <span className="">Всього вартість</span>
+                            <span  className="fixedWidth">Фото</span>
+                            <span  className="fixedWidth">Назва</span>
+                            <span  className="fixedWidth">Днів</span>
+                            <span  className="fixedWidth">Тижнів</span>
+                            
                         </div>
 
                         {stateBasket.map(item=>{
                                 return (
-                                    <div className='item'>
-                                        <p className=''><img className="goodIMG" src = {`http://localhost:5000/uploadedIMG/${item.img1[0].filename}`}/></p>
-                                        <div className="">
+                                    <div className='item-confirm'>
+                                        <p className='fixedWidth'><img className="goodIMG" src = {`http://localhost:5000/uploadedIMG/${item.img1[0].filename}`}/></p>
+                                        <div className="fixedWidth">
                                             <p>{item.brand}</p>
                                             <p className="heavy">{item.model}</p>
                                         </div>
 
-                                        <p className=""><span className="day"></span> <span className='pricesmall'>{0} UAH</span></p>
-                                        <p className=""><span className="day"></span> <span className='pricesmall'>0</span></p>
+                                        <p className="fixedWidth"> <span className=''>{stateTotal.work+ stateTotal.weekend} </span></p>
+                                        <p className="fixedWidth"> <span className=''>{stateTotal.week} </span></p>
                                        
                                     </div>
                                 )
                             }
                         )}
 
-                        <div class='post-point'>
-                            <label>Вибір відділення Нової Пошти</label>
-                            <select className="postSelect">
-                                {postPoints.map(point=>{
-                                    return <option className="option">{point.Description}</option>
-                                })}
-                            </select>
+                        <button className="confirm-btn confirmation">Всього: {stateTotalPrice} UAH </button>
+                            <hr></hr>
+
+
+                        <div className="delivery">
+                            <h3>Доставка товару</h3>
+
+                            <div className='deleveryType' onChange={deliveryTypeHandler} >
+                                <p>Спосіб доставки:</p>
+                                <div className='input-div'><input type='radio'  name='Самовивіз' value='Самовивіз' checked={active.self==true ? true :false}/><label >Самовивіз</label></div>
+                                <div className='input-div'><input type='radio'  name='Нова' value='Нова' checked={active.post==true ? true :false} /><label >Нова Пошта</label></div>
+                            </div>
+
+                            {active.post==true ? 
+                            <div>
+                                <div className="chooseCity">
+                                    <label>Місто:</label>
+                                    <input type="text" onChange={cityHandler}/>
+                                </div>
+
+                                <div class='post-point'>
+                                    <label>Вибір відділення Нової Пошти</label>
+                                    <select className="postSelect" onChange={postalNumberHandler}>
+                                    
+                                        {postPoints.map(point=>{
+                                            return <option className="option" value={point.Description}>{point.Description} </option>
+                                        })}
+                                    </select>
+                                </div>
+                            </div>
+                            : ""
+                            }
                         </div>
+
+
+                        <hr></hr>
+                        
+                        <button className="auth-btn-reg" onClick={confirmOrder}>ПІДТВЕРДИТИ ЗАМОВЛЕННЯ</button>
+                       
+                            
+                        
 
                     </div>
                 </div>
             </main>
+            <Footer></Footer>
         </>
     )
 }

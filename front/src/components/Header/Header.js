@@ -8,7 +8,7 @@ const [mouseOvered, setMouseOvered]=useState(false)
 const stateBasket = useSelector(state=>state.basketOrders.goods)
 const stateCompare = useSelector(state=>state.comparison.items)
 const stateLogin = useSelector(state=>state.client.clientData)
-console.log(stateLogin)
+
 let navigate = useNavigate();
 
 

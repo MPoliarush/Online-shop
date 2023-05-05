@@ -17,13 +17,15 @@ const orderSlice = createSlice({
     reducers:{
         addGood(state,action){
             state.goods.push(action.payload)
-            console.log(action.payload)
+            
         },
         removeGood(state,action){
+            console.log(action.payload)
             const filteredGoods = state.goods.filter(good=>{
                 return action.payload._id !== good._id
             })
             state.goods = filteredGoods
+            console.log('removed')
         }
     }
 })
@@ -66,10 +68,52 @@ const clientSlice = createSlice({
     }
 })
 
+
+const totalDaysBasic = {
+    since:0,
+    till:0,
+    work:null,
+    weekend:null,
+    week:null,
+    month:null,
+    totalPrice:0
+}
+const totalDaysSlice = createSlice({
+    name:'totalPrice',
+    initialState:totalDaysBasic,
+    reducers:{
+        totalDays(state,action){
+          
+            
+            state.work = action.payload.work
+            state.weekend = action.payload.weekend
+            state.week = action.payload.week
+            state.month = action.payload.month
+            
+        },
+        since(state,action){
+            state.since = action.payload
+           
+        },
+        till(state,action){
+           
+            state.till = action.payload
+        },
+        totalPrice(state,action){
+            console.log(action.payload)
+            state.totalPrice= action.payload 
+        }
+        
+    }
+})
+
+
+
 const reducer = combineReducers({
     basketOrders:orderSlice.reducer, 
     comparison:compareSlice.reducer,
-    client:clientSlice.reducer
+    client:clientSlice.reducer,
+    rentalDays:totalDaysSlice.reducer
 })
 
 const persistedReducer = persistReducer(persistConfig,reducer )
@@ -78,8 +122,18 @@ const store = configureStore({
     reducer: persistedReducer
 })
 
+// const store = configureStore({
+//     reducer: {
+//         basketOrders:orderSlice.reducer, 
+//         comparison:compareSlice.reducer,
+//         client:clientSlice.reducer,
+//         rentalDays:totalDaysSlice.reducer
+//     }
+// })
+
 export const orderActions = orderSlice.actions;
 export const compareActions = compareSlice.actions;
 export const clientActions = clientSlice.actions;
+export const totalDaysActions = totalDaysSlice.actions;
 
 export default store;

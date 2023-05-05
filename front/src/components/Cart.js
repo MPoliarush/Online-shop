@@ -49,6 +49,7 @@ function addToBasket(){
         dispatch(orderActions.removeGood(props.itemData))
         setAdded('В кошик')
     }
+   
 }
 
 function addToCompare(e){
