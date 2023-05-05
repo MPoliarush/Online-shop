@@ -43,88 +43,35 @@ function endDaysHandler(e){
 }
 
 useEffect(()=>{
-    // console.log(stateTotal)
-    // if(stateTotal.since){
-    //     setDays({...days,
-    //         since: stateTotal.since})
-    // }
-    // if(stateTotal.till){
-    //     setDays({...days,
-    //         since: stateTotal.till})
-    // }
-    
-},[stateTotal])
-
-
-
-useEffect(()=>{
-
-let startDate = new Date(days.since);
-let endDate = new Date(days.till);
-
-endDate.setDate(endDate.getDate() + 1);
-
-let alldays=[]
-let i=0;
-while (startDate < endDate) {
-    alldays.push(startDate.getDay());
-    startDate.setDate(startDate.getDate() + 1);
-    i++;
-}
-
-
-let daysDescr={
-    since:days.since,
-    till:days.till,
-    work:0,
-    weekend:0,
-    week:0,
-    month:0
-}
-
-if (alldays.length%7 == 0){
-   
-    daysDescr.week = alldays.length/7
-} 
-
-if(alldays.length<7){
-    for(let i=0;i<alldays.length;i++){  
-        if (alldays[i] == 6 || alldays[i] == 0){
-            daysDescr.weekend = daysDescr.weekend+ 1
-        } else {
-            daysDescr.work = daysDescr.work+ 1
-        }
+    console.log(stateTotal)
+    console.log(stateTotal.since)
+    if(stateTotal.since){
+        setDays({...days,
+            since: stateTotal.since
+        })
     }
-}
-
-if (alldays.length%7 > 0 && alldays.length > 7){
-    
-    daysDescr.week = alldays.length/7 - (alldays.length/7-1)
-    alldays = alldays.slice(-(alldays.length - 7*daysDescr.week))
-  
-    for(let i=0;i<alldays.length;i++){  
-        if (alldays[i] == 6 || alldays[i] == 0){
-            daysDescr.weekend = daysDescr.weekend+ 1
-        } else {
-            daysDescr.work = daysDescr.work+ 1
-        }
+    if(stateTotal.till){
+        setDays({...days,
+            since: stateTotal.till
+        })
     }
-}   
+
+
+    if(stateTotal.work){
+        setDays({...days,
+            work: stateTotal.work})
+    }
+    if(stateTotal.weekend){
+        setDays({...days,
+            weekend: stateTotal.weekend})
+    }
+    if(stateTotal.week){
+        setDays({...days,
+            week: stateTotal.week})
+    }
     
+},[])
 
-    setDays({...days,
-        work:daysDescr.work,
-        weekend:daysDescr.weekend,
-        week:daysDescr.week,
-        month:daysDescr.month
-    })
-
-    dispatch(totalDaysActions.totalDays(daysDescr))
-
-
-},[days.till,days.since])
-
-console.log(days)
 
 
 
@@ -158,14 +105,76 @@ useEffect(()=>{
             console.log(price)
         }
     }
-    // console.log(price)
+    console.log(price)
 
     dispatch(totalDaysActions.totalPrice(price))
 
-},[days,stateBasket])
+},[stateBasket,days])
 
 
 function dateHandler(){
+
+    let startDate = new Date(days.since);
+    let endDate = new Date(days.till);
+    
+    endDate.setDate(endDate.getDate() + 1);
+    
+    let alldays=[]
+    let i=0;
+    while (startDate < endDate) {
+        alldays.push(startDate.getDay());
+        startDate.setDate(startDate.getDate() + 1);
+        i++;
+    }
+    
+    
+    let daysDescr={
+        since:days.since,
+        till:days.till,
+        work:0,
+        weekend:0,
+        week:0,
+        month:0
+    }
+    
+    if (alldays.length%7 == 0){
+       
+        daysDescr.week = alldays.length/7
+    } 
+    
+    if(alldays.length<7){
+        for(let i=0;i<alldays.length;i++){  
+            if (alldays[i] == 6 || alldays[i] == 0){
+                daysDescr.weekend = daysDescr.weekend+ 1
+            } else {
+                daysDescr.work = daysDescr.work+ 1
+            }
+        }
+    }
+    
+    if (alldays.length%7 > 0 && alldays.length > 7){
+        
+        daysDescr.week = alldays.length/7 - (alldays.length/7-1)
+        alldays = alldays.slice(-(alldays.length - 7*daysDescr.week))
+      
+        for(let i=0;i<alldays.length;i++){  
+            if (alldays[i] == 6 || alldays[i] == 0){
+                daysDescr.weekend = daysDescr.weekend+ 1
+            } else {
+                daysDescr.work = daysDescr.work+ 1
+            }
+        }
+    }   
+        
+    
+        setDays({...days,
+            work:daysDescr.work,
+            weekend:daysDescr.weekend,
+            week:daysDescr.week,
+            month:daysDescr.month
+        })
+    
+        dispatch(totalDaysActions.totalDays(daysDescr))
     
 }
 
@@ -183,11 +192,11 @@ return(
             <div className='period'>
                 <div className='from'>
                     <span>З якого числа:</span>
-                    <input type='date'  className="calendar-input" onChange={startDaysHandler} value={days.since}/>
+                    <input type='date'  className="calendar-input" onChange={startDaysHandler} value={stateTotal.since}/>
                 </div>
                 <div className='to'>
                     <span>По яке число:</span>
-                    <input type='date'  className="calendar-input" onChange={endDaysHandler} value={days.till}/>
+                    <input type='date'  className="calendar-input" onChange={endDaysHandler} value={stateTotal.till}/>
                 </div>
                 <button className="" onClick={dateHandler}>Вибрати </button>
             </div>
