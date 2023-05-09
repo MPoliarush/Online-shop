@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector,useDispatch } from "react-redux"
-import {orderActions} from '../../store/store'
+import {orderActions,clientActions,totalDaysActions} from '../../store/store'
 import Footer from '../Footer';
 import axios from "axios";
 
@@ -116,6 +116,21 @@ async function confirmOrder(){
         return
     }
 
+    for(const good of stateBasket){
+        dispatch(orderActions.removeGood(good))
+    }
+
+    dispatch(totalDaysActions.totalDays({
+        work:0,
+        weekend:0,
+        week:0,
+        month:0
+        })
+    )
+
+    dispatch(totalDaysActions.totalPrice(0))
+    dispatch(totalDaysActions.since(''))
+    dispatch(totalDaysActions.till(''))
   
     try{
         const response = await axios.post('http://localhost:5000/orderCompleted', completedOrder )
@@ -124,6 +139,9 @@ async function confirmOrder(){
     } catch(e){
         console.log(e)
     }
+
+    
+    
 
   
 }
