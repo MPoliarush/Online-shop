@@ -18,6 +18,7 @@ function Confirmation(){
     })
 
     const [isLoading, setIsLoading] = useState(true)
+    const [orderSaved,setOrderSaved] = useState(false)
 
     const stateBasket = useSelector(state=>state.basketOrders.goods)
     const stateTotal = useSelector(state=>state.rentalDays)
@@ -131,6 +132,8 @@ async function confirmOrder(){
     dispatch(totalDaysActions.totalPrice(0))
     dispatch(totalDaysActions.since(''))
     dispatch(totalDaysActions.till(''))
+
+    setOrderSaved(true)
   
     try{
         const response = await axios.post('http://localhost:5000/orderCompleted', completedOrder )
@@ -140,10 +143,6 @@ async function confirmOrder(){
         console.log(e)
     }
 
-    
-    
-
-  
 }
 
 
@@ -153,85 +152,96 @@ useEffect(()=>{
 
 
 
+const sucsessMessage= <div className="successMessage">
+<h2>Замовлення збережено!</h2>
+<p>Ми зв'яжемось з вами протягом дня.</p>
+</div>
+
+
+
 return(
         <>
             <main>
                 <div className = 'content-container confirm'>
                     <h1 className="registration"><span>ОФОРМЛЕННЯ</span> ЗАМОВЛЕННЯ</h1>
                     <p>Для успішного оформлення замовлення необхідно авторизуватись.</p>
-                    <div className="goods-wrapper ">
-                        <h4>Товари:</h4>
-                        <div className="heading-confirm">
-                            <span  className="fixedWidth">Фото</span>
-                            <span  className="fixedWidth">Назва</span>
-                            <span  className="fixedWidth">Днів</span>
-                            <span  className="fixedWidth">Тижнів</span>
-                            
-                        </div>
 
-                        {stateBasket.map(item=>{
-                                return (
-                                    <div className='item-confirm'>
-                                        <p className='fixedWidth'><img className="goodIMG" src = {`http://localhost:5000/uploadedIMG/${item.img1[0].filename}`}/></p>
-                                        <div className="fixedWidth">
-                                            <p>{item.brand}</p>
-                                            <p className="heavy">{item.model}</p>
+                    {!orderSaved ? 
+                        <div className="goods-wrapper ">
+                            <h4>Товари:</h4>
+                            <div className="heading-confirm">
+                                <span  className="fixedWidth">Фото</span>
+                                <span  className="fixedWidth">Назва</span>
+                                <span  className="fixedWidth">Днів</span>
+                                <span  className="fixedWidth">Тижнів</span>
+                                
+                            </div>
+
+                            {stateBasket.map(item=>{
+                                    return (
+                                        <div className='item-confirm'>
+                                            <p className='fixedWidth'><img className="goodIMG" src = {`http://localhost:5000/uploadedIMG/${item.img1[0].filename}`}/></p>
+                                            <div className="fixedWidth">
+                                                <p>{item.brand}</p>
+                                                <p className="heavy">{item.model}</p>
+                                            </div>
+
+                                            <p className="fixedWidth"> <span className=''>{stateTotal.work+ stateTotal.weekend} </span></p>
+                                            <p className="fixedWidth"> <span className=''>{stateTotal.week} </span></p>
+                                        
+                                        </div>
+                                    )
+                                }
+                            )}
+
+                            <button className="confirm-btn confirmation">Всього: {stateTotalPrice} UAH </button>
+                                <hr></hr>
+
+
+                            <div className="delivery">
+                                <h3>Доставка товару</h3>
+
+                                <div >
+                                    <div className='deleveryType' onChange={deliveryTypeHandler} >
+                                        <p>Спосіб доставки:</p>
+                                        <div className='input-div'><input type='radio'  name='Самовивіз' value='Самовивіз' checked={active.self==true ? true :false}/><label >Самовивіз</label></div>
+                                        <div className='input-div'><input type='radio'  name='Нова' value='Нова' checked={active.post==true ? true :false} /><label >Нова Пошта</label></div>
+                                    </div>
+
+                                    {active.post==true ? 
+                                    <div className="deliv-wrapp">
+                                        <div className="chooseCity">
+                                            <label>Місто:</label>
+                                            <input type="text" onChange={cityHandler}/>
                                         </div>
 
-                                        <p className="fixedWidth"> <span className=''>{stateTotal.work+ stateTotal.weekend} </span></p>
-                                        <p className="fixedWidth"> <span className=''>{stateTotal.week} </span></p>
-                                       
+                                        <div class='post-point'>
+                                            <label>Вибір відділення Нової Пошти</label>
+                                        
+                                            <select className="postSelect" onChange={postalNumberHandler}> 
+                                                { postPoints.map(point=>{
+                                                        return <option className="option" value={point.Description}>{point.Description} </option>
+                                                }) }
+                                            </select>  
+                                                
+                                        </div>
                                     </div>
-                                )
-                            }
-                        )}
-
-                        <button className="confirm-btn confirmation">Всього: {stateTotalPrice} UAH </button>
-                            <hr></hr>
-
-
-                        <div className="delivery">
-                            <h3>Доставка товару</h3>
-
-                            <div >
-                                <div className='deleveryType' onChange={deliveryTypeHandler} >
-                                    <p>Спосіб доставки:</p>
-                                    <div className='input-div'><input type='radio'  name='Самовивіз' value='Самовивіз' checked={active.self==true ? true :false}/><label >Самовивіз</label></div>
-                                    <div className='input-div'><input type='radio'  name='Нова' value='Нова' checked={active.post==true ? true :false} /><label >Нова Пошта</label></div>
+                                    : ""
+                                    }
                                 </div>
-
-                                {active.post==true ? 
-                                <div className="deliv-wrapp">
-                                    <div className="chooseCity">
-                                        <label>Місто:</label>
-                                        <input type="text" onChange={cityHandler}/>
-                                    </div>
-
-                                    <div class='post-point'>
-                                        <label>Вибір відділення Нової Пошти</label>
-                                    
-                                        <select className="postSelect" onChange={postalNumberHandler}> 
-                                            { postPoints.map(point=>{
-                                                    return <option className="option" value={point.Description}>{point.Description} </option>
-                                            }) }
-                                        </select>  
-                                            
-                                    </div>
-                                </div>
-                                : ""
-                                }
                             </div>
-                        </div>
 
 
-                        <hr></hr>
-                        
-                        <button className="auth-btn-reg" onClick={confirmOrder}>ПІДТВЕРДИТИ ЗАМОВЛЕННЯ</button>
-                       
+                            <hr></hr>
                             
+                            <button className="auth-btn-reg" onClick={confirmOrder}>ПІДТВЕРДИТИ ЗАМОВЛЕННЯ</button>
                         
+                                
+                            
 
-                    </div>
+                        </div>
+                    :sucsessMessage
+                    }
                 </div>
             </main>
             <Footer></Footer>

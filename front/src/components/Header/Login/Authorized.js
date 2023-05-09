@@ -27,6 +27,7 @@ function Authorized(){
         email:'',
         password:''
     })
+    const [oldOrders, setOldOrders]= useState([])
     const [success,setSuccess] = useState(null)
 
     const stateLogin = useSelector(state=>state.client.clientData)
@@ -195,14 +196,21 @@ async function updateData(){
     }
 
     const updading = await axios.post('http://localhost:5000/clientUpdate', predefinedData ,config)
-    //
+   
 
 }
 
 
-console.log(success)
+async function gerOrderHistory(){
+    const orders = await axios.post('http://localhost:5000/getOrderHistory', stateLogin)
+    setOldOrders(orders.data.orders)
+}
 
+useEffect(()=>{
+    gerOrderHistory()
+},[])
 
+console.log(oldOrders)
 
 function logOutHandler(){
     dispatch(clientActions.logOut())
@@ -281,11 +289,25 @@ return(
                         <div className="heading">
                             <span  className="fixedWidth">Фото</span>
                             <span  className="fixedWidth name">Назва</span>
+                            <span  className="fixedWidth">Дата замовлення</span>
                             <span  className="fixedWidth">Днів</span>
                             <span className="fixedWidth">Всього вартість</span>
                             <span className="fixedWidth"></span>
                         </div>
 
+                        {/* { oldOrders.map(order=>{
+                            return (
+                                <div className="heading">
+                                    <span  className="fixedWidth oldOrder"></span>
+                                    <span  className="fixedWidth name oldOrder"></span>
+                                    <span  className="fixedWidth oldOrder">Дата замовлення</span>
+                                    <span  className="fixedWidth oldOrder">Днів</span>
+                                    <span className="fixedWidth oldOrder">Всього вартість</span>
+                                    <span className="fixedWidth oldOrder"></span>
+                                </div>
+                            )
+                          }) 
+                        } */}
                         <button className="confirm-btn total">Всього: 0 UAH </button>
 
                     </div>
