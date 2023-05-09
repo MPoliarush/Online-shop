@@ -10,6 +10,7 @@ import AdminCart from './components/Admin/AdminCart'
 import CatalogLinse from './components/Catalogs/CatalogLinse';
 import ProductPage from './components/Catalogs/ProductPage'
 import OrderCart from './components/Header/OrderCart'
+import Comparison from './components/Header/Comparison'
 
 import Confirmation from './components/Header/Confirmation';
 import Login from './components/Header/Login/Login';
@@ -27,6 +28,7 @@ function App() {
       {path:'/login', element:<Login />},
       {path:'/login/registration', element:<Registration />},
       {path:'/login/authorized', element:<Authorized />},
+      {path:'/comparison', element:<Comparison />},
       {path:'/orders', element:<OrderCart />},
       {path:'/ordersConfirmation', element:<Confirmation />},
       {path:'/admin', element:<Admin />},
