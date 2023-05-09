@@ -107,7 +107,7 @@ async function confirmOrder(){
         delivery:active,
         daysAndPrice:stateTotal,
         person:stateLogin,
-        goodsID:stateBasket.map(item=> item._id),
+        goodsID:stateBasket,
         dayOfOrder: new Date().toJSON().slice(0, 10),
     }
     console.log(completedOrder)

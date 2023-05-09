@@ -44,3 +44,16 @@ font-size: 15px;
     background: linear-gradient(180deg, #8EE902 0%, #4F9C2C 100%);
     border-radius: 100px;
 }
+
+.heading.old{
+   align-items: center;
+    justify-content: space-between;
+}
+
+.fixedWidth.oldOrder{
+color: black;
+}
+
+.oldImgs{
+    width:45%;
+}

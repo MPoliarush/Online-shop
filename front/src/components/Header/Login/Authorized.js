@@ -286,28 +286,42 @@ return(
                 :
                 <div className="clientsOrdersHistory">
                     <div className="goods-wrapper">
-                        <div className="heading">
+                        <div className="heading old">
                             <span  className="fixedWidth">Фото</span>
                             <span  className="fixedWidth name">Назва</span>
                             <span  className="fixedWidth">Дата замовлення</span>
                             <span  className="fixedWidth">Днів</span>
                             <span className="fixedWidth">Всього вартість</span>
-                            <span className="fixedWidth"></span>
+                            <span className="fixedWidth">Блабла</span>
                         </div>
 
-                        {/* { oldOrders.map(order=>{
+                        { oldOrders.map(order=>{
                             return (
-                                <div className="heading">
-                                    <span  className="fixedWidth oldOrder"></span>
-                                    <span  className="fixedWidth name oldOrder"></span>
-                                    <span  className="fixedWidth oldOrder">Дата замовлення</span>
-                                    <span  className="fixedWidth oldOrder">Днів</span>
-                                    <span className="fixedWidth oldOrder">Всього вартість</span>
+                                <div className="heading old">
+                                    <span  className="fixedWidth oldOrder">
+                                        {order.goodsID.map(good=> {
+                                        return <img className="oldImgs" src = {`http://localhost:5000/uploadedIMG/${good.img1[0].filename}`} />}
+                                        )}
+                                       
+                                    </span>
+                                    <span  className="fixedWidth name oldOrder">
+                                        {order.goodsID.map(good=>{
+                                            return (
+                                                <div>
+                                                    <p>{good.brand}</p>
+                                                     <p>{good.model}</p>
+                                                </div>
+                                                )
+                                        })}
+                                    </span>
+                                    <span  className="fixedWidth oldOrder">{order.dayOfOrder}</span>
+                                    <span  className="fixedWidth oldOrder">{order.daysAndPrice.work +order.daysAndPrice.weekend}</span>
+                                    <span className="fixedWidth oldOrder">{order.daysAndPrice.totalPrice}</span>
                                     <span className="fixedWidth oldOrder"></span>
                                 </div>
                             )
                           }) 
-                        } */}
+                        }
                         <button className="confirm-btn total">Всього: 0 UAH </button>
 
                     </div>
