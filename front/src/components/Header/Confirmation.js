@@ -95,7 +95,7 @@ function deliveryTypeHandler(e){
     }
 }
 
-console.log(active)
+console.log(stateLogin)
 
 
 
@@ -106,8 +106,8 @@ async function confirmOrder(){
         delivery:active,
         daysAndPrice:stateTotal,
         person:stateLogin,
-        goods:stateBasket,
-        dayOfOrder: new Date().toJSON().slice(0, 10)
+        goodsID:stateBasket.map(item=> item._id),
+        dayOfOrder: new Date().toJSON().slice(0, 10),
     }
     console.log(completedOrder)
 
@@ -118,13 +118,13 @@ async function confirmOrder(){
 
   
     try{
-        const response = await axios.post('http://localhost:5000/', stateLogin )
+        const response = await axios.post('http://localhost:5000/orderCompleted', completedOrder )
         console.log(response.data)
         
     } catch(e){
         console.log(e)
-      
     }
+
   
 }
 

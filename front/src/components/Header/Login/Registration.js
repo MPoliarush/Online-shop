@@ -14,7 +14,8 @@ function Registration(){
         second:'',
         mobile:'',
         email:'',
-        password:''
+        password:'',
+        orders:[]
     })
 
     const [valid,setValid]=useState({
