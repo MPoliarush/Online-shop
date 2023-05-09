@@ -100,7 +100,7 @@ console.log(active)
 
 
 
-function confirmOrder(){
+async function confirmOrder(){
    
     const completedOrder={
         delivery:active,
@@ -116,10 +116,24 @@ function confirmOrder(){
         return
     }
 
-
-   
-
+  
+    try{
+        const response = await axios.post('http://localhost:5000/', stateLogin )
+        console.log(response.data)
+        
+    } catch(e){
+        console.log(e)
+      
+    }
+  
 }
+
+
+useEffect(()=>{
+    window.scrollTo(0, 0)
+},[])
+
+
 
 return(
         <>

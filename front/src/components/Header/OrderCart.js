@@ -45,35 +45,10 @@ function endDaysHandler(e){
     console.log('changed')
 }
 
+
+
 useEffect(()=>{
   
-    // if(stateTotal.since && stateTotal.till){
-    //     setDays({
-    //         since: stateTotal.since,
-    //         till: stateTotal.till
-    //     })
-    // }
-    // // if(stateTotal.till){
-    // //     setDays({...days,
-    // //         till: stateTotal.till
-    // //     })
-    // // }
-
-
-    // if(stateTotal.work){
-    //     setDays({...days,
-    //         work: stateTotal.work})
-    // }
-    // if(stateTotal.weekend){
-    //     setDays({...days,
-    //         weekend: stateTotal.weekend})
-    // }
-    // if(stateTotal.week){
-    //     setDays({...days,
-    //         week: stateTotal.week})
-    // }
-
-
     setDays({
         since: stateTotal.since,
         till: stateTotal.till,
@@ -87,25 +62,27 @@ useEffect(()=>{
 
 
 
-
+console.log(stateBasket.length)
 function deleteFromBasket(e){
     console.log(JSON.parse(e.currentTarget.name))
-    dispatch(totalDaysActions.since(''))
-     dispatch(totalDaysActions.till(''))
-     dispatch(totalDaysActions.totalDays({ 
-        work:null,
-        weekend:null,
-        week:null,
-        month:null,}))
-    dispatch(orderActions.removeGood(JSON.parse(e.currentTarget.name)))
+    
+    if(stateBasket.length==1){
+
+        dispatch(totalDaysActions.since(''))
+         dispatch(totalDaysActions.till(''))
+         dispatch(totalDaysActions.totalDays({ 
+            work:0,
+            weekend:0,
+            week:0,
+            month:0,}))
+        dispatch(orderActions.removeGood(JSON.parse(e.currentTarget.name)))
+
+    } else if(stateBasket.length>1){
+        
+        dispatch(orderActions.removeGood(JSON.parse(e.currentTarget.name)))
+    }
 }
 
-
-// function priceHandler(e){
-//     console.log(e.currentTarget.name)
-//     setTotal(total+e.currentTarget.name)
-//     // dispatch(totalDaysActions.totalPrice(days.month*item.month_price + days.week*item.week_price + days.weekend*item.weekend_price +days.work*item.work_price))
-// }
 
 useEffect(()=>{
    
@@ -126,6 +103,7 @@ useEffect(()=>{
         }
     }
 
+    
     dispatch(totalDaysActions.totalPrice(price))
 
 },[stateBasket,days])
@@ -185,7 +163,6 @@ function dateHandler(){
         }
     }   
         
-    
         setDays({...days,
             work:daysDescr.work,
             weekend:daysDescr.weekend,
@@ -196,6 +173,7 @@ function dateHandler(){
         dispatch(totalDaysActions.totalDays(daysDescr))
     
 }
+
 
 
 
@@ -240,10 +218,10 @@ return(
                                 <p className="heavy">{item.model}</p>
                             </div>
 
-                            <p className="fixedWidth"><span className="day">{days.work}</span> <span className='pricesmall'>{item.work_price} UAH</span></p>
-                            <p className="fixedWidth"><span className="day">{days.weekend}</span><span className='pricesmall'>{item.weekend_price} UAH</span></p>
-                            <p className="fixedWidth"><span className="day">{days.week}</span><span className='pricesmall'>{item.week_price} UAH</span></p>
-                            <p className="fixedWidth"><span className="day">{days.month}</span> <span className='pricesmall'>{item.month_price} UAH</span></p>
+                            <p className="fixedWidth"><span className="day">{days.work || 0}</span> <span className='pricesmall'>{item.work_price} UAH</span></p>
+                            <p className="fixedWidth"><span className="day">{days.weekend ||0}</span><span className='pricesmall'>{item.weekend_price} UAH</span></p>
+                            <p className="fixedWidth"><span className="day">{days.week || 0}</span><span className='pricesmall'>{item.week_price} UAH</span></p>
+                            <p className="fixedWidth"><span className="day">{days.month || 0}</span> <span className='pricesmall'>{item.month_price} UAH</span></p>
                             <p className="fixedWidth"> <span className='day' >{days.month*item.month_price + days.week*item.week_price + days.weekend*item.weekend_price +days.work*item.work_price} UAH</span></p>
                             <p className="fixedWidth"><img className="basketIMG" onClick={deleteFromBasket} name={JSON.stringify(item)} src="/imagesHTML/icons/delete.png"/></p>
                         </div>
@@ -252,7 +230,7 @@ return(
                 )}  
             
             <button className="confirm-btn total">Всього: {stateTotalPrice} UAH </button>
-            <Link to='/ordersConfirmation'><button className="confirm-btn">Оформити замовлення</button></Link>
+            <Link to='/ordersConfirmation'><button className="confirm-btn">ОФОРМИТИ ЗАМОВЛЕННЯ</button></Link>
             </div>
         </div>
     </main>
