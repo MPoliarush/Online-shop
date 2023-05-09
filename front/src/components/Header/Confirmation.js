@@ -91,6 +91,7 @@ function deliveryTypeHandler(e){
             post:false,
            postalDetails:{}
         })
+       
     }
 }
 
@@ -160,32 +161,34 @@ return(
                         <div className="delivery">
                             <h3>Доставка товару</h3>
 
-                            <div className='deleveryType' onChange={deliveryTypeHandler} >
-                                <p>Спосіб доставки:</p>
-                                <div className='input-div'><input type='radio'  name='Самовивіз' value='Самовивіз' checked={active.self==true ? true :false}/><label >Самовивіз</label></div>
-                                <div className='input-div'><input type='radio'  name='Нова' value='Нова' checked={active.post==true ? true :false} /><label >Нова Пошта</label></div>
-                            </div>
-
-                            {active.post==true ? 
-                            <div>
-                                <div className="chooseCity">
-                                    <label>Місто:</label>
-                                    <input type="text" onChange={cityHandler}/>
+                            <div >
+                                <div className='deleveryType' onChange={deliveryTypeHandler} >
+                                    <p>Спосіб доставки:</p>
+                                    <div className='input-div'><input type='radio'  name='Самовивіз' value='Самовивіз' checked={active.self==true ? true :false}/><label >Самовивіз</label></div>
+                                    <div className='input-div'><input type='radio'  name='Нова' value='Нова' checked={active.post==true ? true :false} /><label >Нова Пошта</label></div>
                                 </div>
 
-                                <div class='post-point'>
-                                    <label>Вибір відділення Нової Пошти</label>
-                                   
-                                    <select className="postSelect" onChange={postalNumberHandler}> 
-                                        { postPoints.map(point=>{
-                                                return <option className="option" value={point.Description}>{point.Description} </option>
-                                        }) }
-                                    </select>  
-                                        
+                                {active.post==true ? 
+                                <div className="deliv-wrapp">
+                                    <div className="chooseCity">
+                                        <label>Місто:</label>
+                                        <input type="text" onChange={cityHandler}/>
+                                    </div>
+
+                                    <div class='post-point'>
+                                        <label>Вибір відділення Нової Пошти</label>
+                                    
+                                        <select className="postSelect" onChange={postalNumberHandler}> 
+                                            { postPoints.map(point=>{
+                                                    return <option className="option" value={point.Description}>{point.Description} </option>
+                                            }) }
+                                        </select>  
+                                            
+                                    </div>
                                 </div>
+                                : ""
+                                }
                             </div>
-                            : ""
-                            }
                         </div>
 
 

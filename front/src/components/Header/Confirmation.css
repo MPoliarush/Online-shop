@@ -41,6 +41,7 @@
 .postSelect{
     padding: 10px 15px;
     width:fit-content;
+    max-width: 470px;
     min-width: 300px;
 }
 
@@ -67,7 +68,7 @@ margin-bottom: 30px;
 }
 
 .chooseCity{
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 .chooseCity label{
@@ -76,4 +77,10 @@ margin-bottom: 30px;
 
 .chooseCity input{
 padding: 5px 10px;
+}
+
+.deliv-wrapp{
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+    width: fit-content;
+   padding: 25px 45px ;
 }

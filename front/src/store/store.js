@@ -72,10 +72,10 @@ const clientSlice = createSlice({
 const totalDaysBasic = {
     since:0,
     till:0,
-    work:null,
-    weekend:null,
-    week:null,
-    month:null,
+    work:0,
+    weekend:0,
+    week:0,
+    month:0,
     totalPrice:0
 }
 const totalDaysSlice = createSlice({
@@ -84,7 +84,6 @@ const totalDaysSlice = createSlice({
     reducers:{
         totalDays(state,action){
           
-            
             state.work = action.payload.work
             state.weekend = action.payload.weekend
             state.week = action.payload.week

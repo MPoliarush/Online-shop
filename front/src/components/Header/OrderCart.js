@@ -20,63 +20,83 @@ function OrderCart(){
     const [total,setTotal] = useState(0)
 
 const stateBasket = useSelector(state=>state.basketOrders.goods)
-console.log(stateBasket)
+// console.log(stateBasket)
 const stateTotalPrice = useSelector(state=>state.rentalDays.totalPrice)
 const stateTotal = useSelector(state=>state.rentalDays)
 
 const dispatch = useDispatch()
 
-
+console.log(stateTotal)
+console.log(days)
 
 function startDaysHandler(e){
-    console.log(e.target.value)
+    
     setDays({...days,
         since: e.target.value})
     dispatch(totalDaysActions.since(e.target.value))
+    console.log('changed')
 }
 
 function endDaysHandler(e){
-    console.log(e.target.value)
+ 
     setDays({...days,
         till: e.target.value})
     dispatch(totalDaysActions.till(e.target.value))
+    console.log('changed')
 }
 
 useEffect(()=>{
-    console.log(stateTotal)
-    console.log(stateTotal.since)
-    if(stateTotal.since){
-        setDays({...days,
-            since: stateTotal.since
-        })
-    }
-    if(stateTotal.till){
-        setDays({...days,
-            since: stateTotal.till
-        })
-    }
+  
+    // if(stateTotal.since && stateTotal.till){
+    //     setDays({
+    //         since: stateTotal.since,
+    //         till: stateTotal.till
+    //     })
+    // }
+    // // if(stateTotal.till){
+    // //     setDays({...days,
+    // //         till: stateTotal.till
+    // //     })
+    // // }
 
 
-    if(stateTotal.work){
-        setDays({...days,
-            work: stateTotal.work})
-    }
-    if(stateTotal.weekend){
-        setDays({...days,
-            weekend: stateTotal.weekend})
-    }
-    if(stateTotal.week){
-        setDays({...days,
-            week: stateTotal.week})
-    }
+    // if(stateTotal.work){
+    //     setDays({...days,
+    //         work: stateTotal.work})
+    // }
+    // if(stateTotal.weekend){
+    //     setDays({...days,
+    //         weekend: stateTotal.weekend})
+    // }
+    // if(stateTotal.week){
+    //     setDays({...days,
+    //         week: stateTotal.week})
+    // }
+
+
+    setDays({
+        since: stateTotal.since,
+        till: stateTotal.till,
+        work: stateTotal.work,
+        weekend: stateTotal.weekend,
+        week: stateTotal.week,
+        month:0
+    })
     
-},[])
+},[stateTotal])
 
 
 
 
 function deleteFromBasket(e){
     console.log(JSON.parse(e.currentTarget.name))
+    dispatch(totalDaysActions.since(''))
+     dispatch(totalDaysActions.till(''))
+     dispatch(totalDaysActions.totalDays({ 
+        work:null,
+        weekend:null,
+        week:null,
+        month:null,}))
     dispatch(orderActions.removeGood(JSON.parse(e.currentTarget.name)))
 }
 
@@ -94,18 +114,17 @@ useEffect(()=>{
         
         if(days.work>0){
             price = price + days.work*item.work_price
-            console.log(price)
+            // console.log(price)
         }
          if(days.weekend>0){
             price = price + days.work*item.weekend_price
-            console.log(price)
+            // console.log(price)
         }
          if(days.week>0){
             price = price + days.week*item.week_price
-            console.log(price)
+            // console.log(price)
         }
     }
-    console.log(price)
 
     dispatch(totalDaysActions.totalPrice(price))
 
