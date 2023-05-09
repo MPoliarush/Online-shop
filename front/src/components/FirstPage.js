@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import {Link} from 'react-router-dom'
 import axios from "axios";
 
 import Cart from './Cart'
@@ -85,8 +86,8 @@ useEffect(()=>{
             <h3>ВИ <span>ШУКАЄТЕ</span> ЩОСЬ КОНКРЕТНЕ?</h3>
             <p>Проект Fotoprokat24 є агрегатором пропозицій всіх фотопрокатів міста та служить для Вашої зручності. Виберіть потрібну категорію, або почніть пошук за назвою. Оформивши замовлення, Ви зможете забрати його з Пункту Видачі або замовити доставку в будь-яку точку міста.</p>
             <div className='third-page-btns'>
-              <button className='thirt-page-button'>ПЕРЕЙТИ В КАТАЛОГ ФОТОКАМЕР</button>
-              <button className='thirt-page-button'>ПЕРЕЙТИ В КАТАЛОГ ЛІНЗ</button>
+              <Link to='/cameras'><button className='thirt-page-button'>ПЕРЕЙТИ В КАТАЛОГ ФОТОКАМЕР</button></Link>
+              <Link to='/linses'><button className='thirt-page-button'>ПЕРЕЙТИ В КАТАЛОГ ЛІНЗ</button></Link>
             </div>
           </div>
         </div>

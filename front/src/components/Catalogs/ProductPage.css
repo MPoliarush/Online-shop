@@ -2,7 +2,8 @@
 
 .single{
     display: flex;
-    gap:80px;
+    flex-wrap: wrap;
+    gap:40px;
 }
 
 .main-header{
@@ -14,7 +15,7 @@
     border: solid  #EFEFEF 1px;
     margin-top: 20px;
     align-items: flex-start;
-    width:90%;
+   
     display: flex;
     justify-content: space-between;
    
@@ -33,7 +34,7 @@
 
 .product-img-wrapper-single img{
     width:90%;
-    min-width: 250px;
+    /* min-width: 250px; */
     object-fit: contain;
     transition: 0.5s;
 }
