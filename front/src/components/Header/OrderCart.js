@@ -94,7 +94,7 @@ useEffect(()=>{
             // console.log(price)
         }
          if(days.weekend>0){
-            price = price + days.work*item.weekend_price
+            price = price + days.weekend*item.weekend_price
             // console.log(price)
         }
          if(days.week>0){
