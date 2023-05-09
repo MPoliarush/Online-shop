@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import {useNavigate} from 'react-router-dom'
 import { useSelector,useDispatch } from "react-redux"
 import {clientActions} from '../../../store/store'
-
+import Footer from '../../Footer';
 
 function Authorized(){
     const [activeInputs,setActiveInputs] = useState({
@@ -291,7 +291,7 @@ return(
                             <span  className="fixedWidth name">Назва</span>
                             <span  className="fixedWidth">Дата замовлення</span>
                             <span  className="fixedWidth">Днів</span>
-                            <span className="fixedWidth">Всього вартість</span>
+                            <span className="fixedWidth">Всього вартість,UAH</span>
                             <span className="fixedWidth">Блабла</span>
                         </div>
 
@@ -322,7 +322,7 @@ return(
                             )
                           }) 
                         }
-                        <button className="confirm-btn total">Всього: 0 UAH </button>
+                       
 
                     </div>
                 </div>
@@ -330,7 +330,7 @@ return(
             </div>
         </div>
     </main>
-
+    <Footer></Footer>
     </>
 )
 }

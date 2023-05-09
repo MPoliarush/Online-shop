@@ -45,7 +45,7 @@ uniqueBrands = fetchedData.map(item=>{
     return item.brand
 })
 uniqueType = fetchedData.map(item=>{
-    return item.type
+    return item.linseType
 })
 const single = [...new Set(uniqueChars)]
 const singleBrand = [...new Set(uniqueBrands)]
@@ -272,26 +272,7 @@ return (
                                 </ul>
                                
                             </div>
-                            <div className='select-block' onChange={inputHandler}>
-                                <p>Глибина зображення</p>
-                                <ul>
-                                    {single.map(item=>{
-                                        
-                                        return (
-                                            <div><input type='checkbox' id={item} name='imgdepth' value={item}/><label htmlFor={item}>{item}</label></div>
-                                            )
-                                        })
-                                    }
-                                </ul>
-                                
-                                
-                            </div>
-                            <div className='select-block' onChange={inputHandler}>
-                                <p>Відео</p>
-                                <div><input type='checkbox' id='3К' name='video' value='3К'/><label htmlFor='3К'>3К</label></div>
-                                <div><input type='checkbox' id='4К' name='video' value='4К'/><label htmlFor='4К'>4К</label></div>
-                                <div><input type='checkbox' id='FullHD' name='video' value='FullHD'/><label htmlFor='FullHD'>FullHD</label></div>
-                            </div>
+                           
                             <div className='select-block' onChange={inputHandler}>
                                 <p>Ціна за день, грн</p>
                                 <div className='range'><input type="range" name='maxPrice' min="1" max="300" id="myRange" value onChange={rangeValue}/><label htmlFor='FullHD'>{rangeVal}</label></div>
