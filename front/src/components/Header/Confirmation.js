@@ -219,6 +219,7 @@ return(
                                             <label>Вибір відділення Нової Пошти</label>
                                         
                                             <select className="postSelect" onChange={postalNumberHandler}> 
+                                            
                                                 { postPoints.map(point=>{
                                                         return <option className="option" value={point.Description}>{point.Description} </option>
                                                 }) }

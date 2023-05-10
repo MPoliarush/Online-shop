@@ -4,6 +4,7 @@ import './components/FirstPage.css'
 import './components/Header/Header.css'
 import './components/Header/OrderCart.css'
 import './components/Header/Confirmation.css'
+import './components/Header/Comparison.css'
 
 import './components/Header/Login/Login.css'
 import './components/Header/Login/Registration.css'
