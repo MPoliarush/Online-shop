@@ -62,7 +62,7 @@ useEffect(()=>{
 
 
 
-console.log(stateBasket.length)
+
 function deleteFromBasket(e){
     console.log(JSON.parse(e.currentTarget.name))
     
@@ -135,29 +135,36 @@ function dateHandler(){
     }
     
     if (alldays.length%7 == 0){
-       
+       console.log(alldays.length/7)
         daysDescr.week = alldays.length/7
     } 
     
     if(alldays.length<7){
         for(let i=0;i<alldays.length;i++){  
             if (alldays[i] == 6 || alldays[i] == 0){
+                console.log('logged ')
                 daysDescr.weekend = daysDescr.weekend+ 1
             } else {
+                console.log('logged here')
                 daysDescr.work = daysDescr.work+ 1
             }
         }
     }
     
     if (alldays.length%7 > 0 && alldays.length > 7){
-        
-        daysDescr.week = alldays.length/7 - (alldays.length/7-1)
+        console.log(alldays,   alldays.length,  alldays.length%7, alldays.length/7 )
+        console.log(alldays.length/7 - (alldays.length/7 - Math.floor(alldays.length/7)) )
+        daysDescr.week = alldays.length/7 - (alldays.length/7 - Math.floor(alldays.length/7))
         alldays = alldays.slice(-(alldays.length - 7*daysDescr.week))
-      
+
+        console.log(alldays)
+
         for(let i=0;i<alldays.length;i++){  
             if (alldays[i] == 6 || alldays[i] == 0){
+                console.log('logged here')
                 daysDescr.weekend = daysDescr.weekend+ 1
             } else {
+                console.log('logged here')
                 daysDescr.work = daysDescr.work+ 1
             }
         }
