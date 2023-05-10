@@ -131,7 +131,6 @@
 
   .iconNumber{
     position: absolute;
-    vertical-align: super;
     font-size: 10px;
     color: white;
     font-weight: 700;
@@ -143,4 +142,6 @@
 
   .iconNumber.clientName{
     top:35px;
+    position: relative;
+    top:-17px;
   }

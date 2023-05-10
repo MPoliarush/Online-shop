@@ -315,7 +315,7 @@ return(
                                         })}
                                     </span>
                                     <span  className="fixedWidth oldOrder">{order.dayOfOrder}</span>
-                                    <span  className="fixedWidth oldOrder"> <span className='period-span'>{order.daysAndPrice.since}</span> -  <span className='period-span'>{order.daysAndPrice.till}</span></span>
+                                    <span  className="fixedWidth oldOrder"> <span className='period-span'>{order.daysAndPrice.since}</span> <span className='period-span'>{order.daysAndPrice.till}</span></span>
                                     <span className="fixedWidth oldOrder">{order.daysAndPrice.totalPrice}</span>
                                     <span className="fixedWidth oldOrder"></span>
                                 </div>
