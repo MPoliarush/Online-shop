@@ -74,6 +74,10 @@ top:-10px;
 right: 5px;
 }
 
+.block-nav:hover{
+    cursor: pointer;
+}
+
 .block-nav img{
 margin-bottom: 10px;
 }
