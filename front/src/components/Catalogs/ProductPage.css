@@ -169,8 +169,8 @@ color: #75758A;
     display: flex;
     justify-content: space-between;
     width: 70%;
-    border-top:#eeeded solid 2px;
-    border-bottom:#eeeded solid 2px;
+    
+    border-bottom:#eeeded solid 1px;
     padding: 10px 0;
 }
 .details-block span:nth-child(2){

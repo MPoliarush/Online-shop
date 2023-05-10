@@ -290,7 +290,7 @@ return(
                             <span  className="fixedWidth">Фото</span>
                             <span  className="fixedWidth name">Назва</span>
                             <span  className="fixedWidth">Дата замовлення</span>
-                            <span  className="fixedWidth">Днів</span>
+                            <span  className="fixedWidth">Період</span>
                             <span className="fixedWidth">Всього вартість, UAH</span>
                             <span className="fixedWidth">Блабла</span>
                         </div>
@@ -315,7 +315,7 @@ return(
                                         })}
                                     </span>
                                     <span  className="fixedWidth oldOrder">{order.dayOfOrder}</span>
-                                    <span  className="fixedWidth oldOrder">{order.daysAndPrice.work +order.daysAndPrice.weekend}</span>
+                                    <span  className="fixedWidth oldOrder"> <span className='period-span'>{order.daysAndPrice.since}</span> -  <span className='period-span'>{order.daysAndPrice.till}</span></span>
                                     <span className="fixedWidth oldOrder">{order.daysAndPrice.totalPrice}</span>
                                     <span className="fixedWidth oldOrder"></span>
                                 </div>
