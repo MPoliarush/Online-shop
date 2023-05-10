@@ -39,6 +39,7 @@ function ProductPage(){
         details:false
     })
     const [fetchedData, setFetchedData] = useState([])
+    const [fetchedDataFiltered, setFetchedDataFiltered] = useState([])
     const [added,setAdded] = useState("В кошик")
     const [compared,setCompared] = useState('http://localhost:3000/imagesHTML/icons/compare.png')
     const params = useParams()
@@ -54,6 +55,10 @@ async function getInfo () {
         const response = await axios("http://localhost:5000/products")
         
         setFetchedData(response.data)
+        let filtered = response.data.filter(item=>{
+            return item._id != params.id
+        })
+        setFetchedDataFiltered(filtered)
     }catch(e){
         console.log(e.response)
     }
@@ -173,11 +178,13 @@ useEffect(()=>{
 function addToBasket(){
    
     if(added=='В кошик'){
+        console.log('В кошик')
         dispatch(orderActions.addGood(input))
         setAdded('Додано!')
     } else {
+        console.log('Додано!')
         dispatch(orderActions.removeGood(input))
-        setAdded('В кошик!')
+        setAdded('В кошик')
     }
 }
 
@@ -275,7 +282,7 @@ function addToCompare(e){
                         <img className='arrow-left' src={process.env.PUBLIC_URL + '/imagesHTML/icons/right.png'} alt='user'/>
                         <div className='slider-visible-wrapper'>
                             <ul className='slider-string'>
-                                {fetchedData.map( item=>{
+                                {fetchedDataFiltered.map( item=>{
                                     return  <Cart key= {Math.random()} itemData={item}></Cart>
                                     })
                                 }

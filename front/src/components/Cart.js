@@ -7,7 +7,7 @@ import {orderActions, compareActions} from '../store/store'
 function Cart(props){
 // const params = useParams()
 // console.log(params.id)
-console.log(props.itemData)
+// console.log(props.itemData)
 const[cartPathNew, setCartPathNew] = useState('')
 const [added,setAdded] = useState("В кошик")
 const [compared,setCompared] = useState('http://localhost:3000/imagesHTML/icons/compare.png')
