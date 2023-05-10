@@ -60,6 +60,10 @@
     margin-top: 50px;
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator{
+    cursor: pointer;
+}
+
 .fixedWidth{
     width:15%;
     text-align: center;
@@ -99,6 +103,10 @@ padding: 10px 0;
 
 .basketIMG{
     width: 25%;
+}
+
+.basketIMG:hover{
+    cursor: pointer;
 }
 
 /* .name{
@@ -145,7 +153,7 @@ padding: 10px 0;
     transition: 0.5s;
 }
 
-.confirm-btn:hover, .confirm-btn.date:hover{
+.confirm-btn:hover{
 cursor: pointer;
 transition: 0.5s;
 background-color: #95f506;
@@ -155,6 +163,10 @@ background-color: #95f506;
     bottom:-90px;
     background-color: transparent;
     font-size: 22px;
+}
+
+.confirm-btn.total:hover{
+    cursor:auto;
 }
 
 .confirm-btn.date{

@@ -52,8 +52,19 @@ font-size: 15px;
 
 .fixedWidth.oldOrder{
 color: black;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+
+.fixedWidth.oldOrder.name div{
+margin: 7px 0;
 }
 
 .oldImgs{
+    
+    
     width:45%;
+    margin-top: 15px;
 }

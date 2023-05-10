@@ -291,7 +291,7 @@ return(
                             <span  className="fixedWidth name">Назва</span>
                             <span  className="fixedWidth">Дата замовлення</span>
                             <span  className="fixedWidth">Днів</span>
-                            <span className="fixedWidth">Всього вартість,UAH</span>
+                            <span className="fixedWidth">Всього вартість, UAH</span>
                             <span className="fixedWidth">Блабла</span>
                         </div>
 

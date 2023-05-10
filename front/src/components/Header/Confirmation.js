@@ -173,7 +173,7 @@ return(
                                 <span  className="fixedWidth">Фото</span>
                                 <span  className="fixedWidth">Назва</span>
                                 <span  className="fixedWidth">Днів</span>
-                                <span  className="fixedWidth">Тижнів</span>
+                                <span  className="fixedWidth">Період</span>
                                 
                             </div>
 
@@ -186,8 +186,8 @@ return(
                                                 <p className="heavy">{item.model}</p>
                                             </div>
 
-                                            <p className="fixedWidth"> <span className=''>{stateTotal.work+ stateTotal.weekend} </span></p>
-                                            <p className="fixedWidth"> <span className=''>{stateTotal.week} </span></p>
+                                            <p className="fixedWidth"> <span>{stateTotal.work+ stateTotal.weekend} </span></p>
+                                            <p className="fixedWidth"> <span className='period-span'>{stateTotal.since}</span> <span className='period-span'>{stateTotal.till}</span></p>
                                         
                                         </div>
                                     )
