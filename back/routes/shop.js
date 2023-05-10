@@ -31,12 +31,35 @@ router.get('/products',async (req,res)=>{
        let resultCameras = await db.getDb().collection('cameras').find().toArray()
        let resultLinses = await db.getDb().collection('linses').find().toArray()
        result = resultCameras.concat(resultLinses)
+       console.log(result)
    }  catch(error) {
       
    }
 
    res.send(result)
 })
+
+router.get('/products/:id',async (req,res)=>{
+   const selectedId= req.params.id
+   console.log(req.params.id)
+   let result;
+   try{
+      result = await db.getDb().collection('cameras').findOne({_id:new ObjectId(selectedId)})
+      console.log('logged in try')
+   
+      if(!result){
+         result = await db.getDb().collection('linses').findOne({_id:new ObjectId(selectedId)})
+         console.log('logged in catch')
+      } 
+      
+   }  catch(error) {
+     
+   }
+console.log(result)
+   res.send(result)
+})
+
+
 
 
 router.get('/cameras',async (req,res)=>{
@@ -109,7 +132,6 @@ router.get('/linses',async (req,res)=>{
 
 
 
-
 router.post('/admin',upload.array("imgS"), async (req,res)=>{
 
    const imgS = req.files
@@ -143,7 +165,9 @@ try{
       linseType:data.linseType,
       linceLength: data.linceLength,
       availability:data.availability,
-      img1:imgS
+      description:data.description,
+      img1:imgS,
+      
    }
   
    if(newItem.typeGoods=="Фотокамера"){
@@ -158,63 +182,36 @@ try{
    console.log(error);
 }
 
+res.send('Product was added!!!')
+
 })
 
 
 
 
-// router.post('/admin/update/:id', async (req,res)=>{
-   
-//    console.log(req.params.id)
-//    const productId = req.params.id;
-//    // const imgS = req.files
-//    // console.log(imgS)
-   
-//    const rawData = req.body
-//    // const data = JSON.parse(rawData)
 
-// console.log(rawData)
- 
-// try{
-//    const newItem = {
-//       typeGoods:rawData.typeGoods,
-//       brand: rawData.brand,
-//       model: rawData.model,
-//       imgdepth:rawData.imgdepth,
-//       type:rawData.type,
-//       matrix:rawData.matrix,
-//       mpx:rawData.mpx,
-//       video:rawData.video,
-//       exposition:rawData.exposition,
-//       width:rawData.width,
-//       height:rawData.height,
-//       depth:rawData.depth,
-//       weight:rawData.weight,
-//       work_price:rawData.work_price,
-//       weekend_price:rawData.weekend_price,
-//       week_price:rawData.week_price,
-//       month_price:rawData.month_price,
-//       min_focus_length:rawData.min_focus_length,
-//       diametr:rawData.diametr,
-//       linseType:rawData.linseType,
-//       linceLength: rawData.linceLength,
-//       availability:rawData.availability,
+router.post('/admin/delete/:id', async (req,res)=>{
+   const deletedId= req.params.id
+   console.log(deletedId)
+   const rawData = req.body
+   console.log(rawData)
+   try{
       
-//    }
-  
-//    if(newItem.typeGoods=="Фотокамера"){
-//       const result = await db.getDb().collection('cameras').updateOne( {_id:new ObjectId(productId)}, {$set : newItem} )
-//       console.log(result)
-//    } else if (newItem.typeGoods=="Лінза"){
-//       const result = await db.getDb().collection('linses').updateOne( {_id: new ObjectId(productId)}, {$set :newItem} )
-//       console.log(result)
-//    }
+      if(rawData.typeGoods=="Фотокамера"){
+         console.log('proccseed')
+         const result = await db.getDb().collection('cameras').deleteOne({_id:new ObjectId(deletedId)})
+         console.log(result)
+      } else if (rawData.typeGoods=="Лінза"){
+         const result = await db.getDb().collection('linses').deleteOne({_id:new ObjectId(deletedId)})
+         console.log(result)
+      }
+      
+   }catch(e){
+      console.log(e);
+   }
+})
 
-// }  catch(error) {
-//    console.log(error);
-// }
 
-// })
 
 
 router.post('/admin/update/:id',upload.array("imgS"), async (req,res)=>{
@@ -260,7 +257,9 @@ try{
          linseType:rawData.linseType,
          linceLength: rawData.linceLength,
          availability:rawData.availability,
-         img1:rawData.img1
+         description:rawData.description,
+         img1:rawData.img1,
+         
       }
       
      
@@ -302,7 +301,9 @@ try{
             linseType:rawData.linseType,
             linceLength: rawData.linceLength,
             availability:rawData.availability,
-            img1:rawData.img1
+            description:rawData.description,
+            img1:rawData.img1,
+            
          }
          
       
@@ -321,11 +322,86 @@ try{
       console.log(error);
 }
 
-  
+})
+
+
+
+
+router.post('/newClient', async (req,res)=>{
+
+   // console.log(req.body)
+   try{
+    const saveClient =await db.getDb().collection('clients').insertOne(req.body)
+   }catch(e){
+
+   }
 
 })
 
 
+router.post('/getClient',async (req,res)=>{
+   // console.log(req.body)
+   let findClient
+   try{
+       findClient = await db.getDb().collection('clients').findOne({email:req.body.login})
+      //  console.log(findClient)
+     }catch(e){
+      findClient = 'error'
+     }
+   res.send(findClient)
+})
+
+
+router.post('/clientUpdate', async (req,res)=>{
+   // console.log(req.body)
+   // console.log(req.body._id)
+
+   const updated = {
+        name:req.body.name,
+        surname:req.body.surname,
+        second:req.body.second,
+        mobile:req.body.mobile,
+        email:req.body.email,
+        password:req.body.password
+   }
+   try{
+      const oldData = await db.getDb().collection('clients').updateOne({_id:new ObjectId(req.body._id)}, {$set : updated})
+      console.log('updated')
+   }catch(e){
+      console.log(e)
+   }
+
+})
+
+
+
+router.post('/orderCompleted',async (req,res)=>{
+   // console.log(req.body.person.login)
+  const order = req.body
+   try{
+      //  const result = await db.getDb.collection('clients').updateOne({email:req.body.person.login}, {$set : {orders: req.body}})
+      let data = await db.getDb().collection('clients').findOne({email:req.body.person.login})
+    
+      const findClient = await db.getDb().collection('clients').updateOne({email:req.body.person.login},{$push : {orders: order}})
+       console.log(findClient)
+     }catch(e){
+      findClient = 'error'
+     }
+
+})
+
+
+router.post('/getOrderHistory',async (req,res)=>{
+   
+   let findClient
+   try{
+       findClient = await db.getDb().collection('clients').findOne({email:req.body.login})
+       console.log(findClient)
+     }catch(e){
+      findClient = 'error'
+     }
+   res.send(findClient)
+})
 
 
 module.exports = router
