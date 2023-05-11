@@ -4,7 +4,7 @@
 }
 
 .compare-goods-span{
-    margin-right: 30px;
+    /* margin-right: 30px; */
 }
 .block-separator{
     border-top: #EFEFEF 1px solid;
@@ -69,6 +69,15 @@
     cursor: pointer;
 }
 
+.compare-goods-span:hover{
+cursor: pointer;
+}
+
 .compare-goods-span.active{
-    color: green;
+    color: rgb(73, 190, 5);
+    font-weight: 700;
+}
+
+.num{
+    margin-right: 30px;
 }
