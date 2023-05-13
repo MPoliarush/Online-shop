@@ -14,6 +14,7 @@ function Comparison(){
 
     const [goodsSet,setGoodsSet] = useState([])
     const [goodsQuantity,setGoodsQuantity] = useState({})
+    const [added,setAdded] = useState("Замовити")
 
     const[active,setActive] = useState('')
 
@@ -66,6 +67,19 @@ function Comparison(){
             setActive(e.target.innerText)
         }
 
+    }
+
+    function addToBasket(item){
+    //    console.log(item)
+            if(added=='Замовити'){
+                dispatch(orderActions.addGood(item))
+                setAdded('Додано!')
+            } else {
+                dispatch(orderActions.removeGood(item))
+                setAdded('Замовити')
+            }
+           
+        
     }
 
     console.log(goodsQuantity)
@@ -319,8 +333,9 @@ function Comparison(){
                             <li className="head"></li>
                                 <div className="content-line"> 
                                     {goodsQuantity.Фотокамера.map(item=>{
+                                        console.log(item)
                                         return (
-                                            <li className="add-to-basket">Замовити</li>
+                                            <li className="add-to-basket add-compare" onClick={()=>{addToBasket(item)}}>{added}</li>
                                         )
                                     })}
                                 </div>
@@ -429,7 +444,7 @@ function Comparison(){
                                 <div className="content-line"> 
                                     {goodsQuantity.Лінза.map(item=>{
                                         return (
-                                            <li className="add-to-basket">Замовити</li>
+                                            <li className="add-to-basket add-compare" onClick={addToBasket}>{added}</li>
                                         )
                                     })}
                                 </div>

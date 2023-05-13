@@ -52,6 +52,8 @@ function addToBasket(){
    
 }
 
+
+
 function addToCompare(e){
     console.log(e.currentTarget.src)
     if(e.currentTarget.src == 'http://localhost:3000/imagesHTML/icons/done.png'){

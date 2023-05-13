@@ -25,7 +25,9 @@ const orderSlice = createSlice({
                 return action.payload._id !== good._id
             })
             state.goods = filteredGoods
+           
             console.log('removed')
+
         }
     }
 })

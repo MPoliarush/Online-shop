@@ -1,3 +1,8 @@
+
+/* *{
+    border: solid 1px;
+} */
+
 .compare-goods{
     margin-top: 30px;
     margin-bottom: 50px;
@@ -35,6 +40,7 @@
 .content-line{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     width: 70%;
 }
 
@@ -58,11 +64,14 @@
 .compareImgs{
     position: relative;
     height: 100px;
+    width:fit-content;
     padding: 15px 0;
 }
 
 .compare-delete{
-    position: absolute;
+    display: block;
+    position: relative;
+  margin: 0 auto;
     width: 30px;
 }
 .compare-delete:hover{
@@ -80,4 +89,9 @@ cursor: pointer;
 
 .num{
     margin-right: 30px;
+}
+
+.add-to-basket.add-compare{
+   
+   width:180px;
 }
