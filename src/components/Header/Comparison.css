@@ -84,6 +84,10 @@ cursor: pointer;
     margin-top: 10px;
 }
 
+.delete-compar-btn:hover{
+    cursor: pointer;
+}
+
 .photoBlock{
     height: 140px;
     display: flex;
