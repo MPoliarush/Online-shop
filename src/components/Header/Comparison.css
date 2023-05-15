@@ -59,7 +59,7 @@ cursor: pointer;
 }
 
 .column{
-    width:25%;
+    width:180px;
     text-align: center;
 }
 
@@ -69,6 +69,7 @@ cursor: pointer;
    justify-content: left;
    overflow-x: scroll;
    gap:3%;
+   min-width:180px
 }
 
 
