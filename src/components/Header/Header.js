@@ -13,7 +13,7 @@ let navigate = useNavigate();
 
 
 const [clientName,setClientName] = useState('')
-console.log(clientName)
+// console.log(clientName)
 
 
 function catalogHover(event){

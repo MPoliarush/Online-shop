@@ -88,3 +88,8 @@ padding: 5px 10px;
 .period-span{
     display: block;
 }
+
+.data{
+    display: flex;
+}
+

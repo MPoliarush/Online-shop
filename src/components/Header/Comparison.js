@@ -2,14 +2,15 @@ import { useEffect, useState } from "react"
 import { useSelector,useDispatch } from "react-redux"
 import {orderActions,compareActions} from '../../store/store'
 import Footer from '../Footer';
-import axios from "axios";
+import ComparedItem from "./CoparedItem";
 
 
 
-function Comparison(){
+
+function Comparison(props){
 
     const stateComparison = useSelector(state=> state.comparison.items)
-    console.log(stateComparison)
+    // console.log(stateComparison)
     const dispatch =useDispatch()
 
     const [goodsSet,setGoodsSet] = useState([])
@@ -44,6 +45,9 @@ function Comparison(){
        if (stateComparison.length==0){
         return
        }
+
+
+   
         
 
     },[active,stateComparison])
@@ -57,20 +61,32 @@ function Comparison(){
     }
 
 
+    let photoLabels= []
+    let linseLabels= []
+
     function activeHandler(e){
        
         // console.log(e)
         if(e.target.outerText=='Фотокамера'){
             setActive(e.target.innerText)
+            console.log(Object.keys(goodsQuantity.Фотокамера[0]))
+            
         } else {
             setActive(e.target.innerText)
+            console.log(Object.keys(goodsQuantity.Лінза[0]))
+           
         }
-
+        
+        console.log(photoLabels)
     }
 
     console.log(goodsQuantity)
     console.log(active)
     console.log(goodsSet)
+
+   
+
+
 
     return <>
          <main>
@@ -87,7 +103,7 @@ function Comparison(){
                     }
                 </div>
 
-            { 
+            {/* { 
                 active == 'Фотокамера' && stateComparison.length>0 ?
                     <div className="cameras-compare">
                         
@@ -107,14 +123,14 @@ function Comparison(){
                             <div className="block-separator">
                             
                                 <ul className="ul-container">
-                                <li className="head">Бренд</li>
-                                    <div className="content-line"> 
-                                        {goodsQuantity.Фотокамера.map(item=>{
-                                            return (
-                                                <li>{item.brand}</li>
-                                            )
-                                        })}
-                                    </div>
+                                    <li className="head">Бренд</li>
+                                        <div className="content-line"> 
+                                            {goodsQuantity.Фотокамера.map(item=>{
+                                                return (
+                                                    <li>{item.brand}</li>
+                                                )
+                                            })}
+                                        </div>
                                 </ul>
                             </div>
                             <div className="block-separator">
@@ -480,7 +496,73 @@ function Comparison(){
                         </div>
                     </div>
                 : ''
+            } */}
+
+            { 
+                active == 'Фотокамера' && stateComparison.length>0 ?
+                    <div className="comp-wrapp">
+                        <div className="labels lables">
+                            <div className="sticky">
+                                <p className="photoBlock comparedFeature">Фото</p>
+                                <p className='comparedFeature'>Бренд</p>
+                                <p className='comparedFeature'>Модель</p>
+                            </div>
+                            <p className='comparedFeature'>Глибина зображення</p>
+                            <p className='comparedFeature'>Тип</p>
+                            <p className='comparedFeature'>Матриця</p>
+                            <p className='comparedFeature'>Роздільна здатність</p>
+                            <p className='comparedFeature'>Відео</p>
+                            <p className='comparedFeature'>Експокорекція</p>
+                            <p className='comparedFeature'>Ширина, мм</p>
+                            <p className='comparedFeature'>Висота, мм</p>
+                            <p className='comparedFeature'>Глибина, мм</p>
+                            <p className='comparedFeature'>Вага, г</p>
+                            <p className='comparedFeature'>Вартість будній, грн</p>
+                            <p className='comparedFeature'>Вартість вихідний, грн</p>
+                            <p className='comparedFeature'>Вартість тиждень, грн</p>
+                            <p className='comparedFeature'>Вартість місяць, грн</p>
+
+                        </div>
+
+                        <div className="data">
+                            { goodsQuantity.Фотокамера.map( item=>{
+                                    return <ComparedItem data={item}></ComparedItem>
+                                })
+                            }
+                        </div>
+
+                    </div>
+                : active == 'Лінза' && stateComparison.length>0 ?
+                    <div className="comp-wrapp">
+                        <div className="labels lables">
+                            <div className="sticky">
+                                <p className="photoBlock comparedFeature">Фото</p>
+                                <p className='comparedFeature'>Бренд</p>
+                                <p className='comparedFeature'>Модель</p>
+                            </div>
+                            <p className='comparedFeature'>Найменша фокусна відстань, мм</p>
+                            <p className='comparedFeature'>Діаметр, мм</p>
+                            <p className='comparedFeature'>Довжина, мм</p>
+                            <p className='comparedFeature'>Тип об'єктива</p>
+                            <p className='comparedFeature'>Вартість будній, грн</p>
+                            <p className='comparedFeature'>Вартість вихідний, грн</p>
+                            <p className='comparedFeature'>Вартість тиждень, грн</p>
+                            <p className='comparedFeature'>Вартість місяць, грн</p>
+
+                        </div>
+
+                        <div className="data">
+                            { goodsQuantity.Лінза.map( item=>{
+                                    return <ComparedItem data={item}></ComparedItem>
+                                })
+                            }
+                        </div>
+                        
+                    </div>
+                : ''
             }
+
+
             </div>
 
         </main>
