@@ -35,12 +35,16 @@ cursor: pointer;
 
 .labels{
     min-width:180px;
-    
     text-align: center;
+}
+
+.labels.lables{
+    width: 25%;
 }
 
 .labels.lables p {
     font-weight: 700;
+    
 }
 
 .comparedFeature{
@@ -55,14 +59,15 @@ cursor: pointer;
 }
 
 .column{
-    width:180px;
+    width:25%;
     text-align: center;
 }
 
 .data{
     display: flex;
    width:74%;
-   justify-content: center;
+   justify-content: left;
+   overflow-x: scroll;
    gap:3%;
 }
 
