@@ -84,7 +84,7 @@ function Comparison(props){
     return <>
          <main>
             <div className="catalog-content-container">
-            <h1 className="registration"><span>ПОРІВНЯННЯ</span> ТОВАРІВ</h1>
+            <h1 className="registration catalog-h1"><span>ПОРІВНЯННЯ</span> ТОВАРІВ</h1>
                 <div className="compare-goods">
                 
                 {goodsSet.length==0 ? <p>Немає товарів для порівняння</p>  : ''}

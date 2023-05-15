@@ -220,7 +220,7 @@ function addToCompare(e){
         <>
         <main>
             <div className="content-container-admin">
-                {input.typeGoods=="Фотокамера"? <h1 className='main-header'>ФОТОКАМЕРИ</h1> : input.typeGoods=="Лінза"? <h1 className='main-header'>ЛІНЗИ </h1>:'' }
+                {input.typeGoods=="Фотокамера"? <h1 className='catalog-h1'>ФОТОКАМЕРИ</h1> : input.typeGoods=="Лінза"? <h1 className='catalog-h1'>ЛІНЗИ </h1>:'' }
                 <div className="single">
                     <div className='cart-block'>
                         <div className='card-frame-single'>

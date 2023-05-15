@@ -189,7 +189,7 @@ return(
     <>
     <main>
         <div className = 'content-container orders'>
-            <h1 className='orders-h1'>КОШИК ТОВАРІВ</h1>
+            <h1 className='catalog-h1'>КОШИК ТОВАРІВ</h1>
             <div className='period'>
                 <div className='from'>
                     <span>З якого числа:</span>
