@@ -186,7 +186,7 @@ return(
                                                 <p className="heavy">{item.model}</p>
                                             </div>
 
-                                            <p className="fixedWidth"> <span>{stateTotal.work+ stateTotal.weekend} </span></p>
+                                            <p className="fixedWidth"> <span>{stateTotal.work+ stateTotal.weekend + stateTotal.week*7 + stateTotal.month*30} </span></p>
                                             <p className="fixedWidth"> <span className='period-span'>{stateTotal.since}</span> <span className='period-span'>{stateTotal.till}</span></p>
                                         
                                         </div>

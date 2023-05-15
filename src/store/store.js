@@ -78,12 +78,14 @@ const totalDaysBasic = {
     month:0,
     totalPrice:0
 }
+
+
 const totalDaysSlice = createSlice({
     name:'totalPrice',
     initialState:totalDaysBasic,
     reducers:{
         totalDays(state,action){
-          
+          console.log(action.payload)
             state.work = action.payload.work
             state.weekend = action.payload.weekend
             state.week = action.payload.week
@@ -95,11 +97,10 @@ const totalDaysSlice = createSlice({
            
         },
         till(state,action){
-           
             state.till = action.payload
         },
         totalPrice(state,action){
-            console.log(action.payload)
+            // console.log(action.payload)
             state.totalPrice= action.payload 
         }
         

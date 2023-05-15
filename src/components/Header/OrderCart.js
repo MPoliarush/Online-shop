@@ -55,7 +55,7 @@ useEffect(()=>{
         work: stateTotal.work,
         weekend: stateTotal.weekend,
         week: stateTotal.week,
-        month:0
+        month:stateTotal.month
     })
     
 },[stateTotal])
@@ -101,6 +101,10 @@ useEffect(()=>{
             price = price + days.week*item.week_price
             // console.log(price)
         }
+        if(days.month>0){
+            price = price + days.month*item.month_price
+            // console.log(price)
+        }
     }
 
     
@@ -133,12 +137,27 @@ function dateHandler(){
         week:0,
         month:0
     }
+
+    if(alldays.length >= 30){
+        // daysDescr.work = 0
+        // daysDescr.weekend = 0
+        // daysDescr.week = 0
+        daysDescr.month = alldays.length/30
+        setDays({...days,
+            work:0,
+            weekend:0,
+            week:0,
+            month:daysDescr.month
+        })
+        dispatch(totalDaysActions.totalDays(daysDescr))
+        return
+    }
     
     if (alldays.length%7 == 0){
        console.log(alldays.length/7)
         daysDescr.week = alldays.length/7
     } 
-    
+
     if(alldays.length<7){
         for(let i=0;i<alldays.length;i++){  
             if (alldays[i] == 6 || alldays[i] == 0){
@@ -229,7 +248,7 @@ return(
                             <p className="fixedWidth"><span className="day">{days.weekend ||0}</span><span className='pricesmall'>{item.weekend_price} UAH</span></p>
                             <p className="fixedWidth"><span className="day">{days.week || 0}</span><span className='pricesmall'>{item.week_price} UAH</span></p>
                             <p className="fixedWidth"><span className="day">{days.month || 0}</span> <span className='pricesmall'>{item.month_price} UAH</span></p>
-                            <p className="fixedWidth"> <span className='day' >{days.month*item.month_price + days.week*item.week_price + days.weekend*item.weekend_price +days.work*item.work_price} UAH</span></p>
+                            <p className="fixedWidth"> <span className='day' >{days.month*item.month_price + days.week*item.week_price + days.weekend*item.weekend_price +days.work*item.work_price || days.month*item.month_price} UAH</span></p>
                             <p className="fixedWidth"><img className="basketIMG" onClick={deleteFromBasket} name={JSON.stringify(item)} src="/imagesHTML/icons/delete.png"/></p>
                         </div>
                     )

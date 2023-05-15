@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useSelector,useDispatch } from "react-redux"
 import {orderActions,compareActions} from '../../store/store'
 import Footer from '../Footer';
-import ComparedItem from "./CoparedItem";
+import ComparedItem from "./ComparedItem";
 
 
 
