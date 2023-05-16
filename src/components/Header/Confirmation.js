@@ -163,6 +163,8 @@ useEffect(()=>{
 },[])
 
 
+const authError= <span className="authErr">Будь ласка, авторизуйтесь.</span>
+
 
 const sucsessMessage= <div className="successMessage">
 <h2>Замовлення збережено!</h2>
@@ -249,7 +251,7 @@ return(
                             
                             <button className="auth-btn-reg" onClick={confirmOrder}>ПІДТВЕРДИТИ ЗАМОВЛЕННЯ</button>
                         
-                                
+                            {!stateLogin ? authError : ''}
                             
 
                         </div>
