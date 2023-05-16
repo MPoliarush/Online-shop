@@ -7,7 +7,29 @@ body{
   max-width: 100%;
 }
 
+main{
+  animation: appearing 2s ;
+}
 
+@keyframes appearing{
+  0% {
+   
+      opacity: 0;
+
+  }
+  100% {
+   
+      opacity: 1;
+  }
+}
+
+.loading{
+  display: block;
+  width:100%;
+  position: relative;
+  left:50%;
+  top:50px;
+}
 
 .content-container{
   max-width: 1210px;
@@ -450,3 +472,41 @@ z-index: 10;
 .stote-data a {
   display: block;
 }
+
+
+
+.loader-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background: rgba(242, 240, 240, 0.834);
+  z-index: 1;
+ 
+}
+
+.spinner {
+  width: 64px;
+  height: 64px;
+  margin-top: -15%;
+  border: 8px solid;
+  border-color: #2ff507 transparent #069e0b transparent;
+  border-radius: 50%;
+  animation: spin-anim 2s linear infinite;
+  opacity: 1;
+}
+
+@keyframes spin-anim {
+  0% {
+      transform: rotate(0deg);
+      opacity: 1;
+
+  }
+  100% {
+      transform: rotate(360deg);
+      opacity: 0;
+  }
+}
+
