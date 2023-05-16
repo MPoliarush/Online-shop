@@ -17,7 +17,7 @@ function Confirmation(){
         }
     })
 
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState('')
     const [orderSaved,setOrderSaved] = useState(false)
 
     const stateBasket = useSelector(state=>state.basketOrders.goods)
@@ -45,6 +45,7 @@ async function getWarehouses(){
          }
         const response = await axios.post(`https://api.novaposhta.ua/v2.0/json/`, params)
         console.log(response.data)
+        setIsLoading('')
         setPostPoints(response.data.data)
        
     }catch(e){
@@ -55,12 +56,18 @@ async function getWarehouses(){
 
 
 useEffect(()=>{
+    
     getWarehouses()
-    setIsLoading(false)
-    return
+    setIsLoading('')
+   
 },[city])
 
 
+const intervalSetting = function (){
+    setTimeout(()=>{
+        setIsLoading('Завантаження...')
+    },1000)
+}
 
 
 function cityHandler(e){
@@ -68,7 +75,12 @@ function cityHandler(e){
     setActive({...active,
         city:e.target.value
     })
+
+    intervalSetting()
+    
 }
+
+console.log(isLoading)
 
 function postalNumberHandler(e){
     setActive({...active,
@@ -219,7 +231,7 @@ return(
                                             <label>Вибір відділення Нової Пошти</label>
                                         
                                             <select className="postSelect" onChange={postalNumberHandler}> 
-                                            
+                                                {isLoading=='Завантаження...' ? <option>Завантаження...</option>: null }
                                                 { postPoints.map(point=>{
                                                         return <option className="option" value={point.Description}>{point.Description} </option>
                                                 }) }

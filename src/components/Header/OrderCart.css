@@ -148,21 +148,23 @@ padding: 10px 0;
     padding: 15px 30px ;
     border-radius: 50px;
     font-weight: 700;
-    background-color: #71bc02;
+    background: linear-gradient(180deg, #8EE902 0%, #4F9C2C 100%);
     border: none;
     transition: 0.5s;
+   
 }
 
 .confirm-btn:hover{
 cursor: pointer;
 transition: 0.5s;
-background-color: #95f506;
+background: linear-gradient(180deg, #85dd02 0%, #3d7622 100%);
 }
 
 .confirm-btn.total{
     bottom:-90px;
     background-color: transparent;
     font-size: 22px;
+    background: none;
 }
 
 .confirm-btn.total:hover{
@@ -176,7 +178,12 @@ background-color: #95f506;
     margin: 12px 0;
     padding: 15px 25px;
     border-radius: 50px;
-    background-color: #71bc02;
+    background: linear-gradient(180deg, #8EE902 0%, #4F9C2C 100%);
     border: none;
+    transition: 0.5s;
+}
+
+.confirm-btn.date:hover{
+    background: linear-gradient(180deg, #85dd02 0%, #3d7622 100%);
     transition: 0.5s;
 }
