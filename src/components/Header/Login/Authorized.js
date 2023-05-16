@@ -224,7 +224,7 @@ return(
     <>
     <main>
         <div className = 'content-container personalPage'>
-            <h1 className="registration"><span>ОСОБОВИЙ</span> КАБІНЕТ</h1>
+            <h1 className="catalog-h1"><span>ОСОБОВИЙ</span> КАБІНЕТ</h1>
             <div className="greetings">
                 <p >Вітаємо, {predefinedData.name}!</p>
                 <button className="greet-btn" onClick={logOutHandler} >Вийти з кабінету</button>

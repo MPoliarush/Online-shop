@@ -85,6 +85,8 @@ function Comparison(props){
          <main>
             <div className="catalog-content-container">
             <h1 className="registration catalog-h1"><span>ПОРІВНЯННЯ</span> ТОВАРІВ</h1>
+            <p className="basic-text">Не впевнені який товар підходить найкраще саме Вам?
+            Для порівняння необхідно вибрати групу товарів і зробіть свій вибір.</p>
                 <div className="compare-goods">
                 
                 {goodsSet.length==0 ? <p>Немає товарів для порівняння</p>  : ''}

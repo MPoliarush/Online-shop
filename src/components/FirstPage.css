@@ -8,7 +8,7 @@ body{
 }
 
 main{
-  animation: appearing 2s ;
+  animation: appearing 1s ;
 }
 
 @keyframes appearing{
