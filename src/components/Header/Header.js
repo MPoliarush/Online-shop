@@ -3,6 +3,8 @@ import {Link,useNavigate} from 'react-router-dom'
 import { useSelector,useDispatch } from "react-redux"
 import axios from "axios";
 
+import News from '../News/News';
+
 function Header(){
 const [mouseOvered, setMouseOvered]=useState(false)
 const stateBasket = useSelector(state=>state.basketOrders.goods)
@@ -74,8 +76,8 @@ let path
                   <li><Link to={'/linses'}>Об'єктиви</Link> </li>
                 </ul>
               </li>
-              <li className='nav-li'><a href='#'>ПРО КОМПАНІЮ </a></li>
-              <li className='nav-li'><a href='#'>НОВИНИ</a></li>
+              <li className='nav-li'><a href='#'>ПРО КОМПАНІЮ</a></li>
+              <li className='nav-li'><Link to='/news'> НОВИНИ </Link></li>
               <li className='nav-li'><a href='#'>КОНТАКТИ</a></li>
             </ul>
           </nav>

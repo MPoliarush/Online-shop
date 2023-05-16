@@ -276,8 +276,6 @@ return (
                             <div className='select-block' onChange={inputHandler}>
                                 <p>Ціна за день, грн</p>
                                 <div className='range'><input type="range" name='maxPrice' min="1" max="300" id="myRange" value={rangeVal} onChange={rangeValue}/><label htmlFor='FullHD'>{rangeVal}</label></div>
-                                
-                                
                             </div>
                             <div className='select-block' onChange={inputHandler}>
                                 <p>Наявність товару</p>

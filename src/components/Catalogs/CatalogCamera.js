@@ -32,7 +32,7 @@ async function getInfo () {
     }catch(e){
         console.log(e.response)
     }
-    }
+}
     
 
 let uniqueChars  

@@ -68,7 +68,7 @@ function addToCompare(e){
 
     return (
         
-    <li className='card-frame'>
+    <li className='card-frame news-goods'>
         <div className='product-info'>
           <div className='product-img-wrapper'><img src={`http://localhost:5000/uploadedIMG/${props.itemData.img1[0].filename}`} className='product-img' alt='user'/></div>
           <p className='model'>{props.itemData.model}</p>

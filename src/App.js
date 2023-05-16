@@ -2,6 +2,7 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 
 
 import FirstPage from './components/FirstPage';
+import News from './components/News/News';
 import CatalogCamera from './components/Catalogs/CatalogCamera';
 import Root from './Root'
 import Admin from './components/Admin/Admin'
@@ -25,6 +26,7 @@ function App() {
     element: <Root />, 
     children:[
       {path:'', element:<FirstPage />},
+      {path:'/news', element:<News />},
       {path:'/login', element:<Login />},
       {path:'/login/registration', element:<Registration />},
       {path:'/login/authorized', element:<Authorized />},

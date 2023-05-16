@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './components/FirstPage.css'
+import './components/News/News.css'
 import './components/Header/Header.css'
 import './components/Header/OrderCart.css'
 import './components/Header/Confirmation.css'
