@@ -5,16 +5,14 @@ import axios from "axios";
 
 
 function CatalogLinse(){
-    const [rangeVal, setRangeValue]=useState('100')
+    const [rangeVal, setRangeValue]=useState('250')
     const [fetchedData, setFetchedData] = useState([])
     const [initalData, setinitaiData]=useState([])
     const [selectionMode, setSelectionMode] = useState('');
     const [filterList,setFilterList] = useState({
         brand:[],
         type:[],
-        imgdepth:[],
-        video:[],
-        maxPrice:'100',
+        maxPrice:'250',
         availability:[]
     })
 
@@ -77,8 +75,6 @@ for (const product of fetchedData){
 }
 
 },[filterList])
-
-
 
 
 
@@ -206,15 +202,40 @@ function inputHandler(e){
 }
 
 
-
-function filterHandler(e){
+async function filterHandler(e){
     e.preventDefault()
     console.log(filterList)
-    
+
+    let inputData = filterList
+    fetch('http://localhost:5000/linse-filters',{
+        method:'POST',
+        headers:{
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin" : "*",
+            
+        },
+        body:JSON.stringify(inputData)
+        }
+    ).then(res=>res.json()).then(data=>{
+        console.log(data)
+        let sortedData = data.sort((a,b)=>{
+        return a.work_price-b.work_price
+        })
+        setFetchedData(sortedData)
+    })
 
 }
 
-
+function filterClearHandler(e){
+    setFilterList({
+        brand:[],
+        type:[],
+        imgdepth:[],
+        video:[],
+        maxPrice:['300'],
+        availability:[]
+    })
+}
 
    
 
@@ -283,6 +304,7 @@ return (
                                 <div><input type='checkbox' id='4К' name='availability' value='0'/><label htmlFor='4К'>Не в наявності</label></div>
                             </div>
                             <button className='apply-btn' onClick={filterHandler}>Застосувати</button>
+                            <button className='apply-btn' onClick={filterClearHandler}>Очистити</button>
                         </form>
                         
                     </div>

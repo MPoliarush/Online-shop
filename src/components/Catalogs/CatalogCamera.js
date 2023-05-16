@@ -212,7 +212,6 @@ async function filterHandler(e){
         setFetchedData(sortedData)
     })
 
-  
 }
 
 function filterClearHandler(e){
