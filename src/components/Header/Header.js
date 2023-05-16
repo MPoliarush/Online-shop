@@ -76,7 +76,7 @@ let path
                   <li><Link to={'/linses'}>Об'єктиви</Link> </li>
                 </ul>
               </li>
-              <li className='nav-li'><a href='#'>ПРО КОМПАНІЮ</a></li>
+              <li className='nav-li'><Link to='/about'>ПРО КОМПАНІЮ </Link></li>
               <li className='nav-li'><Link to='/news'> НОВИНИ </Link></li>
               <li className='nav-li'><a href='#'>КОНТАКТИ</a></li>
             </ul>

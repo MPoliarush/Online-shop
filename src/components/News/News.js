@@ -67,8 +67,8 @@ return(
                     </div>
                 </div>
             </main>
-            <Footer></Footer>
         </div>
+            <Footer></Footer>
     </>
 )
 }

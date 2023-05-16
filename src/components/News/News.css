@@ -1,4 +1,4 @@
-.news-container{
+.news-container,.about-cont{
     display: flex;
     justify-content: space-between;
     gap:10%;
@@ -88,5 +88,27 @@ padding: 0 20px 15px 20px;
 
 .news>.news-goods{
     width:100%;
+}
+
+
+
+.left-blok-about{
+width:50%;
+}
+
+.basic-text.about{
+    margin: 0 0 30px;
+    width:100%;
+}
+
+.map{
+    width:45%;
+    border: 1px dolid;
+   
+}
+
+.map img{
+    width:100%;
+    object-fit: cover;
 }
 
