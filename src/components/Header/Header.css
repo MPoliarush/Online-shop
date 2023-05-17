@@ -51,12 +51,14 @@
   }
 
   .burger{
-    height: 35px;
+    width:0;
+    height: 0px;
     position: relative;
     top:-8px;
-    visibility: hidden;
+ 
   }
   
+
   .navAndlogin{
    
     display: flex;
@@ -216,7 +218,11 @@
     }
 
     .burger{
-      visibility: visible;
+      width:35px;
+      height: 35px;
+      position: relative;
+      top:-8px;
+      
     }
   
     .nav-li{
@@ -236,7 +242,44 @@
       z-index: 20;
       text-align: left;
      font-weight: 700;
+     transition: 1a ease-in;
+     animation: appearing 1s ;
     }
+
+    @keyframes appearing
+    {
+      0% {
+        height:0;
+      }
+      50%{
+        height:50wv;
+      }
+      100%{
+        height:100wv;
+      }
+    }
+
+/*     
+    .fading{
+      width:100vw;
+      height: 100vw;
+      transition: 1a ease-in;
+      animation: fade 1s ;
+    }
+
+    @keyframes fade
+    {
+      0% {
+        height:100wv;
+      }
+      50%{
+        height:50wv;
+      }
+      100%{
+        height:0wv;
+      }
+    } */
+
 
     .nav-list-burger a{
         text-decoration: none;
@@ -255,9 +298,7 @@
       margin: 20px 0;
     }
 
-    .nested-list-burger>ul{
-      
-    }
+    
 
     .nested-list-burger li{
       list-style-type: circle;
@@ -274,8 +315,8 @@
       width:35px;
       height: 35px;
       position: relative;
-      top:20px;
-      right: 60px;
+      top:40px;
+      right: 65px;
     }
 
     .nav-li-burger a:hover{

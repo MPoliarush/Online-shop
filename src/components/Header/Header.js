@@ -73,10 +73,12 @@ setActiveBurger(!activeBurger)
 
 function burgerReverseClickHandler(){
   console.log('clicked reverse')
-  setActiveBurger(!activeBurger)
+ 
+    setActiveBurger(!activeBurger)
+  
 }
 
-
+console.log(activeBurger)
 
 
     return (
