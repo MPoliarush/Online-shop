@@ -1,9 +1,13 @@
 import  { useState,useEffect } from 'react';
 import {Link,useNavigate} from 'react-router-dom'
-import { useSelector,useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
+
 import axios from "axios";
 
 import BurgerModal from './BurgerModal';
+
+
+
 
 function Header(props){
 
@@ -67,16 +71,8 @@ let path
 function burgerClickHandler(e){
 console.log('clicked burger')
 setActiveBurger(!activeBurger)
-
 }
 
-
-function burgerReverseClickHandler(){
-  console.log('clicked reverse')
- 
-    setActiveBurger(!activeBurger)
-  
-}
 
 console.log(activeBurger)
 
@@ -100,7 +96,7 @@ console.log(activeBurger)
                     <li className='nav-li'><a href='#'>КОНТАКТИ</a></li>
                     <img className='burger' src='imagesHTML/icons/burger.png' onClick={burgerClickHandler}/>
                   </ul>
-                  : <BurgerModal closing={burgerReverseClickHandler}></BurgerModal>
+                  : <BurgerModal closing={burgerClickHandler}></BurgerModal>
                 }
                   
 
@@ -110,7 +106,7 @@ console.log(activeBurger)
                   <Link to='/comparison'> <li><img src='/imagesHTML/icons/compare.png' alt='compare' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compareHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/compare.png')} /> <span className={stateCompare.length !=0 ? 'iconNumber' : ''}>{stateCompare.length==0 ? '' : stateCompare.length}</span>  </li> </Link>
                   <Link to='/orders'> <li><img src='/imagesHTML/icons/basket1.png' alt='basket' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/basket1Hovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/basket1.png')}/> <span className={stateBasket.length !=0 ? 'iconNumber' : ''}> {stateBasket.length==0 ? '' : stateBasket.length}</span> </li> </Link>
                   <Link to='#'> <li><img src= '/imagesHTML/icons/search.png' alt='find' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/searchHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/search.png')} /></li> </Link>
-                  <li className='loginImgLi' onClick={loginIconClickHandler}><img className='loginImg' src='/imagesHTML/icons/user.png' alt='user' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/userHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/user.png')}  /><span className={clientName.length !=0 ? 'iconNumber clientName' : ''}> {clientName.name==0 ? '' : clientName.name} </span>  </li>
+                  <li className='loginImgLi' onClick={activeBurger}><img className='loginImg' src='/imagesHTML/icons/user.png' alt='user' onMouseOver={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/userHovered.png')} onMouseOut={e => (e.currentTarget.src = process.env.PUBLIC_URL + '/imagesHTML/icons/user.png')}  /><span className={clientName.length !=0 ? 'iconNumber clientName' : ''}> {clientName.name==0 ? '' : clientName.name} </span>  </li>
 
                 </ul>
             </div>

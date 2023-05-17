@@ -1,6 +1,5 @@
 import {Outlet} from 'react-router-dom'
-import { Bars } from 'react-loader-spinner'
-import {TransitionGroup,CSSTransition} from 'react-transition-group';
+
 
 import Header from './components/Header/Header'
 
